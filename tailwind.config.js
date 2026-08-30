@@ -32,6 +32,7 @@ export default {
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
+        serif: ['Newsreader', 'Playfair Display', 'serif'],
       },
       boxShadow: {
         'glow-cyan': '0 0 25px rgba(6, 182, 212, 0.35)',

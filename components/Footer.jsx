@@ -29,12 +29,6 @@ export default function Footer() {
                 alt="CLESE Logo"
                 className="h-12 w-auto object-contain drop-shadow-[0_0_10px_rgba(162,212,94,0.3)] transition-transform duration-300 group-hover:scale-105"
               />
-              <div>
-                <span className="font-['Outfit'] font-bold text-white text-sm block tracking-wide">CLESE</span>
-                <span className="text-[10px] text-slate-400 leading-tight block max-w-[150px]">
-                  Centre for Learning Engineering and Sustainability Education
-                </span>
-              </div>
             </Link>
 
             {/* Social Icons */}

@@ -57,11 +57,6 @@ export default function Navbar() {
               alt="CLESE Logo"
               className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_0_12px_rgba(162,212,94,0.3)] transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="hidden xl:flex flex-col">
-              <span className="text-[9px] sm:text-[10px] font-bold tracking-[0.12em] text-slate-300 dark:text-slate-300 uppercase leading-[1.3] max-w-[210px]">
-                Centre for Learning Engineering & Sustainability Education
-              </span>
-            </div>
           </Link>
 
           {/* Center Navigation Capsule */}
