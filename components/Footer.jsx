@@ -85,11 +85,11 @@ export default function Footer() {
             <ul className="space-y-3 text-xs list-none p-0 text-slate-400">
               <li className="flex items-start gap-2">
                 <MapPin size={14} className="text-[#a2d45e] shrink-0 mt-0.5" />
-                <span className="leading-snug">Kariavattom, Thiruvananthapuram, Kerala, India</span>
+                <span className="leading-snug">University of Kerala, Kariavattom Campus, Thiruvananthapuram - 695581, Kerala, India</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={14} className="text-[#a2d45e] shrink-0" />
-                <a href="mailto:info@clese.in" className="hover:text-white transition-colors">info@clese.in</a>
+                <a href="mailto:lenseedu24@gmail.com" className="hover:text-white transition-colors">lenseedu24@gmail.com</a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={14} className="text-[#a2d45e] shrink-0" />
@@ -130,7 +130,7 @@ export default function Footer() {
 
         {/* Bottom Copyright Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© 2024 CLESE. All Rights Reserved.</p>
+          <p>© 2024 LEnSE • Centre for Learning Engineering and Sustainability Education, University of Kerala. All Rights Reserved.</p>
           <div className="flex items-center gap-4 text-slate-400">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <span>|</span>

@@ -13,6 +13,10 @@ import {
   Building2,
   HeartHandshake,
   FlaskConical,
+  Mail,
+  MapPin,
+  Calendar,
+  Award,
 } from 'lucide-react';
 
 export default function AboutPage() {
@@ -25,7 +29,7 @@ export default function AboutPage() {
       <div className="absolute top-0 right-0 w-full lg:w-[68%] xl:w-[62%] h-[840px] sm:h-[920px] pointer-events-none z-0 overflow-hidden select-none">
         <img 
           src="/about/about1.png" 
-          alt="CLESE Sustainability Sphere" 
+          alt="LEnSE Sustainability Sphere" 
           className="w-full h-full object-cover object-center lg:object-right-top scale-[1.04] transform-gpu" 
         />
         
@@ -53,7 +57,7 @@ export default function AboutPage() {
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#2d5a3c]" />
               <span className="text-[11px] font-bold tracking-[0.22em] text-[#455748] uppercase">
-                ABOUT US
+                ABOUT LEnSE
               </span>
             </div>
             
@@ -63,13 +67,13 @@ export default function AboutPage() {
             </h1>
 
             <p className="text-[#405245] text-[13.5px] leading-[1.72] max-w-[430px] font-normal">
-              The Centre for Learning Engineering and Sustainability Education (CLESE) was established in 2024 with the vision of promoting innovative, inclusive, and sustainable approaches to education, with a special focus on STEM (Science, Technology, Engineering and Mathematics) education. The Centre serves as a platform for academic engagement, capacity building, knowledge sharing, and collaborative initiatives aimed at strengthening learning and teaching practices.
+              The Centre for Learning Engineering and Sustainability Education (LEnSE) at the University of Kerala was established in 2024 with the vision of promoting innovative, inclusive, and sustainable approaches to education, with a special focus on STEM (Science, Technology, Engineering and Mathematics) education. The Centre serves as a platform for academic engagement, capacity building, knowledge sharing, and collaborative initiatives aimed at strengthening learning and teaching practices.
             </p>
 
             <div className="pt-2">
               <Link href="/academics" className="inline-flex">
                 <button className="px-7 py-3.5 rounded-full bg-gradient-to-b from-[#1b3726] to-[#11261a] hover:from-[#234631] hover:to-[#173323] text-white text-[11px] font-bold uppercase tracking-wider flex items-center gap-3 transition-all duration-500 shadow-[0_12px_28px_rgba(15,35,22,0.32),inset_0_1px_1px_rgba(255,255,255,0.25)] hover:scale-[1.03] group cursor-pointer">
-                  <span>Our Journey</span>
+                  <span>Our Programmes</span>
                   <div className="w-5 h-5 rounded-full border border-white/35 flex items-center justify-center">
                     <ArrowRight size={10} className="text-white group-hover:translate-x-0.5 transition-transform" />
                   </div>
@@ -101,7 +105,7 @@ export default function AboutPage() {
               </h3>
               
               <p className="text-[11px] text-[#2c3d30] leading-relaxed font-medium mb-3 relative z-10 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
-                A vision for a better and sustainable future through education and innovation.
+                Promoting innovative, inclusive, and sustainable approaches to STEM education.
               </p>
               
               <div className="w-5 h-[1.5px] bg-[#1d3527]/70 rounded-full mt-2 relative z-10" />
@@ -145,7 +149,7 @@ export default function AboutPage() {
         </div>
 
         {/* ============================================================ */}
-        {/* 3. ABOUT CLESE BENTO GRID */}
+        {/* 3. ABOUT LEnSE BENTO GRID */}
         {/* ============================================================ */}
         <div className="mt-24 sm:mt-32 lg:mt-36 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-20">
           
@@ -154,7 +158,7 @@ export default function AboutPage() {
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#2d5a3c]" />
               <span className="text-[11px] font-bold tracking-[0.2em] text-[#4d5e50] uppercase">
-                ABOUT CLESE
+                ABOUT LEnSE
               </span>
             </div>
             
@@ -164,16 +168,16 @@ export default function AboutPage() {
             </h2>
             
             <p className="text-[#455649] text-[13.5px] leading-[1.7] font-normal max-w-md">
-              CLESE organizes seminars, workshops, conferences, training programmes, and academic activities in emerging areas of education, learning engineering, sustainability, and STEM.
+              LEnSE organizes seminars, workshops, conferences, training programmes, and academic activities in emerging areas of education, learning engineering, sustainability, and STEM.
             </p>
             <p className="text-[#455649] text-[13.5px] leading-[1.7] font-normal max-w-md">
-              Through collaborations with reputed institutions and organizations, we create meaningful opportunities for students, teachers, scholars, and communities to learn, innovate, and make a positive impact.
+              Through collaborations with reputed institutions including SIET (Govt. of Kerala), REFORM, Child Development Centre Kazhakkoottam, and Clarkson University (USA), we create meaningful opportunities for students, teachers, scholars, and communities.
             </p>
             
             <div className="pt-2">
               <Link href="/projects" className="inline-flex">
                 <button className="px-7 py-3.5 rounded-full bg-white/60 hover:bg-white/90 backdrop-blur-xl border-[1.5px] border-white shadow-[inset_0_1.5px_2px_rgba(255,255,255,1),0_8px_20px_rgba(0,0,0,0.04)] text-[#162d1f] text-[11px] font-bold uppercase tracking-wider flex items-center gap-3 transition-all duration-500 hover:scale-[1.03] group cursor-pointer">
-                  <span>Explore More</span>
+                  <span>Explore Research & Projects</span>
                   <div className="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center">
                     <ArrowRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
                   </div>
@@ -252,7 +256,7 @@ export default function AboutPage() {
         </div>
 
         {/* ============================================================ */}
-        {/* 4. OUR OBJECTIVES */}
+        {/* 4. OUR OBJECTIVES (FROM OFFICIAL PDF) */}
         {/* ============================================================ */}
         <div className="mt-24 sm:mt-32 lg:mt-36 relative z-20">
           <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-6 mb-10">
@@ -275,11 +279,36 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
-              { num: '01', icon: Users, title: 'Accessible\nEducation', desc: 'Create inclusive educational environments that support career guidance and employability for all.' },
-              { num: '02', icon: Monitor, title: 'Innovative\nDigital Tools', desc: 'Build advanced digital solutions that enhance learning and improve student outcomes.' },
-              { num: '03', icon: Brain, title: 'Learning\nEngineering', desc: 'Integrate AI, psychology, and computation to advance educational sciences and skill development.' },
-              { num: '04', icon: Sprout, title: 'Sustainability\nEducation', desc: 'Promote learning, research, and civic engagement for a sustainable and responsible future.' },
-              { num: '05', icon: Globe, title: 'Equity & Global\nAwareness', desc: 'Inspire students to connect sustainability, equity, global interdependence, and civic action.' }
+              { 
+                num: '01', 
+                icon: Users, 
+                title: 'Accessible\nEducation', 
+                desc: 'Create educational environments using advanced computing to address career guidance and employability for all irrespective of barriers.' 
+              },
+              { 
+                num: '02', 
+                icon: Monitor, 
+                title: 'Innovative\nDigital Tools', 
+                desc: 'Build new innovative digital tools that are helping catalyse continuous improvements in students learning.' 
+              },
+              { 
+                num: '03', 
+                icon: Brain, 
+                title: 'Learning\nEngineering', 
+                desc: 'Integrate psychological principles of human learning and AI with computational methods for aptitude & skill development.' 
+              },
+              { 
+                num: '04', 
+                icon: Sprout, 
+                title: 'Sustainability\nEducation', 
+                desc: 'Create and support opportunities for learning about sustainability through coursework, research, and civic engagement.' 
+              },
+              { 
+                num: '05', 
+                icon: Globe, 
+                title: 'Equity & Global\nAwareness', 
+                desc: 'Connect sustainability, global interdependence, equity and civic action, providing research-informed development for educators.' 
+              }
             ].map((obj, i) => (
               <div 
                 key={i} 
@@ -306,7 +335,7 @@ export default function AboutPage() {
         </div>
 
         {/* ============================================================ */}
-        {/* 5. KEY INITIATIVES */}
+        {/* 5. KEY INITIATIVES (FROM OFFICIAL PDF) */}
         {/* ============================================================ */}
         <div className="mt-24 sm:mt-32 lg:mt-36 relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
@@ -324,7 +353,7 @@ export default function AboutPage() {
                   STEM Learning Lab
                 </h3>
                 <p className="text-[12.5px] text-[#445548] leading-relaxed max-w-[200px] font-normal drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]">
-                  Activity-based STEM training for school students and prospective teachers in a state-of-the-art lab.
+                  Activity-based STEM training for school students and specialized programmes for prospective teachers in a state-of-the-art lab.
                 </p>
               </div>
 
@@ -348,22 +377,22 @@ export default function AboutPage() {
               {[
                 { 
                   title: 'Scholar Connect', 
-                  desc: 'A platform for scholars to interact, share ideas, and explore research collaborations.', 
+                  desc: 'A platform for scholars to interact, share research ideas, and explore collaborative opportunities.', 
                   img: '/about/a3.png' 
                 },
                 { 
                   title: 'Institutional Collaborations', 
-                  desc: 'Partnerships with SIET, REFORM, CDC, and international institutions.', 
+                  desc: 'Partnerships with SIET (Govt. of Kerala), REFORM, and Child Development Centre (CDC), Kazhakkoottam.', 
                   img: '/about/a5.png' 
                 },
                 { 
-                  title: 'STEM Outreach Programs', 
-                  desc: 'Collaborative projects with schools across Kerala supporting gifted students and strengthening STEM learning.', 
+                  title: 'STEM 4 Girls & Gifted Camps', 
+                  desc: 'Collaborative projects with SIET across 41 districts & ICSSR state-wide STEM training empowering young girls.', 
                   img: '/about/a2.png' 
                 },
                 { 
                   title: 'Global Academic Partnerships', 
-                  desc: 'Collaboration with Clarkson University, USA to enhance STEM education and knowledge exchange.', 
+                  desc: 'International collaboration with the STEM Centre at Clarkson University, USA with Prof. Jan De Waters.', 
                   img: '/about/a4.png' 
                 }
               ].map((item, i) => (
@@ -399,7 +428,7 @@ export default function AboutPage() {
         </div>
 
         {/* ============================================================ */}
-        {/* 6. SOCIAL IMPACT BANNER */}
+        {/* 6. SOCIAL IMPACT BANNER (FROM OFFICIAL PDF) */}
         {/* ============================================================ */}
         <div className="mt-16 sm:mt-24 mb-12 rounded-[2.4rem] bg-gradient-to-b from-white/55 via-white/40 to-white/20 backdrop-blur-3xl border-[1.5px] border-white/95 shadow-[inset_0_2px_4px_rgba(255,255,255,1),0_20px_45px_rgba(0,25,12,0.05)] p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-20 transition-all duration-500">
           
@@ -427,7 +456,7 @@ export default function AboutPage() {
             
             <div className="space-y-2 max-w-xl text-[12.5px] text-[#445548] leading-[1.7]">
               <p>
-                Programme fees collected from our activities are utilized to support STEM education for socially and economically disadvantaged students in rural schools across Kerala.
+                Programme fees collected from our training activities are utilized to support STEM education for socially and economically disadvantaged students in rural schools across Kerala.
               </p>
               <p>
                 We believe every learner deserves the opportunity to explore, innovate, and excel.
@@ -447,6 +476,51 @@ export default function AboutPage() {
             </p>
           </div>
 
+        </div>
+
+        {/* ============================================================ */}
+        {/* 7. LEADERSHIP & UNIVERSITY AFFILIATION (FROM OFFICIAL PDF) */}
+        {/* ============================================================ */}
+        <div className="mt-8 mb-4 rounded-[2.4rem] bg-gradient-to-b from-white/60 via-white/40 to-white/20 backdrop-blur-3xl border-[1.5px] border-white/95 shadow-[inset_0_2px_4px_rgba(255,255,255,1),0_20px_45px_rgba(0,25,12,0.05)] p-8 sm:p-10 relative z-20 transition-all duration-500">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Director Details */}
+            <div className="lg:col-span-7 space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#2d5a3c]" />
+                <span className="text-[10px] font-bold tracking-[0.2em] text-[#556758] uppercase">
+                  CENTRE LEADERSHIP
+                </span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#122016]">
+                Dr. Divya C Senan
+              </h3>
+              <p className="text-sm font-medium text-[#2d5a3c]">
+                Director, Centre for Learning Engineering and Sustainability Education (LEnSE)
+              </p>
+              <p className="text-xs text-[#445548] leading-relaxed max-w-xl pt-1">
+                Leading academic engagement, research initiatives, and state-wide STEM outreach programs in collaboration with national and international institutions.
+              </p>
+            </div>
+
+            {/* University Location & Contact */}
+            <div className="lg:col-span-5 space-y-3 p-5 sm:p-6 rounded-[1.8rem] bg-white/50 backdrop-blur-xl border border-white/90 shadow-sm">
+              <div className="flex items-start gap-3 text-xs text-[#354639]">
+                <MapPin size={16} className="text-[#2d5a3c] shrink-0 mt-0.5" />
+                <span>
+                  University of Kerala, Kariavattom Campus,<br />
+                  Thiruvananthapuram - 695581, Kerala, India
+                </span>
+              </div>
+              <div className="flex items-center gap-3 text-xs text-[#354639] pt-1">
+                <Mail size={16} className="text-[#2d5a3c] shrink-0" />
+                <a href="mailto:lenseedu24@gmail.com" className="text-[#1a3825] font-semibold hover:underline">
+                  lenseedu24@gmail.com
+                </a>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>

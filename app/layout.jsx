@@ -11,10 +11,10 @@ export default function RootLayout({ children }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>CLESE • Centre for Learning Engineering & Sustainability Education</title>
+        <title>LEnSE • Centre for Learning Engineering & Sustainability Education | University of Kerala</title>
         <meta 
           name="description" 
-          content="CLESE - Pioneering inclusive, tech-driven, and sustainability-focused educational research and innovation." 
+          content="LEnSE (Centre for Learning Engineering and Sustainability Education) - University of Kerala. Promoting innovative, inclusive, and sustainable approaches to STEM education." 
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -103,7 +103,7 @@ export default function Navbar() {
               href="/academics"
               className="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#143021] to-[#0d2217] hover:from-[#1b3d2b] hover:to-[#122e1f] border border-[#2d5c3f] hover:border-[#428159] text-white text-xs font-semibold tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(20,48,33,0.6)] group"
             >
-              <span>Explore CLESE</span>
+              <span>Explore LEnSE</span>
               <ArrowRight size={14} className="text-[#a2d45e] group-hover:translate-x-1 transition-transform" />
             </Link>
 
