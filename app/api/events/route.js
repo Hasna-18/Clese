@@ -6,8 +6,8 @@ export async function GET() {
     const events = await getEvents();
     return NextResponse.json(events);
   } catch (error) {
-    console.error('Error fetching events:', error);
-    return NextResponse.json({ error: 'Failed to fetch events' }, { status: 500 });
+    console.warn('DB offline or unreachable, returning empty list:', error.message);
+    return NextResponse.json([], { status: 200 });
   }
 }
 

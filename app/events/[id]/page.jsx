@@ -26,6 +26,9 @@ import {
 } from 'lucide-react';
 
 export default function EventDetailPage({ params }) {
+  const resolvedParams = params && typeof params.then === 'function' ? React.use(params) : params;
+  const eventId = resolvedParams?.id || '1';
+
   // Using dummy data based on the mockup. In a real app, we'd fetch based on params.id
   const event = {
     title: 'Fourth SIET International Conference on Educational Technology',
@@ -109,33 +112,33 @@ export default function EventDetailPage({ params }) {
             </p>
 
             {/* Meta Stats Bar */}
-            <div className="flex flex-wrap gap-4 sm:gap-6 pt-2 pb-4">
-              <div className="flex items-center gap-3 bg-white/60 backdrop-blur-md px-4 py-3 rounded-2xl border border-[#d2e0d3]/50">
-                <div className="text-[#2d5a3c]"><Calendar size={20} /></div>
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-4 pt-2 pb-4">
+              <div className="flex items-center gap-3 bg-white/70 backdrop-blur-md px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl border border-[#d2e0d3]/60 shadow-xs">
+                <div className="text-[#2d5a3c] shrink-0"><Calendar size={18} /></div>
                 <div>
-                  <div className="text-[13px] font-bold text-[#19241c]">14 - 15</div>
-                  <div className="text-[11px] text-[#556758] font-medium">March 2025</div>
+                  <div className="text-xs sm:text-[13px] font-bold text-[#19241c]">14 - 15</div>
+                  <div className="text-[10px] sm:text-[11px] text-[#556758] font-medium">March 2025</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 bg-white/60 backdrop-blur-md px-4 py-3 rounded-2xl border border-[#d2e0d3]/50">
-                <div className="text-[#2d5a3c]"><Clock size={20} /></div>
+              <div className="flex items-center gap-3 bg-white/70 backdrop-blur-md px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl border border-[#d2e0d3]/60 shadow-xs">
+                <div className="text-[#2d5a3c] shrink-0"><Clock size={18} /></div>
                 <div>
-                  <div className="text-[13px] font-bold text-[#19241c]">09:30 AM</div>
-                  <div className="text-[11px] text-[#556758] font-medium">Onwards</div>
+                  <div className="text-xs sm:text-[13px] font-bold text-[#19241c]">09:30 AM</div>
+                  <div className="text-[10px] sm:text-[11px] text-[#556758] font-medium">Onwards</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 bg-white/60 backdrop-blur-md px-4 py-3 rounded-2xl border border-[#d2e0d3]/50">
-                <div className="text-[#2d5a3c]"><MapPin size={20} /></div>
+              <div className="flex items-center gap-3 bg-white/70 backdrop-blur-md px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl border border-[#d2e0d3]/60 shadow-xs">
+                <div className="text-[#2d5a3c] shrink-0"><MapPin size={18} /></div>
                 <div>
-                  <div className="text-[13px] font-bold text-[#19241c]">Thiruvananthapuram</div>
-                  <div className="text-[11px] text-[#556758] font-medium">Kerala, India</div>
+                  <div className="text-xs sm:text-[13px] font-bold text-[#19241c] truncate max-w-[110px] sm:max-w-none">Trivandrum</div>
+                  <div className="text-[10px] sm:text-[11px] text-[#556758] font-medium">Kerala, India</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 bg-white/60 backdrop-blur-md px-4 py-3 rounded-2xl border border-[#d2e0d3]/50">
-                <div className="text-[#2d5a3c]"><Users size={20} /></div>
+              <div className="flex items-center gap-3 bg-white/70 backdrop-blur-md px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl border border-[#d2e0d3]/60 shadow-xs">
+                <div className="text-[#2d5a3c] shrink-0"><Users size={18} /></div>
                 <div>
-                  <div className="text-[13px] font-bold text-[#19241c]">Hybrid</div>
-                  <div className="text-[11px] text-[#556758] font-medium">(Offline & Online)</div>
+                  <div className="text-xs sm:text-[13px] font-bold text-[#19241c]">Hybrid</div>
+                  <div className="text-[10px] sm:text-[11px] text-[#556758] font-medium">Mode</div>
                 </div>
               </div>
             </div>

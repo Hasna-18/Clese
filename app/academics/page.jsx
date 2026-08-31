@@ -1,414 +1,381 @@
 'use client';
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, BookOpen, GraduationCap, Award, Globe, CheckCircle2, ChevronRight, Bookmark, Sparkles, X, Mail, FileText, Layers, Search, ShieldCheck } from 'lucide-react';
-import { DEFAULT_DIRECTOR } from '../../lib/data';
+import Link from 'next/link';
+import {
+  Leaf,
+  GraduationCap,
+  Users,
+  Landmark,
+  Globe,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  FlaskConical,
+  BookOpen,
+  Monitor,
+  HeartHandshake,
+  Atom,
+  Calendar,
+  Sparkles,
+  School,
+  Clock,
+  User,
+  Compass,
+  CheckCircle2,
+  Cpu
+} from 'lucide-react';
 
-export default function AcademicsPage() {
-  const [director, setDirector] = useState(DEFAULT_DIRECTOR);
-  const [selectedModule, setSelectedModule] = useState(null);
+export default function ProgramsPage() {
+  const [activeCategory, setActiveCategory] = useState('All');
 
-  // Showcase section slider indices
-  const [overviewIndex, setOverviewIndex] = useState(0);
-  const [facultyIndex, setFacultyIndex] = useState(0);
-  const [eventsIndex, setEventsIndex] = useState(0);
-  const [newsIndex, setNewsIndex] = useState(0);
+  const stats = [
+    { count: '20+', label: 'Programs Offered', icon: GraduationCap },
+    { count: '1000+', label: 'Learners Engaged', icon: Users },
+    { count: '10+', label: 'Partner Institutions', icon: Landmark },
+    { count: '5+', label: 'Focus Areas', icon: Globe }
+  ];
 
-  // PDF Content Data - Section 1: Overview & Core Requirements
-  const overviewSlides = [
+  const programCategories = [
     {
-      title: "1. Dynamic Academic Portal Overview",
-      badge: "DYNAMIC PLATFORM",
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
-      description: "CLESE is envisioned as a modern, interactive, and scalable Academic Portal serving as the institution's central digital platform for presenting academic information, faculty details, events, news, announcements, media, and institutional content.",
-      details: "Includes responsive layout across desktop, tablet, and mobile, user-friendly navigation, and up to 10 primary pages (Home, About, Administration, Departments, Faculty, Events, News, Media/Gallery, Academics, Contact)."
+      id: 'stem-learning',
+      title: 'STEM Learning Programs',
+      desc: 'Hands-on, activity-based programs that ignite curiosity and strengthen STEM skills.',
+      img: '/events/workshop.jpg',
+      link: '/events'
     },
     {
-      title: "Core Portal Architecture",
-      badge: "10 PRIMARY PAGES",
-      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
-      description: "Designed with modern UI/UX principles, clean visual hierarchy, consistent typography, spacing, and optimized user experience across all screen sizes.",
-      details: "Combines modern design, dynamic content management, centralized administration, advanced SEO, and institutional communication."
+      id: 'teacher-dev',
+      title: 'Teacher Development Programs',
+      desc: 'Capacity building programs for educators to enhance teaching and learning.',
+      img: '/events/events_book_plant.jpg',
+      link: '/events'
+    },
+    {
+      id: 'workshops-training',
+      title: 'Workshops & Training',
+      desc: 'Short-term workshops and training sessions on emerging topics and technologies.',
+      img: '/events/scholar.jpg',
+      link: '/events'
+    },
+    {
+      id: 'outreach-community',
+      title: 'Outreach & Community Programs',
+      desc: 'Community-focused initiatives promoting inclusion and social impact.',
+      img: '/events/events_globe_books.jpg',
+      link: '/events'
+    },
+    {
+      id: 'sustainability-edu',
+      title: 'Sustainability Education',
+      desc: 'Programs that build awareness and drive action towards a sustainable future.',
+      img: '/events/sustainability.jpg',
+      link: '/events'
     }
   ];
 
-  // PDF Content Data - Section 2: Faculty Management Portal
-  const facultySlides = [
+  const featuredPrograms = [
     {
-      title: "2. Dedicated Faculty Management System",
-      badge: "FACULTY MODULE",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
-      description: "Allows the single administrator (CLESE) to create, edit, delete, and organize faculty profiles dynamically without coding knowledge.",
-      details: "Each profile captures: Faculty Name, Photograph, Designation, Department, Qualification, Specialization, Professional Bio, and Institutional Contact Info."
+      id: 1,
+      badge: 'POPULAR',
+      badgeClass: 'bg-[#1b3726] text-[#a2d45e]',
+      icon: FlaskConical,
+      title: 'STEM Learning Lab Programme',
+      desc: 'Experiential learning through innovative lab activities.',
+      audience: 'Students',
+      duration: 'School & Teachers',
+      img: '/events/workshop.jpg'
     },
     {
-      title: "Departmental Organization & Categorization",
-      badge: "PROFILE METRICS",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800",
-      description: "Faculty members are organized according to departments and categories. Public-facing website pages automatically update live when changes are made.",
-      details: "Includes photo uploads, publication metrics counter, experience badges, and direct email contact buttons."
-    }
-  ];
-
-  // PDF Content Data - Section 3: Event & Media Management Systems
-  const eventsSlides = [
-    {
-      title: "3. Complete Event Management Portal",
-      badge: "EVENT SYSTEM",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800",
-      description: "Enables administrators to publish upcoming and past institutional events with titles, detailed descriptions, date/time, venue locations, and photo galleries.",
-      details: "Features categorized event archives, upcoming symposia schedules, hybrid conference connect tools, and registration links."
+      id: 2,
+      badge: 'NEW',
+      badgeClass: 'bg-[#1b3726] text-[#a2d45e]',
+      icon: School,
+      title: 'Innovative Teaching Practices Workshop',
+      desc: 'Enhancing pedagogical skills through practical strategies.',
+      audience: 'Teachers',
+      duration: '2 Days Workshop',
+      img: '/events/conference.jpg'
     },
     {
-      title: "Dynamic Media & Image Gallery",
-      badge: "MEDIA GALLERY",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
-      description: "Organizes institutional photos, laboratory facility tours, and workshop media into structured collections with titles and descriptions.",
-      details: "Includes lightbox full-screen photo modal viewers, category filter pills (Campus, Labs, Outreach, Events), and image optimization."
-    }
-  ];
-
-  // PDF Content Data - Section 4: News, SEO & Future Scalability
-  const newsSlides = [
-    {
-      title: "4. News, SEO & System Administration",
-      badge: "NEWS & SEO",
-      image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=800",
-      description: "Includes a News & Announcements Management system for publishing institutional updates, alongside Advanced SEO (Meta titles, Open Graph, Sitemaps, Schema data).",
-      details: "Admin panel is protected through secure administrator authentication, input validation, and protected content management."
+      id: 3,
+      badge: 'ONGOING',
+      badgeClass: 'bg-[#1b3726] text-[#a2d45e]',
+      icon: Cpu,
+      title: 'Robotics & AI Exploration Camp',
+      desc: 'Hands-on exploration of robotics, AI and problem solving.',
+      audience: 'Students',
+      duration: '5 Days Camp',
+      img: '/events/scholar.jpg'
     },
     {
-      title: "Future Scalability & Modular Expansion",
-      badge: "MODULAR SCALABILITY",
-      image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&q=80&w=800",
-      description: "Structured architecture allowing future expansion modules: Student Portal, Faculty Portal, Online Applications, Admissions Management, and Academic Calendars.",
-      details: "Target delivery timeline designed within 2 months across 5 phases: Planning, UI/UX Design, Development, Optimization, and Testing."
+      id: 4,
+      badge: 'FEATURED',
+      badgeClass: 'bg-[#1b3726] text-[#a2d45e]',
+      icon: Compass,
+      title: 'Sustainability Leadership Program',
+      desc: 'Empowering young leaders to drive sustainable change.',
+      audience: 'Students',
+      duration: '3 Days Program',
+      img: '/events/sustainability.jpg'
     }
-  ];
-
-  // Degree Courses
-  const coursesTaught = [
-    { code: "EDU-701", title: "Learning Engineering & Digital Pedagogy", level: "M.Ed / Ph.D.", desc: "Integrating technology, cognitive science, and user-centered design in instruction." },
-    { code: "EDU-704", title: "Environmental & Energy Literacy Education", level: "M.Ed Core", desc: "Curriculum models for climate action, zero-carbon education, and field learning." },
-    { code: "EDU-802", title: "Advanced Research Methodology & Educational Statistics", level: "Ph.D. Coursework", desc: "Quantitative analytics, quasi-experimental research, and statistical modeling in SPSS & R." },
-    { code: "EDU-809", title: "Gender-Responsive STEM Pedagogy", level: "Postgraduate Elective", desc: "Strategies for inclusive STEM participation in rural and underserved institutions." }
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 pb-20">
-      {/* Top Warm Glow Hero Section */}
-      <div className="relative pt-16 pb-12 overflow-hidden text-center max-w-5xl mx-auto px-6">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-amber-300/30 via-amber-100/20 to-transparent blur-3xl -z-10 rounded-full pointer-events-none" />
-
-        <span className="text-[11px] font-extrabold tracking-widest text-amber-700 dark:text-amber-400 uppercase bg-amber-100 dark:bg-amber-900/40 px-3.5 py-1 rounded-full border border-amber-300 dark:border-amber-700">
-          CLESE ACADEMIC PORTAL & SPECIFICATIONS
-        </span>
-
-        <h1 className="font-outfit text-5xl sm:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight mt-4">
-          ACADEMICS
-        </h1>
-
-        <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto mt-3 leading-relaxed">
-          Official academic portal framework, degree programs, faculty management specifications, and research curricula for CLESE • University of Kerala.
-        </p>
+    <div className="min-h-screen bg-[#f3f5ed] text-[#19241c] font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30">
+      
+      {/* Ambient background glows */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[20%] -left-40 w-[600px] h-[600px] bg-[#e2edd8]/40 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-8 w-[650px] h-[650px] bg-[#dbe8d0]/40 rounded-full blur-3xl" />
       </div>
 
-      {/* Featured Director Card */}
-      <div className="max-w-4xl mx-auto px-6 mb-20">
-        <div className="relative p-6 sm:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-2xl shadow-slate-200/60 dark:shadow-slate-950/50 flex flex-col md:flex-row items-center gap-8">
-          <div className="relative w-full md:w-72 h-72 rounded-2xl overflow-hidden shadow-lg border border-slate-100 shrink-0">
-            {/* eslint-disable-next-html-for-img */}
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/5/5f/University_of_Kerala.jpg"
-              alt="University of Kerala"
-              className="w-full h-full object-cover"
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-28">
+
+        {/* ========================================================================= */}
+        {/* 1. HERO SECTION */}
+        {/* ========================================================================= */}
+        <div className="relative">
+          
+          {/* Hero Visual on the Right */}
+          <div className="absolute top-0 right-0 w-full lg:w-[58%] h-[480px] sm:h-[540px] pointer-events-none z-0 rounded-l-[4rem] overflow-hidden select-none hidden lg:block">
+            <img 
+              src="/home/bg.png" 
+              alt="LEnSE Programs & STEM Laboratory" 
+              className="w-full h-full object-cover object-center scale-[1.03]" 
+              onError={(e) => {
+                e.currentTarget.src = "/events/events_book_plant.jpg";
+              }}
             />
-            <span className="absolute bottom-3 left-3 bg-amber-400 text-slate-950 text-[10px] font-extrabold px-3 py-1 rounded-md uppercase tracking-wider shadow">
-              HONORARY DIRECTOR
-            </span>
+            {/* Soft Organic Fade Masks */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] via-[#f3f5ed]/80 via-[20%] to-transparent to-[55%]" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f3f5ed] via-[#f3f5ed]/60 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#f3f5ed] to-transparent" />
           </div>
 
-          <div className="space-y-4 text-left">
-            <div>
-              <h2 className="font-outfit font-extrabold text-3xl text-slate-900 dark:text-white">{director.name}</h2>
-              <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 px-2.5 py-0.5 rounded-md inline-block mt-1">
-                {director.title}
+          {/* Left Content */}
+          <div className="relative z-10 max-w-xl space-y-6 pt-2 pb-6">
+            
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d]">
+              <Leaf size={14} className="text-[#2d5a3c] fill-[#2d5a3c]" />
+              <Link href="/" className="hover:text-[#1b3726] transition-colors">Home</Link>
+              <span className="text-[#879b8c]">&gt;</span>
+              <span className="text-[#1b3726] font-bold">Programs</span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-[4rem] font-normal text-[#122016] leading-[1.08] tracking-tight font-serif">
+              Our Programs
+            </h1>
+
+            {/* Subtext */}
+            <p className="text-xl sm:text-2xl font-serif italic text-[#243d2c] leading-snug">
+              Learning today. Leading tomorrow.
+            </p>
+
+            <p className="text-[#405245] text-sm sm:text-[14.5px] leading-[1.7] max-w-lg font-normal">
+              At LEnSE, our programs are designed to inspire curiosity, strengthen skills, and foster innovation. From hands-on STEM learning to teacher development and community outreach, we create meaningful learning experiences for all.
+            </p>
+
+            {/* Stat Pills Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-4 max-w-lg">
+              {stats.map((item, idx) => (
+                <div key={idx} className="p-3.5 rounded-2xl bg-white/80 backdrop-blur-md border border-[#dce6dd] shadow-xs flex flex-col items-center text-center group hover:bg-white transition-all">
+                  <div className="w-9 h-9 rounded-xl bg-[#eaf1e4] text-[#2d5a3c] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                    <item.icon size={18} strokeWidth={1.5} />
+                  </div>
+                  <span className="text-xl font-serif font-bold text-[#14261a] leading-none mb-0.5">
+                    {item.count}
+                  </span>
+                  <span className="text-[10px] text-[#556758] font-medium leading-tight">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* ========================================================================= */}
+        {/* 2. EXPLORE OUR PROGRAM CATEGORIES */}
+        {/* ========================================================================= */}
+        <div className="space-y-8">
+          <div className="text-center space-y-1.5 max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#2d5a3c]" />
+              <span className="text-[10.5px] font-bold tracking-[0.2em] text-[#4d5e50] uppercase">
+                EXPLORE OUR PROGRAM CATEGORIES
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              {director.bio}
-            </p>
+            <h2 className="text-3xl sm:text-4xl font-serif text-[#122016]">
+              Empowering minds through <span className="italic text-[#243d2c]">meaningful learning</span>
+            </h2>
+          </div>
 
-            <div className="grid grid-cols-2 gap-4 py-3 border-y border-slate-100 dark:border-slate-800 text-center">
-              <div>
-                <span className="font-outfit font-black text-xl text-slate-900 dark:text-white block">20+</span>
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Indexed Papers</span>
-              </div>
-              <div>
-                <span className="font-outfit font-black text-xl text-slate-900 dark:text-white block">18+</span>
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Years Leadership</span>
-              </div>
-            </div>
+          {/* 5 Cards Row */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
+            {programCategories.map((item, idx) => (
+              <div 
+                key={idx} 
+                className="p-5 rounded-[2rem] bg-white/85 backdrop-blur-xl border border-white/95 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <div className="space-y-3">
+                  <div className="w-full h-32 rounded-2xl overflow-hidden bg-slate-100 shadow-xs relative">
+                    <img 
+                      src={item.img} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" 
+                    />
+                  </div>
+                  <h3 className="text-[15px] font-serif font-semibold text-[#14261a] leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-[11.5px] text-[#4d6052] leading-snug font-normal">
+                    {item.desc}
+                  </p>
+                </div>
 
-            <a
-              href="mailto:divyasenan@keralauniversity.ac.in"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/25 transition-all hover:scale-105"
-            >
-              <Mail size={14} />
-              <span>Contact Director</span>
-            </a>
+                <div className="pt-4 flex items-center justify-between">
+                  <Link href={item.link} className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1b3726] group-hover:text-[#2d5a3c] transition-colors">
+                    <span>Explore Programs</span>
+                    <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                  </Link>
+
+                  <div className="w-7 h-7 rounded-full bg-[#f4f7f2] group-hover:bg-[#1b3726] group-hover:text-white text-[#1b3726] flex items-center justify-center transition-colors shadow-xs">
+                    <ArrowRight size={12} />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Categorized Showcase Sections (Matching Reference Image Layout & PDF Content) */}
-      <div className="max-w-4xl mx-auto px-6 space-y-20">
-        {/* Section 1: Overview & Core Requirements */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-            <h2 className="font-outfit font-extrabold text-2xl text-slate-900 dark:text-white flex items-center gap-2">
-              <span>Core Requirements & Portal Scope</span>
-              <span className="text-amber-500 font-normal">|</span>
-            </h2>
-            <span className="text-xs text-slate-500 font-semibold">0{overviewIndex + 1} / 0{overviewSlides.length}</span>
+        {/* ========================================================================= */}
+        {/* 3. FEATURED PROGRAMS */}
+        {/* ========================================================================= */}
+        <div className="space-y-8">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4">
+            <div className="space-y-1">
+              <span className="text-[10.5px] font-bold tracking-[0.2em] text-[#4d5e50] uppercase block">
+                FEATURED PROGRAMS
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-serif text-[#122016]">
+                Signature programs making an <span className="italic text-[#243d2c]">impact</span>
+              </h2>
+            </div>
+
+            <Link href="/events" className="text-xs font-bold text-[#1b3726] hover:text-[#2d5a3c] flex items-center gap-1.5 transition-colors group">
+              <span>View All Programs</span>
+              <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
           </div>
 
-          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xl flex flex-col md:flex-row items-center gap-8">
-            <div className="w-full md:w-72 h-64 rounded-2xl overflow-hidden shadow border border-slate-100 shrink-0">
-              {/* eslint-disable-next-html-for-img */}
-              <img
-                src={overviewSlides[overviewIndex].image}
-                alt={overviewSlides[overviewIndex].title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="space-y-4 text-left flex-1">
-              <div>
-                <h3 className="font-outfit font-bold text-2xl text-slate-900 dark:text-white">{overviewSlides[overviewIndex].title}</h3>
-                <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 px-2.5 py-0.5 rounded-md inline-block mt-1">
-                  {overviewSlides[overviewIndex].badge}
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                {overviewSlides[overviewIndex].description}
-              </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl">
-                {overviewSlides[overviewIndex].details}
-              </p>
-              <div className="flex items-center justify-end gap-2 pt-2">
-                <button
-                  onClick={() => setOverviewIndex((prev) => (prev === 0 ? overviewSlides.length - 1 : prev - 1))}
-                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-colors"
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  onClick={() => setOverviewIndex((prev) => (prev === overviewSlides.length - 1 ? 0 : prev + 1))}
-                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-colors"
-                >
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+          {/* 4 Cards Carousel / Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative">
+            {featuredPrograms.map((prog) => (
+              <div 
+                key={prog.id} 
+                className="group rounded-[2rem] bg-white/90 backdrop-blur-xl border border-white/95 p-4 space-y-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Image Thumbnail with Tag & Circle Icon Badge */}
+                <div className="h-40 rounded-2xl overflow-hidden bg-slate-100 relative shadow-xs">
+                  <img 
+                    src={prog.img} 
+                    alt={prog.title} 
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" 
+                  />
 
-        {/* Section 2: Faculty Management System */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-            <h2 className="font-outfit font-extrabold text-2xl text-slate-900 dark:text-white flex items-center gap-2">
-              <span>Faculty Management System</span>
-              <span className="text-amber-500 font-normal">|</span>
-            </h2>
-            <span className="text-xs text-slate-500 font-semibold">0{facultyIndex + 1} / 0{facultySlides.length}</span>
-          </div>
+                  {/* Top Left Tag */}
+                  <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#0d2216]/85 backdrop-blur-md text-[#a2d45e] text-[9px] font-bold uppercase tracking-wider shadow-sm">
+                    {prog.badge}
+                  </div>
 
-          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xl flex flex-col md:flex-row items-center gap-8">
-            <div className="w-full md:w-72 h-64 rounded-2xl overflow-hidden shadow border border-slate-100 shrink-0">
-              {/* eslint-disable-next-html-for-img */}
-              <img
-                src={facultySlides[facultyIndex].image}
-                alt={facultySlides[facultyIndex].title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="space-y-4 text-left flex-1">
-              <div>
-                <h3 className="font-outfit font-bold text-2xl text-slate-900 dark:text-white">{facultySlides[facultyIndex].title}</h3>
-                <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 px-2.5 py-0.5 rounded-md inline-block mt-1">
-                  {facultySlides[facultyIndex].badge}
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                {facultySlides[facultyIndex].description}
-              </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl">
-                {facultySlides[facultyIndex].details}
-              </p>
-              <div className="flex items-center justify-end gap-2 pt-2">
-                <button
-                  onClick={() => setFacultyIndex((prev) => (prev === 0 ? facultySlides.length - 1 : prev - 1))}
-                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-colors"
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  onClick={() => setFacultyIndex((prev) => (prev === facultySlides.length - 1 ? 0 : prev + 1))}
-                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-colors"
-                >
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+                  {/* Bottom Left Floating Round Icon Badge */}
+                  <div className="absolute bottom-2.5 left-2.5 w-9 h-9 rounded-full bg-white/95 shadow-md flex items-center justify-center text-[#2d5a3c]">
+                    <prog.icon size={17} strokeWidth={1.5} />
+                  </div>
+                </div>
 
-        {/* Section 3: Event & Media Management */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-            <h2 className="font-outfit font-extrabold text-2xl text-slate-900 dark:text-white flex items-center gap-2">
-              <span>Event & Media Gallery Portal</span>
-              <span className="text-amber-500 font-normal">|</span>
-            </h2>
-            <span className="text-xs text-slate-500 font-semibold">0{eventsIndex + 1} / 0{eventsSlides.length}</span>
-          </div>
+                {/* Details */}
+                <div className="space-y-2 px-1">
+                  <h3 className="text-[15px] font-serif font-semibold text-[#14261a] leading-snug group-hover:text-[#2d5a3c] transition-colors line-clamp-2">
+                    {prog.title}
+                  </h3>
 
-          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xl flex flex-col md:flex-row items-center gap-8">
-            <div className="w-full md:w-72 h-64 rounded-2xl overflow-hidden shadow border border-slate-100 shrink-0">
-              {/* eslint-disable-next-html-for-img */}
-              <img
-                src={eventsSlides[eventsIndex].image}
-                alt={eventsSlides[eventsIndex].title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="space-y-4 text-left flex-1">
-              <div>
-                <h3 className="font-outfit font-bold text-2xl text-slate-900 dark:text-white">{eventsSlides[eventsIndex].title}</h3>
-                <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 px-2.5 py-0.5 rounded-md inline-block mt-1">
-                  {eventsSlides[eventsIndex].badge}
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                {eventsSlides[eventsIndex].description}
-              </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl">
-                {eventsSlides[eventsIndex].details}
-              </p>
-              <div className="flex items-center justify-end gap-2 pt-2">
-                <button
-                  onClick={() => setEventsIndex((prev) => (prev === 0 ? eventsSlides.length - 1 : prev - 1))}
-                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-colors"
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  onClick={() => setEventsIndex((prev) => (prev === eventsSlides.length - 1 ? 0 : prev + 1))}
-                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-colors"
-                >
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+                  <p className="text-[12px] text-[#4d6052] leading-relaxed line-clamp-2 font-normal">
+                    {prog.desc}
+                  </p>
 
-        {/* Section 4: News, SEO & Administration */}
-        <section className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-            <h2 className="font-outfit font-extrabold text-2xl text-slate-900 dark:text-white flex items-center gap-2">
-              <span>News, SEO & Administration</span>
-              <span className="text-amber-500 font-normal">|</span>
-            </h2>
-            <span className="text-xs text-slate-500 font-semibold">0{newsIndex + 1} / 0{newsSlides.length}</span>
-          </div>
-
-          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xl flex flex-col md:flex-row items-center gap-8">
-            <div className="w-full md:w-72 h-64 rounded-2xl overflow-hidden shadow border border-slate-100 shrink-0">
-              {/* eslint-disable-next-html-for-img */}
-              <img
-                src={newsSlides[newsIndex].image}
-                alt={newsSlides[newsIndex].title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="space-y-4 text-left flex-1">
-              <div>
-                <h3 className="font-outfit font-bold text-2xl text-slate-900 dark:text-white">{newsSlides[newsIndex].title}</h3>
-                <span className="text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 px-2.5 py-0.5 rounded-md inline-block mt-1">
-                  {newsSlides[newsIndex].badge}
-                </span>
+                  {/* Meta footer */}
+                  <div className="flex items-center justify-between text-[11px] text-[#637667] pt-2 border-t border-[#f0f4ef]">
+                    <span className="flex items-center gap-1 font-medium">
+                      <User size={13} className="text-[#2d5a3c]" />
+                      {prog.audience}
+                    </span>
+                    <span className="flex items-center gap-1 font-medium">
+                      <Clock size={13} className="text-[#2d5a3c]" />
+                      {prog.duration}
+                    </span>
+                  </div>
+                </div>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                {newsSlides[newsIndex].description}
-              </p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl">
-                {newsSlides[newsIndex].details}
-              </p>
-              <div className="flex items-center justify-end gap-2 pt-2">
-                <button
-                  onClick={() => setNewsIndex((prev) => (prev === 0 ? newsSlides.length - 1 : prev - 1))}
-                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-colors"
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  onClick={() => setNewsIndex((prev) => (prev === newsSlides.length - 1 ? 0 : prev + 1))}
-                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-amber-500 hover:text-white transition-colors"
-                >
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </div>
+            ))}
           </div>
-        </section>
-      </div>
-
-      {/* Bottom Courses & Modules Grid */}
-      <div className="max-w-4xl mx-auto px-6 mt-20 space-y-6">
-        <div className="text-center space-y-1">
-          <h3 className="font-outfit font-extrabold text-2xl text-slate-900 dark:text-white">Postgraduate Academic Modules</h3>
-          <p className="text-xs text-slate-500">Degree programs and coursework offered under CLESE Department of Education</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {coursesTaught.map((course, idx) => (
-            <div
-              key={idx}
-              onClick={() => setSelectedModule(course)}
-              className="group cursor-pointer p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-md hover:shadow-xl transition-all space-y-2"
-            >
-              <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 text-[11px] font-bold">
-                  {course.code}
-                </span>
-                <span className="text-[10px] font-bold text-slate-400">{course.level}</span>
-              </div>
-              <h4 className="font-outfit font-bold text-base text-slate-900 dark:text-white group-hover:text-amber-600 transition-colors">
-                {course.title}
-              </h4>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{course.desc}</p>
+        {/* ========================================================================= */}
+        {/* 4. CUSTOM PROGRAM CTA BANNER */}
+        {/* ========================================================================= */}
+        <div className="rounded-[2.4rem] bg-[#eaf0e6] border border-[#dce8d8] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xs relative overflow-hidden">
+          
+          {/* Left Vignette Artwork */}
+          <div className="flex items-center gap-4 relative z-10">
+            <div className="w-20 h-16 rounded-2xl overflow-hidden bg-white/80 shadow-xs hidden sm:block shrink-0">
+              <img 
+                src="/events/events_book_plant.jpg" 
+                alt="LEnSE Custom Programs" 
+                className="w-full h-full object-cover" 
+              />
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Module Modal */}
-      {selectedModule && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setSelectedModule(null)}>
-          <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 max-w-md w-full space-y-4" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between">
-              <span className="px-3 py-1 rounded bg-amber-400 text-slate-950 font-bold text-xs">{selectedModule.code}</span>
-              <button onClick={() => setSelectedModule(null)} className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900">
-                <X size={18} />
+            <div className="w-12 h-12 rounded-2xl bg-white border border-[#d8e5d8] text-[#2d5a3c] flex items-center justify-center shrink-0 shadow-xs">
+              <Calendar size={22} />
+            </div>
+
+            <div className="space-y-1">
+              <h3 className="text-xl sm:text-2xl font-serif text-[#122016]">
+                Can't find what you're looking for?
+              </h3>
+              <p className="text-xs sm:text-[13px] text-[#4d6052] max-w-md">
+                We design customized programs for schools, colleges, educators and communities.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Action Button */}
+          <div className="relative z-10 shrink-0">
+            <Link href="/contact">
+              <button className="px-7 py-3.5 rounded-full bg-[#1b3726] hover:bg-[#254d35] text-white text-xs font-bold tracking-wider flex items-center gap-2.5 transition-all shadow-md cursor-pointer">
+                <span>Let's Collaborate</span>
+                <ArrowRight size={14} />
               </button>
-            </div>
-            <h3 className="font-outfit font-bold text-xl text-slate-900 dark:text-white">{selectedModule.title}</h3>
-            <p className="text-xs font-semibold text-amber-600 dark:text-amber-400">Level: {selectedModule.level}</p>
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{selectedModule.desc}</p>
+            </Link>
           </div>
+
+          {/* Background Botanical Sketch */}
+          <div className="absolute right-0 bottom-0 pointer-events-none opacity-30 translate-x-4 translate-y-4">
+            <svg width="150" height="150" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M80 100C80 70 100 50 100 50C100 50 80 30 80 0C80 30 60 50 60 50C60 50 80 70 80 100Z" fill="#2d5a3c" />
+            </svg>
+          </div>
+
         </div>
-      )}
+
+      </div>
+
     </div>
   );
 }

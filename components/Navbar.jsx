@@ -37,9 +37,10 @@ export default function Navbar() {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
-    { href: '/academics', label: 'Programmes' },
-    { href: '/projects', label: 'Research' },
     { href: '/events', label: 'Events' },
+    { href: '/programs', label: 'Programs' },
+    { href: '/initiatives', label: 'Initiatives' },
+    { href: '/resources', label: 'Resources' },
     { href: '/news', label: 'News' },
     { href: '/contact', label: 'Contact' }
   ];
@@ -62,7 +63,7 @@ export default function Navbar() {
           {/* Center Navigation Capsule */}
           <nav className="pointer-events-auto hidden lg:flex items-center gap-1 xl:gap-1.5 px-3 py-1.5 rounded-full bg-[#0b1c14]/80 dark:bg-[#0b1c14]/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.37)]">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = pathname === link.href || (link.href === '/programs' && pathname === '/academics');
 
               return (
                 <Link
@@ -98,12 +99,12 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Explore Button */}
+            {/* Get Involved Button */}
             <Link
-              href="/academics"
+              href="/contact"
               className="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#143021] to-[#0d2217] hover:from-[#1b3d2b] hover:to-[#122e1f] border border-[#2d5c3f] hover:border-[#428159] text-white text-xs font-semibold tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(20,48,33,0.6)] group"
             >
-              <span>Explore LEnSE</span>
+              <span>Get Involved</span>
               <ArrowRight size={14} className="text-[#a2d45e] group-hover:translate-x-1 transition-transform" />
             </Link>
 

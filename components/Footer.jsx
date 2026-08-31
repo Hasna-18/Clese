@@ -55,10 +55,16 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <h4 className="font-['Outfit'] font-bold text-xs text-white uppercase tracking-[0.15em]">Explore</h4>
             <ul className="space-y-2.5 text-xs list-none p-0">
-              {['About Us', 'Programmes', 'Research', 'Events', 'News'].map((link, idx) => (
+              {[
+                { name: 'About Us', href: '/about' },
+                { name: 'Programs', href: '/programs' },
+                { name: 'Research', href: '/projects' },
+                { name: 'Events', href: '/events' },
+                { name: 'News', href: '/news' }
+              ].map((link, idx) => (
                 <li key={idx}>
-                  <Link href={`/${link.toLowerCase().replace(' ', '')}`} className="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
-                    {link}
+                  <Link href={link.href} className="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition-all duration-200">
+                    {link.name}
                   </Link>
                 </li>
               ))}

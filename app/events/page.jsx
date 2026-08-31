@@ -15,8 +15,10 @@ import {
   Clock, 
   Sparkles,
   Search,
-  CheckCircle2
+  CheckCircle2,
+  Loader2
 } from 'lucide-react';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const DEFAULT_EVENTS = [
   {
@@ -84,17 +86,21 @@ const DEFAULT_EVENTS = [
 export default function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [events, setEvents] = useState(DEFAULT_EVENTS);
+  const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+
     async function loadData() {
       try {
-        const res = await fetch('/api/events');
+        const res = await fetch('/api/events', { signal: controller.signal });
+        clearTimeout(timeoutId);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
-            // merge data or use API events if populated
             setEvents(data.map(item => ({
               ...item,
               categoryTag: item.category ? item.category.toUpperCase() : 'EVENT',
@@ -106,9 +112,16 @@ export default function EventsPage() {
         }
       } catch (err) {
         console.warn('Using default events data', err);
+      } finally {
+        setLoading(false);
       }
     }
     loadData();
+
+    return () => {
+      clearTimeout(timeoutId);
+      controller.abort();
+    };
   }, []);
 
   const categories = [
@@ -331,7 +344,11 @@ export default function EventsPage() {
               {/* Continuous Vertical Timeline Line */}
               <div className="absolute left-[38px] top-6 bottom-6 w-[1.5px] bg-[#d2e0d3] hidden sm:block pointer-events-none" />
 
-              {filteredEvents.length === 0 ? (
+              {loading ? (
+                <div className="bg-white/50 backdrop-blur-xl rounded-[2rem] border border-white/80 p-8 shadow-sm">
+                  <LoadingSpinner message="Fetching events..." />
+                </div>
+              ) : filteredEvents.length === 0 ? (
                 <div className="text-center py-16 bg-white/50 backdrop-blur-xl rounded-[2rem] border border-white/80 p-8">
                   <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-[#2d5a3c] mx-auto mb-3 shadow-sm">
                     <Calendar size={24} />
