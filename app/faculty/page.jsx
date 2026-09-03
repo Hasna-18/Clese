@@ -1,15 +1,16 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { 
-  Leaf, 
-  GraduationCap, 
-  Mail, 
-  Award, 
-  BookOpen, 
-  Sparkles, 
-  Globe, 
-  Building2, 
+import {
+  ArrowRight,
+  Leaf,
+  GraduationCap,
+  Mail,
+  Award,
+  BookOpen,
+  Sparkles,
+  Globe,
+  Building2,
   ExternalLink,
   ChevronRight,
   UserCheck,
@@ -74,7 +75,7 @@ export default function FacultyPage() {
 
   const filteredFaculty = facultyMembers.filter(member => {
     const matchesDept = selectedDept === 'All' || member.department.toLowerCase().includes(selectedDept.toLowerCase());
-    const matchesSearch = searchQuery === '' || 
+    const matchesSearch = searchQuery === '' ||
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       member.specialization.toLowerCase().includes(searchQuery.toLowerCase()) ||
       member.department.toLowerCase().includes(searchQuery.toLowerCase());
@@ -83,7 +84,7 @@ export default function FacultyPage() {
 
   return (
     <div className="min-h-screen bg-[#f3f5ed] text-[#19241c] font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30">
-      
+
       {/* Ambient glows */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[20%] -left-40 w-[600px] h-[600px] bg-[#e2edd8]/40 rounded-full blur-3xl" />
@@ -96,13 +97,13 @@ export default function FacultyPage() {
         {/* 1. HERO SECTION */}
         {/* ========================================================================= */}
         <div className="relative">
-          
+
           {/* Hero Visual on Right */}
           <div className="absolute top-0 right-0 w-full lg:w-[56%] h-[460px] sm:h-[520px] pointer-events-none z-0 rounded-l-[4rem] overflow-hidden select-none hidden lg:block">
-            <img 
-              src="/home/bg.png" 
-              alt="LEnSE Faculty & Leadership" 
-              className="w-full h-full object-cover object-center scale-[1.03]" 
+            <img
+              src="/home/bg.png"
+              alt="LEnSE Faculty & Leadership"
+              className="w-full h-full object-cover object-center scale-[1.03]"
               onError={(e) => {
                 e.currentTarget.src = "/events/events_book_plant.jpg";
               }}
@@ -114,7 +115,7 @@ export default function FacultyPage() {
 
           {/* Left Content */}
           <div className="relative z-10 max-w-xl space-y-5 pt-2 pb-6">
-            
+
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d]">
               <Leaf size={14} className="text-[#2d5a3c] fill-[#2d5a3c]" />
@@ -156,18 +157,17 @@ export default function FacultyPage() {
         {/* 2. SEARCH & FILTER CONTROLS */}
         {/* ========================================================================= */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-2">
-          
+
           {/* Department Pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto no-scrollbar py-1">
             {['All', 'Learning Engineering', 'STEM Collaboration', 'Technology-Enabled Pedagogy'].map((dept) => (
               <button
                 key={dept}
                 onClick={() => setSelectedDept(dept)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                  selectedDept === dept
+                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${selectedDept === dept
                     ? 'bg-[#1b3726] text-white shadow-sm'
                     : 'bg-white/80 hover:bg-white text-[#384c3e] border border-[#dbe6dc]'
-                }`}
+                  }`}
               >
                 {dept}
               </button>
@@ -177,8 +177,8 @@ export default function FacultyPage() {
           {/* Search Box */}
           <div className="relative w-full sm:w-64 shrink-0">
             <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#7f9484]" />
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search faculty..."
@@ -193,19 +193,19 @@ export default function FacultyPage() {
         {/* ========================================================================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredFaculty.map((member) => (
-            <div 
-              key={member.id} 
+            <div
+              key={member.id}
               className="rounded-[2.2rem] bg-white/90 backdrop-blur-xl border border-white/95 p-6 sm:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between group"
             >
               <div className="space-y-4">
-                
+
                 {/* Header Profile Row */}
                 <div className="flex items-start gap-4">
                   <div className="w-20 h-20 rounded-2xl overflow-hidden bg-slate-100 border border-[#e2ece4] shrink-0 shadow-xs">
-                    <img 
-                      src={member.photo} 
-                      alt={member.name} 
-                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" 
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
                       onError={(e) => { e.currentTarget.src = "/events/events_book_plant.jpg"; }}
                     />
                   </div>
@@ -253,8 +253,8 @@ export default function FacultyPage() {
 
               {/* Footer Contact */}
               <div className="pt-4 border-t border-[#f0f4ef] mt-4 flex items-center justify-between">
-                <a 
-                  href={`mailto:${member.contact}`} 
+                <a
+                  href={`mailto:${member.contact}`}
                   className="inline-flex items-center gap-2 text-xs font-bold text-[#1b3726] hover:text-[#2d5a3c] transition-colors"
                 >
                   <Mail size={14} />

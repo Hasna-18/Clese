@@ -474,3 +474,4 @@ export default function NewsDetailPage({ params }) {
     </div>
   );
 }
+ 

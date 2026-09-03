@@ -9,8 +9,9 @@ if (fs.existsSync('.env.local')) {
 }
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
+  connectionString: process.env.DATABASE_URL ? process.env.DATABASE_URL.trim() : '',
+  ssl: { rejectUnauthorized: false },
+  connectionTimeoutMillis: 15000
 });
 
 const mockEvents = [

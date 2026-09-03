@@ -1,13 +1,13 @@
 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { 
-  ArrowRight, 
-  Leaf, 
-  Calendar, 
-  Clock, 
-  MapPin, 
-  Users, 
+import {
+  ArrowRight,
+  Leaf,
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
   CalendarPlus,
   User,
   Projector,
@@ -60,18 +60,18 @@ export default function EventDetailPage({ params }) {
 
   return (
     <div className="min-h-screen bg-[#f9faf7] text-[#19241c] font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden">
-      
+
       {/* ============================================================ */}
       {/* 1. HERO SECTION WITH IMAGE */}
       {/* ============================================================ */}
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 z-10">
-        
+
         {/* Background Image Container inside Hero */}
         <div className="absolute top-0 right-0 w-full lg:w-[55%] h-full min-h-[500px] lg:h-[600px] xl:h-[650px] pointer-events-none z-0 rounded-l-[3rem] overflow-hidden hidden lg:block">
-          <img 
-            src="/events/events_globe_books.jpg" 
-            alt="Event Background" 
-            className="w-full h-full object-cover object-left" 
+          <img
+            src="/events/events_globe_books.jpg"
+            alt="Event Background"
+            className="w-full h-full object-cover object-left"
             onError={(e) => { e.currentTarget.src = "/events/conference.jpg"; }}
           />
           {/* Fades for blending */}
@@ -81,9 +81,9 @@ export default function EventDetailPage({ params }) {
         </div>
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 min-h-[500px] lg:min-h-[600px] xl:min-h-[650px] items-center pb-12 lg:pb-0">
-          
+
           <div className="lg:col-span-7 space-y-6 lg:pr-10 pt-4">
-            
+
             {/* Breadcrumb */}
             <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#485b4d]">
               <Leaf size={14} className="text-[#2d5a3c] fill-[#2d5a3c]" />
@@ -93,7 +93,7 @@ export default function EventDetailPage({ params }) {
               <span className="text-[#879b8c]">&gt;</span>
               <span className="text-[#1b3726] font-bold line-clamp-1 max-w-[200px] sm:max-w-xs">{event.title}</span>
             </div>
-            
+
             {/* Category Tag */}
             <div className="inline-flex px-3 py-1 rounded-md bg-[#eaf1e4] text-[#2d5a3c] text-[10.5px] font-bold uppercase tracking-widest">
               {event.category}
@@ -149,13 +149,13 @@ export default function EventDetailPage({ params }) {
                 <span>Register Now</span>
                 <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
               </button>
-              
+
               <button className="px-6 py-3.5 rounded-full bg-white border border-[#c1d1c4] hover:bg-[#f3f6f1] text-[#1b3726] text-[11.5px] font-bold tracking-wider flex items-center gap-2.5 transition-all duration-300 shadow-sm hover:shadow-md">
                 <span>Add to Calendar</span>
                 <CalendarPlus size={15} className="text-[#2d5a3c]" />
               </button>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -170,10 +170,10 @@ export default function EventDetailPage({ params }) {
       {/* ============================================================ */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          
+
           {/* Left Main Content */}
           <div className="lg:col-span-8 space-y-16">
-            
+
             {/* About the Event */}
             <section>
               <h2 className="text-2xl sm:text-3xl font-serif text-[#122016] mb-5">About the Event</h2>
@@ -233,7 +233,7 @@ export default function EventDetailPage({ params }) {
             <section>
               <h2 className="text-2xl sm:text-3xl font-serif text-[#122016] mb-6">Key Speakers</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                
+
                 {/* Speaker 1 */}
                 <div className="flex items-center gap-5 p-5 rounded-[1.8rem] bg-white border border-[#e8efe9] shadow-[0_2px_15px_rgba(0,0,0,0.02)] hover:-translate-y-1 transition-transform duration-300">
                   <div className="w-24 h-24 rounded-full overflow-hidden bg-slate-100 shrink-0 border-2 border-white shadow-sm">
@@ -269,7 +269,7 @@ export default function EventDetailPage({ params }) {
                 </div>
 
               </div>
-              
+
               <div className="flex justify-center sm:justify-start">
                 <button className="px-5 py-2.5 rounded-full bg-white border border-[#d2e0d3] text-[#1b3726] text-[11px] font-bold flex items-center gap-2 hover:bg-[#f3f6f1] transition-colors shadow-sm">
                   <span>View All Speakers</span>
@@ -277,18 +277,18 @@ export default function EventDetailPage({ params }) {
                 </button>
               </div>
             </section>
-            
+
           </div>
 
           {/* Right Sidebar */}
           <div className="lg:col-span-4 space-y-8">
-            
+
             {/* Event at a Glance */}
             <div className="bg-white rounded-[2rem] border border-[#e8efe9] shadow-[0_10px_30px_rgba(0,0,0,0.03)] overflow-hidden">
               <div className="px-7 pt-7 pb-4">
                 <h3 className="text-xl font-serif text-[#122016]">Event at a Glance</h3>
               </div>
-              
+
               <div className="px-7 pb-7 space-y-5">
                 {[
                   { icon: Calendar, label: 'Dates', value: '14 - 15 March 2025' },
@@ -325,7 +325,7 @@ export default function EventDetailPage({ params }) {
             {/* Event Resources */}
             <div className="bg-[#f2f6f0] rounded-[2rem] border border-[#e4ede6] p-7">
               <h3 className="text-xl font-serif text-[#122016] mb-5">Event Resources</h3>
-              
+
               <div className="space-y-3">
                 {[
                   { title: 'Conference Brochure', size: 'PDF • 1.2 MB' },
@@ -358,7 +358,7 @@ export default function EventDetailPage({ params }) {
       {/* 3. RELATED EVENTS & BOTTOM CTA */}
       {/* ============================================================ */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
-        
+
         {/* You May Also Be Interested In */}
         <div className="mb-16">
           <div className="flex items-center justify-between mb-8">
@@ -370,7 +370,7 @@ export default function EventDetailPage({ params }) {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative">
-            
+
             {/* Nav button right */}
             <div className="absolute -right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-md border border-[#e8efe9] flex items-center justify-center text-[#19241c] cursor-pointer hover:bg-[#f9faf7] hidden xl:flex z-10">
               <ChevronRight size={20} />
@@ -426,12 +426,12 @@ export default function EventDetailPage({ params }) {
 
         {/* Stay Updated Footer Card */}
         <div className="rounded-[2rem] bg-[#eef1eb] border border-[#e4ede6] flex flex-col sm:flex-row items-center justify-between p-6 sm:p-8 md:p-10 gap-8 relative overflow-hidden">
-          
+
           {/* Left visual */}
           <div className="hidden sm:block absolute left-0 bottom-0 w-[40%] h-[120%] opacity-90 pointer-events-none origin-bottom-left scale-110">
-            <img 
-              src="/events/events_book_plant.jpg" 
-              alt="Books and Plant" 
+            <img
+              src="/events/events_book_plant.jpg"
+              alt="Books and Plant"
               className="w-full h-full object-cover object-right"
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
             />
@@ -454,16 +454,16 @@ export default function EventDetailPage({ params }) {
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="bg-white rounded-full p-1.5 pl-5 pr-1.5 flex items-center shadow-sm w-full sm:w-[320px]">
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="Your email address" 
+                  placeholder="Your email address"
                   className="text-[13px] text-slate-800 placeholder:text-[#8a9d90] bg-transparent outline-none flex-1 font-medium min-w-0"
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="px-5 py-2.5 rounded-full bg-[#3d5b45] hover:bg-[#2d4734] text-white text-[11px] font-bold flex items-center gap-2 transition-colors cursor-pointer shrink-0"
                 >
                   <span>Subscribe</span>
@@ -472,7 +472,7 @@ export default function EventDetailPage({ params }) {
               </form>
             )}
           </div>
-          
+
           {/* Right decoration */}
           <div className="absolute right-0 bottom-0 pointer-events-none opacity-40">
             <svg width="150" height="150" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
