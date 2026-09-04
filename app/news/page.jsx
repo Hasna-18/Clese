@@ -167,7 +167,7 @@ export default function NewsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f3f5ed] text-[#19241c] font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30">
+    <div className="min-h-screen bg-[#f3f5ed] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30 transition-colors duration-300">
       
       {/* ============================================================ */}
       {/* 0. HERO TOP SECTION */}
@@ -185,30 +185,30 @@ export default function NewsPage() {
             }}
           />
           {/* Organic masking gradients */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] via-[#f3f5ed]/80 via-[20%] to-transparent to-[55%]" />
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f3f5ed] via-[#f3f5ed]/60 to-transparent" />
-          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#f3f5ed] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] dark:from-[#031008] via-[#f3f5ed]/80 dark:via-[#031008]/85 via-[20%] to-transparent to-[55%]" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f3f5ed] dark:from-[#031008] via-[#f3f5ed]/60 dark:via-[#031008]/60 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#f3f5ed] dark:from-[#031008] to-transparent" />
         </div>
 
         {/* Hero Text Content */}
         <div className="relative z-10 max-w-2xl pt-2 pb-8 lg:pb-12 space-y-4">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d]">
-            <Leaf size={14} className="text-[#2d5a3c] fill-[#2d5a3c]" />
-            <Link href="/" className="hover:text-[#1b3726] transition-colors">Home</Link>
-            <span className="text-[#879b8c]">&gt;</span>
-            <span className="text-[#1b3726] font-bold">News</span>
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d] dark:text-slate-400">
+            <Leaf size={14} className="text-[#2d5a3c] dark:text-[#a2d45e] fill-[#2d5a3c] dark:fill-[#a2d45e]" />
+            <Link href="/" className="hover:text-[#1b3726] dark:hover:text-white transition-colors">Home</Link>
+            <span className="text-[#879b8c] dark:text-slate-500">&gt;</span>
+            <span className="text-[#1b3726] dark:text-[#a2d45e] font-bold">News</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-[#131f17] tracking-tight font-serif">
-            News & Insights
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-[#131f17] dark:text-white tracking-tight font-serif">
+            News &amp; Insights
           </h1>
 
-          <p className="text-xl sm:text-2xl font-serif italic text-[#243a29] leading-snug">
+          <p className="text-xl sm:text-2xl font-serif italic text-[#243a29] dark:text-[#a2d45e] leading-snug">
             Stories that inform. Updates that inspire.
           </p>
 
-          <p className="text-[#405245] text-[13.5px] sm:text-sm leading-relaxed max-w-xl font-normal pt-1">
+          <p className="text-[#405245] dark:text-slate-300 text-[13.5px] sm:text-sm leading-relaxed max-w-xl font-normal pt-1">
             Stay updated with the latest achievements, initiatives, partnerships, research highlights and community stories from LEnSE.
           </p>
         </div>
@@ -220,13 +220,13 @@ export default function NewsPage() {
           
           {/* Search Input Box */}
           <div className="relative w-full lg:w-72 shrink-0">
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#647969]" />
+            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#647969] dark:text-slate-400" />
             <input 
               type="text" 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search news..."
-              className="w-full pl-11 pr-4 py-2.5 rounded-full bg-white/90 backdrop-blur-md border border-[#d5e2d6] text-xs font-medium text-[#19241c] placeholder:text-[#7f9484] focus:outline-none focus:ring-2 focus:ring-[#2d5a3c]/30 shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
+              className="w-full pl-11 pr-4 py-2.5 rounded-full bg-white/90 dark:bg-[#0b1c14] backdrop-blur-md border border-[#d5e2d6] dark:border-[#183a27] text-xs font-medium text-[#19241c] dark:text-white placeholder:text-[#7f9484] dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#2d5a3c]/30 shadow-[0_2px_8px_rgba(0,0,0,0.03)]"
             />
           </div>
 
@@ -243,8 +243,8 @@ export default function NewsPage() {
                   }}
                   className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 cursor-pointer ${
                     isSelected
-                      ? 'bg-[#1b3726] text-white shadow-[0_4px_12px_rgba(27,55,38,0.25)] scale-[1.02]'
-                      : 'bg-white/70 hover:bg-white text-[#384c3e] border border-[#dbe6dc] hover:border-[#b8cdbe]'
+                      ? 'bg-[#1b3726] dark:bg-[#154628] text-white shadow-[0_4px_12px_rgba(27,55,38,0.25)] scale-[1.02]'
+                      : 'bg-white/70 dark:bg-[#0b1c14]/70 hover:bg-white dark:hover:bg-[#11261a] text-[#384c3e] dark:text-slate-300 border border-[#dbe6dc] dark:border-[#183a27]'
                   }`}
                 >
                   {category}
@@ -264,7 +264,7 @@ export default function NewsPage() {
           <div className="lg:col-span-8 space-y-8">
             
             {/* FEATURED STORY HERO CARD */}
-            <div className="relative rounded-[2.2rem] bg-gradient-to-br from-[#1b3726] via-[#142e1f] to-[#0d2216] p-7 sm:p-9 text-white overflow-hidden shadow-[0_20px_45px_rgba(10,30,18,0.2)] group">
+            <div className="relative rounded-[2.2rem] bg-gradient-to-br from-[#1b3726] via-[#142e1f] to-[#0d2216] dark:from-[#0b1c14] dark:via-[#08180f] dark:to-[#040e08] p-7 sm:p-9 text-white overflow-hidden shadow-[0_20px_45px_rgba(10,30,18,0.2)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.5)] border border-white/10 dark:border-[#183a27] group">
               
               {/* World Map Connected Network Overlay */}
               <div 
@@ -275,7 +275,7 @@ export default function NewsPage() {
               />
               
               {/* Soft Gradient Mask */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#1b3726] via-[#1b3726]/85 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#1b3726] dark:from-[#0b1c14] via-[#1b3726]/85 dark:via-[#0b1c14]/85 to-transparent pointer-events-none" />
 
               <div className="relative z-10 max-w-xl space-y-4">
                 <span className="inline-flex px-3 py-1 rounded-md bg-[#a2d45e]/20 text-[#c2ec8b] border border-[#a2d45e]/30 text-[10px] font-bold uppercase tracking-widest">
@@ -292,7 +292,7 @@ export default function NewsPage() {
 
                 <div className="pt-2 flex flex-wrap items-center gap-5 text-xs text-[#c5ddcc]">
                   <Link href="/news/1">
-                    <button className="px-6 py-3 rounded-full bg-white text-[#122016] hover:bg-slate-100 text-[11px] font-bold uppercase tracking-wider flex items-center gap-2.5 transition-all shadow-md group/btn cursor-pointer">
+                    <button className="px-6 py-3 rounded-full bg-white dark:bg-[#154628] text-[#122016] dark:text-white hover:bg-slate-100 dark:hover:bg-[#1c5c34] text-[11px] font-bold uppercase tracking-wider flex items-center gap-2.5 transition-all shadow-md group/btn cursor-pointer">
                       <span>Read Full Story</span>
                       <ArrowRight size={13} className="group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>
@@ -309,25 +309,25 @@ export default function NewsPage() {
             {/* LATEST NEWS HEADER */}
             <div className="pt-2">
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-2 h-2 rounded-full bg-[#2d5a3c]" />
-                <h3 className="text-xl sm:text-2xl font-serif text-[#122016]">
+                <div className="w-2 h-2 rounded-full bg-[#2d5a3c] dark:bg-[#a2d45e]" />
+                <h3 className="text-xl sm:text-2xl font-serif text-[#122016] dark:text-white">
                   Latest News
                 </h3>
               </div>
 
               {/* NEWS CARDS LIST */}
               {filteredNews.length === 0 ? (
-                <div className="text-center py-16 bg-white/60 backdrop-blur-xl rounded-[2rem] border border-white/90 p-8 shadow-sm">
-                  <div className="w-14 h-14 bg-[#eaf1e4] rounded-full flex items-center justify-center text-[#2d5a3c] mx-auto mb-3 shadow-inner">
+                <div className="text-center py-16 bg-white/60 dark:bg-[#0b1c14]/60 backdrop-blur-xl rounded-[2rem] border border-white/90 dark:border-[#183a27] p-8 shadow-sm">
+                  <div className="w-14 h-14 bg-[#eaf1e4] dark:bg-[#11261a] rounded-full flex items-center justify-center text-[#2d5a3c] dark:text-[#a2d45e] mx-auto mb-3 shadow-inner">
                     <FileText size={24} />
                   </div>
-                  <h4 className="text-base font-serif text-[#122016] mb-1">No news found</h4>
-                  <p className="text-xs text-[#526656] max-w-xs mx-auto mb-4">
+                  <h4 className="text-base font-serif text-[#122016] dark:text-white mb-1">No news found</h4>
+                  <p className="text-xs text-[#526656] dark:text-slate-400 max-w-xs mx-auto mb-4">
                     Try adjusting your search query or selecting a different category filter.
                   </p>
                   <button 
                     onClick={() => { setSelectedCategory('All'); setSearchQuery(''); }}
-                    className="px-5 py-2 rounded-full bg-[#1b3726] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-[#244833] transition-colors cursor-pointer"
+                    className="px-5 py-2 rounded-full bg-[#1b3726] dark:bg-[#154628] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-[#244833] dark:hover:bg-[#1c5c34] transition-colors cursor-pointer"
                   >
                     Show All News
                   </button>
@@ -336,9 +336,9 @@ export default function NewsPage() {
                 <div className="space-y-4">
                   {filteredNews.map((item) => (
                     <Link key={item.id} href={`/news/${item.id}`} className="block">
-                      <div className="group rounded-[1.8rem] bg-white/80 hover:bg-white backdrop-blur-xl border border-white/95 p-4 sm:p-5 flex flex-col sm:flex-row gap-5 items-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,25,12,0.06)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                      <div className="group rounded-[1.8rem] bg-white/80 dark:bg-[#0b1c14]/80 hover:bg-white dark:hover:bg-[#10271c] backdrop-blur-xl border border-white/95 dark:border-[#183a27] p-4 sm:p-5 flex flex-col sm:flex-row gap-5 items-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_10px_30px_rgba(0,25,12,0.06)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
                         {/* Image Thumbnail */}
-                        <div className="w-full sm:w-[175px] h-[130px] rounded-[1.3rem] overflow-hidden shrink-0 bg-slate-100 shadow-sm relative">
+                        <div className="w-full sm:w-[175px] h-[130px] rounded-[1.3rem] overflow-hidden shrink-0 bg-slate-100 dark:bg-[#05110a] shadow-sm relative">
                           <img 
                             src={item.imageUrl} 
                             alt={item.title} 
@@ -351,26 +351,26 @@ export default function NewsPage() {
 
                         {/* Content */}
                         <div className="flex-1 w-full space-y-1.5">
-                          <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#eaf1e4] text-[#2d5a3c] text-[9.5px] font-bold uppercase tracking-widest">
+                          <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#eaf1e4] dark:bg-[#11261a] text-[#2d5a3c] dark:text-[#a2d45e] text-[9.5px] font-bold uppercase tracking-widest">
                             {item.tag}
                           </span>
 
-                          <h4 className="text-[15px] sm:text-[16px] font-serif font-semibold text-[#122016] leading-snug group-hover:text-[#2d5a3c] transition-colors">
+                          <h4 className="text-[15px] sm:text-[16px] font-serif font-semibold text-[#122016] dark:text-white leading-snug group-hover:text-[#2d5a3c] dark:group-hover:text-[#a2d45e] transition-colors">
                             {item.title}
                           </h4>
 
-                          <p className="text-[12px] text-[#485b4d] leading-relaxed line-clamp-2 font-normal">
+                          <p className="text-[12px] text-[#485b4d] dark:text-slate-300 leading-relaxed line-clamp-2 font-normal">
                             {item.desc}
                           </p>
 
                           {/* Meta & Read More */}
-                          <div className="flex items-center justify-between text-[11px] text-[#637667] pt-2 border-t border-[#f0f4ef]/80">
+                          <div className="flex items-center justify-between text-[11px] text-[#637667] dark:text-slate-400 pt-2 border-t border-[#f0f4ef]/80 dark:border-[#183a27]">
                             <span className="flex items-center gap-1.5 font-medium">
-                              <Calendar size={13} className="text-[#2d5a3c]" />
+                              <Calendar size={13} className="text-[#2d5a3c] dark:text-[#a2d45e]" />
                               {item.date}
                             </span>
 
-                            <span className="flex items-center gap-1 font-bold text-[#1b3726] group-hover:text-[#2d5a3c] transition-colors">
+                            <span className="flex items-center gap-1 font-bold text-[#1b3726] dark:text-[#a2d45e] group-hover:text-[#2d5a3c] transition-colors">
                               <span>Read More</span>
                               <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                             </span>
@@ -387,7 +387,7 @@ export default function NewsPage() {
             <div className="pt-6 flex items-center justify-center gap-2 select-none">
               <button 
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                className="w-8 h-8 rounded-full bg-white border border-[#d5e2d6] text-[#2d5a3c] flex items-center justify-center hover:bg-[#eaf1e4] transition-colors shadow-sm disabled:opacity-40 cursor-pointer"
+                className="w-8 h-8 rounded-full bg-white dark:bg-[#0b1c14] border border-[#d5e2d6] dark:border-[#183a27] text-[#2d5a3c] dark:text-[#a2d45e] flex items-center justify-center hover:bg-[#eaf1e4] dark:hover:bg-[#11261a] transition-colors shadow-sm disabled:opacity-40 cursor-pointer"
                 disabled={currentPage === 1}
               >
                 <ChevronLeft size={16} />
@@ -399,22 +399,22 @@ export default function NewsPage() {
                   onClick={() => setCurrentPage(pageNum)}
                   className={`w-8 h-8 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     currentPage === pageNum
-                      ? 'bg-[#1b3726] text-white shadow-sm scale-105'
-                      : 'bg-white hover:bg-[#eaf1e4] text-[#384c3e] border border-[#d5e2d6]'
+                      ? 'bg-[#1b3726] dark:bg-[#154628] text-white shadow-sm scale-105'
+                      : 'bg-white dark:bg-[#0b1c14] hover:bg-[#eaf1e4] dark:hover:bg-[#11261a] text-[#384c3e] dark:text-slate-300 border border-[#d5e2d6] dark:border-[#183a27]'
                   }`}
                 >
                   {pageNum}
                 </button>
               ))}
 
-              <span className="text-xs text-[#7f9484] px-1 font-bold">...</span>
+              <span className="text-xs text-[#7f9484] dark:text-slate-500 px-1 font-bold">...</span>
 
               <button
                 onClick={() => setCurrentPage(10)}
                 className={`w-8 h-8 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   currentPage === 10
-                    ? 'bg-[#1b3726] text-white shadow-sm'
-                    : 'bg-white hover:bg-[#eaf1e4] text-[#384c3e] border border-[#d5e2d6]'
+                    ? 'bg-[#1b3726] dark:bg-[#154628] text-white shadow-sm'
+                    : 'bg-white dark:bg-[#0b1c14] hover:bg-[#eaf1e4] dark:hover:bg-[#11261a] text-[#384c3e] dark:text-slate-300 border border-[#d5e2d6] dark:border-[#183a27]'
                 }`}
               >
                 10
@@ -422,7 +422,7 @@ export default function NewsPage() {
 
               <button 
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, 10))}
-                className="w-8 h-8 rounded-full bg-white border border-[#d5e2d6] text-[#2d5a3c] flex items-center justify-center hover:bg-[#eaf1e4] transition-colors shadow-sm cursor-pointer"
+                className="w-8 h-8 rounded-full bg-white dark:bg-[#0b1c14] border border-[#d5e2d6] dark:border-[#183a27] text-[#2d5a3c] dark:text-[#a2d45e] flex items-center justify-center hover:bg-[#eaf1e4] dark:hover:bg-[#11261a] transition-colors shadow-sm cursor-pointer"
               >
                 <ChevronRight size={16} />
               </button>
@@ -434,12 +434,12 @@ export default function NewsPage() {
           <div className="lg:col-span-4 space-y-6">
             
             {/* CARD 1: NEWS AT A GLANCE */}
-            <div className="rounded-[2rem] bg-white/90 backdrop-blur-xl border border-white/95 p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-5">
-              <div className="flex items-center gap-2.5 pb-2 border-b border-[#f0f4ef]">
-                <div className="w-8 h-8 rounded-xl bg-[#eaf1e4] flex items-center justify-center text-[#2d5a3c]">
+            <div className="rounded-[2rem] bg-white/90 dark:bg-[#0b1c14]/90 backdrop-blur-xl border border-white/95 dark:border-[#183a27] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] space-y-5">
+              <div className="flex items-center gap-2.5 pb-2 border-b border-[#f0f4ef] dark:border-[#183a27]">
+                <div className="w-8 h-8 rounded-xl bg-[#eaf1e4] dark:bg-[#11261a] flex items-center justify-center text-[#2d5a3c] dark:text-[#a2d45e]">
                   <GraduationCap size={18} />
                 </div>
-                <h3 className="text-lg font-serif text-[#122016]">
+                <h3 className="text-lg font-serif text-[#122016] dark:text-white">
                   News at a Glance
                 </h3>
               </div>
@@ -449,23 +449,23 @@ export default function NewsPage() {
                   <div 
                     key={idx} 
                     onClick={() => setSelectedCategory(stat.label.includes('News') ? 'All' : stat.label.split(' ')[0])}
-                    className="flex items-center justify-between text-xs py-1.5 px-2 rounded-xl hover:bg-[#f3f6f0] transition-colors cursor-pointer group"
+                    className="flex items-center justify-between text-xs py-1.5 px-2 rounded-xl hover:bg-[#f3f6f0] dark:hover:bg-[#11261a] transition-colors cursor-pointer group"
                   >
-                    <div className="flex items-center gap-2.5 text-[#3b4e41] group-hover:text-[#1b3726] font-medium">
-                      <stat.icon size={15} className="text-[#2d5a3c] shrink-0" />
+                    <div className="flex items-center gap-2.5 text-[#3b4e41] dark:text-slate-300 group-hover:text-[#1b3726] dark:group-hover:text-[#a2d45e] font-medium">
+                      <stat.icon size={15} className="text-[#2d5a3c] dark:text-[#a2d45e] shrink-0" />
                       <span>{stat.label}</span>
                     </div>
-                    <span className="px-2 py-0.5 rounded-md bg-[#eaf1e4] text-[#2d5a3c] font-bold text-[11px]">
+                    <span className="px-2 py-0.5 rounded-md bg-[#eaf1e4] dark:bg-[#11261a] text-[#2d5a3c] dark:text-[#a2d45e] font-bold text-[11px]">
                       {stat.count}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-2 border-t border-[#f0f4ef]">
+              <div className="pt-2 border-t border-[#f0f4ef] dark:border-[#183a27]">
                 <button 
                   onClick={() => setSelectedCategory('All')}
-                  className="w-full text-[11.5px] font-bold text-[#1b3726] hover:text-[#2d5a3c] flex items-center justify-center gap-1.5 transition-colors py-1 cursor-pointer group"
+                  className="w-full text-[11.5px] font-bold text-[#1b3726] dark:text-[#a2d45e] hover:text-[#2d5a3c] flex items-center justify-center gap-1.5 transition-colors py-1 cursor-pointer group"
                 >
                   <span>View All News</span>
                   <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
@@ -474,9 +474,9 @@ export default function NewsPage() {
             </div>
 
             {/* CARD 2: MEDIA MENTIONS */}
-            <div className="rounded-[2rem] bg-white/90 backdrop-blur-xl border border-white/95 p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-5">
-              <div className="flex items-center gap-2 pb-2 border-b border-[#f0f4ef]">
-                <h3 className="text-lg font-serif text-[#122016]">
+            <div className="rounded-[2rem] bg-white/90 dark:bg-[#0b1c14]/90 backdrop-blur-xl border border-white/95 dark:border-[#183a27] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] space-y-5">
+              <div className="flex items-center gap-2 pb-2 border-b border-[#f0f4ef] dark:border-[#183a27]">
+                <h3 className="text-lg font-serif text-[#122016] dark:text-white">
                   Media Mentions
                 </h3>
               </div>
@@ -485,20 +485,20 @@ export default function NewsPage() {
                 {MEDIA_MENTIONS.map((media) => (
                   <div key={media.id} className="flex items-start gap-3.5 group cursor-pointer">
                     {/* Media Publication Badge */}
-                    <div className="w-12 h-12 rounded-xl bg-[#f4f7f2] border border-[#e2ece4] flex flex-col items-center justify-center text-center shrink-0 p-1 group-hover:scale-105 transition-transform shadow-xs">
+                    <div className="w-12 h-12 rounded-xl bg-[#f4f7f2] dark:bg-[#11261a] border border-[#e2ece4] dark:border-[#1e422c] flex flex-col items-center justify-center text-center shrink-0 p-1 group-hover:scale-105 transition-transform shadow-xs">
                       {media.id === 1 && (
-                        <span className="text-[7.5px] font-serif font-black tracking-tight leading-tight text-slate-800 uppercase">
+                        <span className="text-[7.5px] font-serif font-black tracking-tight leading-tight text-slate-800 dark:text-slate-100 uppercase">
                           THE<br />HINDU
                         </span>
                       )}
                       {media.id === 2 && (
                         <div className="flex flex-col items-center">
-                          <span className="text-xs font-black text-[#0f4c81] leading-none">m</span>
-                          <span className="text-[5.5px] font-bold text-slate-600 tracking-tighter">MATHRUBHUMI</span>
+                          <span className="text-xs font-black text-[#0f4c81] dark:text-[#38bdf8] leading-none">m</span>
+                          <span className="text-[5.5px] font-bold text-slate-600 dark:text-slate-400 tracking-tighter">MATHRUBHUMI</span>
                         </div>
                       )}
                       {media.id === 3 && (
-                        <span className="text-[7px] font-bold text-slate-800 leading-tight text-center">
+                        <span className="text-[7px] font-bold text-slate-800 dark:text-slate-100 leading-tight text-center">
                           NEWS<br />BYTES
                         </span>
                       )}
@@ -506,22 +506,22 @@ export default function NewsPage() {
 
                     {/* Mentions Content */}
                     <div className="space-y-0.5 flex-1">
-                      <h4 className="text-[13px] font-bold text-[#19241c] leading-snug group-hover:text-[#2d5a3c] transition-colors">
+                      <h4 className="text-[13px] font-bold text-[#19241c] dark:text-white leading-snug group-hover:text-[#2d5a3c] dark:group-hover:text-[#a2d45e] transition-colors">
                         {media.title}
                       </h4>
                       {media.subtitle && (
-                        <p className="text-[10.5px] text-[#556758]">{media.subtitle}</p>
+                        <p className="text-[10.5px] text-[#556758] dark:text-slate-400">{media.subtitle}</p>
                       )}
-                      <p className="text-[10.5px] text-[#788e7f] font-medium">{media.date}</p>
+                      <p className="text-[10.5px] text-[#788e7f] dark:text-slate-400 font-medium">{media.date}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-2 border-t border-[#f0f4ef]">
+              <div className="pt-2 border-t border-[#f0f4ef] dark:border-[#183a27]">
                 <button 
                   onClick={() => setSelectedCategory('Media')}
-                  className="w-full text-[11.5px] font-bold text-[#1b3726] hover:text-[#2d5a3c] flex items-center justify-center gap-1.5 transition-colors py-1 cursor-pointer group"
+                  className="w-full text-[11.5px] font-bold text-[#1b3726] dark:text-[#a2d45e] hover:text-[#2d5a3c] flex items-center justify-center gap-1.5 transition-colors py-1 cursor-pointer group"
                 >
                   <span>View All Media</span>
                   <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
@@ -530,20 +530,20 @@ export default function NewsPage() {
             </div>
 
             {/* CARD 3: STAY UPDATED NEWSLETTER */}
-            <div className="rounded-[2rem] bg-gradient-to-b from-[#eef3eb] to-[#e4eee0] border border-[#dbe6d7] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4 relative overflow-hidden">
+            <div className="rounded-[2rem] bg-gradient-to-b from-[#eef3eb] to-[#e4eee0] dark:from-[#0b1c14] dark:to-[#08180f] border border-[#dbe6d7] dark:border-[#183a27] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] space-y-4 relative overflow-hidden transition-all duration-300">
               
               <div className="space-y-1 relative z-10">
-                <h3 className="text-xl font-serif text-[#122016]">
+                <h3 className="text-xl font-serif text-[#122016] dark:text-white">
                   Stay Updated
                 </h3>
-                <p className="text-[11.5px] text-[#4d6052] leading-relaxed">
+                <p className="text-[11.5px] text-[#4d6052] dark:text-slate-300 leading-relaxed">
                   Subscribe to our newsletter and never miss an update.
                 </p>
               </div>
 
               <div className="relative z-10 pt-1">
                 {subscribed ? (
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#2d5a3c] bg-white px-4 py-2.5 rounded-full shadow-sm">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#2d5a3c] dark:text-[#a2d45e] bg-white dark:bg-[#11261a] px-4 py-2.5 rounded-full shadow-sm">
                     <CheckCircle2 size={15} />
                     <span>Subscribed! Thank you.</span>
                   </div>
@@ -555,11 +555,11 @@ export default function NewsPage() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       placeholder="Your email address" 
-                      className="w-full px-4 py-2.5 rounded-full bg-white border border-[#cddcd0] text-xs font-medium text-slate-800 placeholder:text-[#8aa091] focus:outline-none focus:ring-2 focus:ring-[#2d5a3c]/30 shadow-xs"
+                      className="w-full px-4 py-2.5 rounded-full bg-white dark:bg-[#05110a] border border-[#cddcd0] dark:border-[#1f422e] text-xs font-medium text-slate-800 dark:text-white placeholder:text-[#8aa091] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#2d5a3c]/30 shadow-xs"
                     />
                     <button 
                       type="submit" 
-                      className="w-full py-2.5 rounded-full bg-[#1b3726] hover:bg-[#244b34] text-white text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_4px_12px_rgba(27,55,38,0.2)] cursor-pointer"
+                      className="w-full py-2.5 rounded-full bg-[#1b3726] dark:bg-[#154628] hover:bg-[#244b34] dark:hover:bg-[#1c5c34] text-white text-[11px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_4px_12px_rgba(27,55,38,0.2)] cursor-pointer"
                     >
                       <span>Subscribe</span>
                       <ArrowRight size={13} />
@@ -569,11 +569,11 @@ export default function NewsPage() {
               </div>
 
               {/* Botanical Envelope Illustration at bottom right */}
-              <div className="absolute right-0 bottom-0 pointer-events-none opacity-50 scale-95 translate-x-2 translate-y-2">
+              <div className="absolute right-0 bottom-0 pointer-events-none opacity-50 dark:opacity-20 scale-95 translate-x-2 translate-y-2">
                 <svg width="120" height="90" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 25L50 50L90 25V70C90 75.5228 85.5228 80 80 80H20C14.4772 80 10 75.5228 10 70V25Z" fill="#cfe1d1" />
-                  <path d="M90 25L50 50L10 25L45.5279 2.76393C48.2936 1.38107 51.7064 1.38107 54.4721 2.76393L90 25Z" fill="#bcd4bf" />
-                  <path d="M70 70C70 50 85 40 85 40C85 40 70 30 70 10C70 30 55 40 55 40C55 40 70 50 70 70Z" fill="#a4c7a8" />
+                  <path d="M10 25L50 50L90 25V70C90 75.5228 85.5228 80 80 80H20C14.4772 80 10 75.5228 10 70V25Z" fill="#cfe1d1" className="dark:fill-[#1e422c]" />
+                  <path d="M90 25L50 50L10 25L45.5279 2.76393C48.2936 1.38107 51.7064 1.38107 54.4721 2.76393L90 25Z" fill="#bcd4bf" className="dark:fill-[#153420]" />
+                  <path d="M70 70C70 50 85 40 85 40C85 40 70 30 70 10C70 30 55 40 55 40C55 40 70 50 70 70Z" fill="#a4c7a8" className="dark:fill-[#2a5d3c]" />
                 </svg>
               </div>
 

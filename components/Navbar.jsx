@@ -61,7 +61,7 @@ export default function Navbar() {
           </Link>
 
           {/* Center Navigation Capsule */}
-          <nav className="pointer-events-auto hidden lg:flex items-center gap-1 xl:gap-1.5 px-3 py-1.5 rounded-full bg-[#0b1c14]/80 dark:bg-[#0b1c14]/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.37)]">
+          <nav className="pointer-events-auto hidden lg:flex items-center gap-1 xl:gap-1.5 px-3 py-1.5 rounded-full bg-white/80 dark:bg-[#0b1c14]/80 backdrop-blur-2xl border border-[#dce6dd] dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.37)]">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href === '/programs' && pathname === '/academics');
 
@@ -71,13 +71,13 @@ export default function Navbar() {
                   href={link.href}
                   className={`relative px-4 py-2 text-xs font-medium rounded-full transition-all duration-300 ${
                     isActive
-                      ? 'text-white font-semibold bg-white/10 shadow-inner'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                      ? 'text-[#132418] dark:text-white font-semibold bg-[#eaf1e4] dark:bg-white/10 shadow-inner'
+                      : 'text-[#455748] dark:text-slate-300 hover:text-[#132418] dark:hover:text-white hover:bg-[#eaf1e4]/50 dark:hover:bg-white/5'
                   }`}
                 >
                   <span>{link.label}</span>
                   {isActive && (
-                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-[3px] bg-cyan-400 rounded-full shadow-[0_0_10px_#22d3ee,0_0_5px_#22d3ee]" />
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-[3px] bg-[#2d5a3c] dark:bg-cyan-400 rounded-full shadow-[0_0_10px_#2d5a3c] dark:shadow-[0_0_10px_#22d3ee,0_0_5px_#22d3ee]" />
                   )}
                 </Link>
               );
@@ -90,19 +90,19 @@ export default function Navbar() {
             <button
               onClick={toggleTheme}
               aria-label="Toggle light/dark theme"
-              className="w-10 h-10 rounded-full bg-[#0b1c14]/80 backdrop-blur-xl border border-white/15 text-slate-300 hover:text-white hover:border-[#a2d45e] hover:bg-[#133524] flex items-center justify-center transition-all duration-300 shadow-md group cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white/80 dark:bg-[#0b1c14]/80 backdrop-blur-xl border border-[#dce6dd] dark:border-white/15 text-[#132418] dark:text-slate-300 hover:text-[#1b3726] dark:hover:text-white hover:border-[#2d5a3c] dark:hover:border-[#a2d45e] hover:bg-[#eaf1e4] dark:hover:bg-[#133524] flex items-center justify-center transition-all duration-300 shadow-md group cursor-pointer"
             >
               {theme === 'dark' ? (
                 <Sun size={17} className="text-[#a2d45e] group-hover:rotate-45 transition-transform duration-300" />
               ) : (
-                <Moon size={17} className="text-amber-400 group-hover:-rotate-12 transition-transform duration-300" />
+                <Moon size={17} className="text-[#1b3726] group-hover:-rotate-12 transition-transform duration-300" />
               )}
             </button>
 
             {/* Get Involved Button */}
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#143021] to-[#0d2217] hover:from-[#1b3d2b] hover:to-[#122e1f] border border-[#2d5c3f] hover:border-[#428159] text-white text-xs font-semibold tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(20,48,33,0.6)] group"
+              className="hidden sm:inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-[#143021] to-[#0d2217] dark:from-[#143021] dark:to-[#0d2217] hover:from-[#1b3d2b] hover:to-[#122e1f] border border-[#2d5c3f] hover:border-[#428159] text-white text-xs font-semibold tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(20,48,33,0.3)] dark:shadow-[0_0_20px_rgba(20,48,33,0.6)] group"
             >
               <span>Get Involved</span>
               <ArrowRight size={14} className="text-[#a2d45e] group-hover:translate-x-1 transition-transform" />
@@ -111,7 +111,7 @@ export default function Navbar() {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2.5 rounded-full bg-[#0b1c14]/80 border border-white/10 text-white hover:bg-white/10 transition-colors"
+              className="lg:hidden p-2.5 rounded-full bg-white/80 dark:bg-[#0b1c14]/80 border border-[#dce6dd] dark:border-white/10 text-[#132418] dark:text-white hover:bg-[#eaf1e4] dark:hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}

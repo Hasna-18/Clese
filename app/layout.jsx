@@ -23,9 +23,9 @@ export default function RootLayout({ children }) {
           rel="stylesheet" 
         />
       </head>
-      <body className="bg-[#031008] text-slate-100 min-h-screen antialiased selection:bg-[#a2d45e]/30 selection:text-white">
+      <body className="bg-[#fcfdfa] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 min-h-screen antialiased selection:bg-[#a2d45e]/30 selection:text-white transition-colors duration-300">
         <ToastProvider>
-          <div id="app" className="relative min-h-screen flex flex-col justify-between bg-[#031008]">
+          <div id="app" className="relative min-h-screen flex flex-col justify-between bg-[#fcfdfa] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 transition-colors duration-300">
             {/* Top Navigation */}
             <Navbar />
 

@@ -54,7 +54,7 @@ export default function NewsDetailPage({ params }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f5ed] text-[#19241c] font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30">
+    <div className="min-h-screen bg-[#f3f5ed] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30 transition-colors duration-300">
       
       {/* ============================================================ */}
       {/* 1. HERO SECTION WITH TROPHY/DESK VISUAL */}
@@ -70,9 +70,9 @@ export default function NewsDetailPage({ params }) {
             onError={(e) => { e.currentTarget.src = "/events/events_globe_books.jpg"; }}
           />
           {/* Fading gradient masks */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] via-[#f3f5ed]/85 via-[18%] to-transparent to-[50%]" />
-          <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#f3f5ed] to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#f3f5ed] via-[#f3f5ed]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] dark:from-[#031008] via-[#f3f5ed]/85 dark:via-[#031008]/85 via-[18%] to-transparent to-[50%]" />
+          <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#f3f5ed] dark:from-[#031008] to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#f3f5ed] dark:from-[#031008] via-[#f3f5ed]/60 dark:via-[#031008]/60 to-transparent" />
         </div>
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 min-h-[460px] lg:min-h-[540px] items-center pb-8 lg:pb-0">
@@ -80,50 +80,50 @@ export default function NewsDetailPage({ params }) {
           <div className="lg:col-span-7 space-y-5 lg:pr-6 pt-2">
             
             {/* Breadcrumb */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#485b4d]">
-              <Leaf size={14} className="text-[#2d5a3c] fill-[#2d5a3c]" />
-              <Link href="/" className="hover:text-[#1b3726] transition-colors">Home</Link>
-              <span className="text-[#879b8c]">&gt;</span>
-              <Link href="/news" className="hover:text-[#1b3726] transition-colors">News</Link>
-              <span className="text-[#879b8c]">&gt;</span>
-              <span className="text-[#1b3726] font-bold line-clamp-1 max-w-[240px] sm:max-w-md">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#485b4d] dark:text-slate-400">
+              <Leaf size={14} className="text-[#2d5a3c] dark:text-[#a2d45e] fill-[#2d5a3c] dark:fill-[#a2d45e]" />
+              <Link href="/" className="hover:text-[#1b3726] dark:hover:text-white transition-colors">Home</Link>
+              <span className="text-[#879b8c] dark:text-slate-500">&gt;</span>
+              <Link href="/news" className="hover:text-[#1b3726] dark:hover:text-white transition-colors">News</Link>
+              <span className="text-[#879b8c] dark:text-slate-500">&gt;</span>
+              <span className="text-[#1b3726] dark:text-[#a2d45e] font-bold line-clamp-1 max-w-[240px] sm:max-w-md">
                 LEnSE Receives Outstanding STEM Outreach Initiative Award 2025
               </span>
             </div>
 
             {/* Category Tag */}
-            <div className="inline-flex px-3 py-1 rounded-md bg-[#eaf1e4] text-[#2d5a3c] text-[10px] font-bold uppercase tracking-widest">
+            <div className="inline-flex px-3 py-1 rounded-md bg-[#eaf1e4] dark:bg-[#11261a] text-[#2d5a3c] dark:text-[#a2d45e] text-[10px] font-bold uppercase tracking-widest">
               ACHIEVEMENT
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-normal text-[#131f17] leading-[1.15] tracking-tight font-serif">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-normal text-[#131f17] dark:text-white leading-[1.15] tracking-tight font-serif">
               LEnSE Receives Outstanding STEM Outreach Initiative Award 2025
             </h1>
 
-            <p className="text-[#405245] text-sm sm:text-[15px] leading-[1.65] max-w-xl font-normal">
+            <p className="text-[#405245] dark:text-slate-300 text-sm sm:text-[15px] leading-[1.65] max-w-xl font-normal">
               Recognized for impactful contribution to bringing quality STEM learning opportunities to school students across Kerala.
             </p>
 
             {/* Meta Info Bar */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-3 text-xs text-[#526656] font-medium border-t border-[#d8e4d9] max-w-xl">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-3 text-xs text-[#526656] dark:text-slate-400 font-medium border-t border-[#d8e4d9] dark:border-[#183a27] max-w-xl">
               <div className="flex items-center gap-1.5">
-                <Calendar size={15} className="text-[#2d5a3c]" />
+                <Calendar size={15} className="text-[#2d5a3c] dark:text-[#a2d45e]" />
                 <span>12 May 2025</span>
               </div>
-              <span className="text-[#c2d3c5]">•</span>
+              <span className="text-[#c2d3c5] dark:text-slate-600">•</span>
               <div className="flex items-center gap-1.5">
-                <User size={15} className="text-[#2d5a3c]" />
+                <User size={15} className="text-[#2d5a3c] dark:text-[#a2d45e]" />
                 <span>LEnSE Admin</span>
               </div>
-              <span className="text-[#c2d3c5]">•</span>
+              <span className="text-[#c2d3c5] dark:text-slate-600">•</span>
               <div className="flex items-center gap-1.5">
-                <Clock size={15} className="text-[#2d5a3c]" />
+                <Clock size={15} className="text-[#2d5a3c] dark:text-[#a2d45e]" />
                 <span>5 min read</span>
               </div>
-              <span className="text-[#c2d3c5]">•</span>
+              <span className="text-[#c2d3c5] dark:text-slate-600">•</span>
               <button 
                 onClick={handleShare}
-                className="flex items-center gap-1.5 text-[#1b3726] hover:text-[#2d5a3c] font-bold transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-[#1b3726] dark:text-[#a2d45e] hover:text-[#2d5a3c] font-bold transition-colors cursor-pointer"
               >
                 <Share2 size={14} />
                 <span>{copied ? 'Link Copied!' : 'Share'}</span>
@@ -138,7 +138,7 @@ export default function NewsDetailPage({ params }) {
 
       {/* Hero Bottom Divider */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-2">
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#d2e0d3] to-transparent opacity-80" />
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#d2e0d3] dark:via-[#183a27] to-transparent opacity-80" />
       </div>
 
       {/* ============================================================ */}
@@ -152,10 +152,10 @@ export default function NewsDetailPage({ params }) {
             
             {/* Overview Section */}
             <section className="space-y-4">
-              <h2 className="text-2xl sm:text-[26px] font-serif text-[#122016]">
+              <h2 className="text-2xl sm:text-[26px] font-serif text-[#122016] dark:text-white">
                 Overview
               </h2>
-              <div className="space-y-3.5 text-[#3f5244] text-[13.5px] sm:text-sm leading-[1.8]">
+              <div className="space-y-3.5 text-[#3f5244] dark:text-slate-300 text-[13.5px] sm:text-sm leading-[1.8]">
                 <p>
                   The Centre for Learning Engineering and Sustainability Education (LEnSE) is delighted to announce that it has been conferred with the Outstanding STEM Outreach Initiative Award 2025 in recognition of its exemplary efforts in expanding access to quality STEM education among school students across Kerala.
                 </p>
@@ -167,20 +167,20 @@ export default function NewsDetailPage({ params }) {
 
             {/* About the Initiative Section */}
             <section className="space-y-5">
-              <h2 className="text-2xl sm:text-[26px] font-serif text-[#122016]">
+              <h2 className="text-2xl sm:text-[26px] font-serif text-[#122016] dark:text-white">
                 About the Initiative
               </h2>
-              <p className="text-[#3f5244] text-[13.5px] sm:text-sm leading-[1.8]">
+              <p className="text-[#3f5244] dark:text-slate-300 text-[13.5px] sm:text-sm leading-[1.8]">
                 LEnSE's STEM outreach initiative focuses on organizing residential STEM camps, workshops, and lab-based learning programmes for school students. Conducted across 9 districts in Kerala, the initiative has empowered thousands of young learners by nurturing curiosity, creativity and problem-solving skills through experiential activities.
               </p>
 
               {/* Key Impact Highlights Card */}
-              <div className="rounded-[2rem] bg-white border border-[#e4ede5] p-6 sm:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-                <h4 className="text-xs font-bold text-[#2d5a3c] uppercase tracking-wider mb-6">
+              <div className="rounded-[2rem] bg-white dark:bg-[#0b1c14] border border-[#e4ede5] dark:border-[#183a27] p-6 sm:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+                <h4 className="text-xs font-bold text-[#2d5a3c] dark:text-[#a2d45e] uppercase tracking-wider mb-6">
                   Key Impact Highlights
                 </h4>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 divide-x-0 sm:divide-x divide-[#eaf0eb]">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 divide-y-0 sm:divide-y-0 sm:divide-x divide-[#eaf0eb] dark:divide-[#183a27]">
                   {[
                     { count: '2000+', label: 'Students Reached', icon: Users },
                     { count: '9', label: 'Districts Covered', icon: MapPin },
@@ -188,13 +188,13 @@ export default function NewsDetailPage({ params }) {
                     { count: '50+', label: 'Hands-on Activities', icon: FlaskConical }
                   ].map((stat, idx) => (
                     <div key={idx} className="flex flex-col items-center text-center px-2">
-                      <div className="w-11 h-11 rounded-2xl bg-[#f4f8f3] border border-[#e2ede4] flex items-center justify-center text-[#2d5a3c] mb-3 shadow-xs">
+                      <div className="w-11 h-11 rounded-2xl bg-[#f4f8f3] dark:bg-[#11261a] border border-[#e2ede4] dark:border-[#1e422c] flex items-center justify-center text-[#2d5a3c] dark:text-[#a2d45e] mb-3 shadow-xs">
                         <stat.icon size={20} strokeWidth={1.5} />
                       </div>
-                      <span className="text-2xl sm:text-3xl font-serif font-bold text-[#122016] leading-none mb-1">
+                      <span className="text-2xl sm:text-3xl font-serif font-bold text-[#122016] dark:text-white leading-none mb-1">
                         {stat.count}
                       </span>
-                      <span className="text-[11px] text-[#556958] font-medium leading-tight">
+                      <span className="text-[11px] text-[#556958] dark:text-slate-400 font-medium leading-tight">
                         {stat.label}
                       </span>
                     </div>
@@ -205,27 +205,27 @@ export default function NewsDetailPage({ params }) {
 
             {/* Voices & Acknowledgements Section */}
             <section className="space-y-4">
-              <h2 className="text-2xl sm:text-[26px] font-serif text-[#122016]">
-                Voices & Acknowledgements
+              <h2 className="text-2xl sm:text-[26px] font-serif text-[#122016] dark:text-white">
+                Voices &amp; Acknowledgements
               </h2>
 
               {/* Styled Quote Box */}
-              <div className="rounded-[2rem] bg-gradient-to-r from-white via-white to-[#f4f7f2] border border-[#e4ede5] p-6 sm:p-7 flex flex-col md:flex-row items-center gap-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] relative overflow-hidden">
+              <div className="rounded-[2rem] bg-gradient-to-r from-white via-white to-[#f4f7f2] dark:from-[#0b1c14] dark:via-[#08180f] dark:to-[#05110a] border border-[#e4ede5] dark:border-[#183a27] p-6 sm:p-7 flex flex-col md:flex-row items-center gap-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] relative overflow-hidden">
                 <div className="space-y-4 flex-1">
-                  <div className="text-[#2d5a3c] opacity-40">
+                  <div className="text-[#2d5a3c] dark:text-[#a2d45e] opacity-40">
                     <Quote size={32} className="rotate-180" />
                   </div>
-                  <blockquote className="text-[14px] sm:text-[15px] font-serif italic text-[#192b1f] leading-relaxed">
+                  <blockquote className="text-[14px] sm:text-[15px] font-serif italic text-[#192b1f] dark:text-slate-100 leading-relaxed">
                     "This recognition inspires us to continue our mission of making STEM learning inclusive, innovative and impactful for every learner in the state."
                   </blockquote>
                   <div>
-                    <p className="text-xs font-bold text-[#122016]">— Dr. S. Beena Jose</p>
-                    <p className="text-[11px] text-[#637767]">Coordinator, LEnSE</p>
+                    <p className="text-xs font-bold text-[#122016] dark:text-white">— Dr. S. Beena Jose</p>
+                    <p className="text-[11px] text-[#637767] dark:text-slate-400">Coordinator, LEnSE</p>
                   </div>
                 </div>
 
                 {/* Right side vignette image in quote card */}
-                <div className="w-full md:w-48 h-36 rounded-2xl overflow-hidden shrink-0 bg-slate-100 shadow-inner">
+                <div className="w-full md:w-48 h-36 rounded-2xl overflow-hidden shrink-0 bg-slate-100 dark:bg-[#05110a] shadow-inner">
                   <img 
                     src="/events/events_book_plant.jpg" 
                     alt="LEnSE Campus" 
@@ -235,14 +235,14 @@ export default function NewsDetailPage({ params }) {
                 </div>
               </div>
 
-              <p className="text-[13px] text-[#4d6051] leading-relaxed pt-1">
+              <p className="text-[13px] text-[#4d6051] dark:text-slate-300 leading-relaxed pt-1">
                 We extend our heartfelt gratitude to our partners, educators, volunteers and students whose support and enthusiasm make such achievements possible.
               </p>
             </section>
 
             {/* Gallery Section */}
             <section className="space-y-4">
-              <h2 className="text-2xl sm:text-[26px] font-serif text-[#122016]">
+              <h2 className="text-2xl sm:text-[26px] font-serif text-[#122016] dark:text-white">
                 Gallery
               </h2>
 
@@ -253,7 +253,7 @@ export default function NewsDetailPage({ params }) {
                   { img: '/events/scholar.jpg', alt: 'STEM digital learning pad' },
                   { img: '/events/sustainability.jpg', alt: 'Solar clean energy' }
                 ].map((item, idx) => (
-                  <div key={idx} className="h-28 sm:h-32 rounded-2xl overflow-hidden bg-slate-100 border border-[#e2ece4] shadow-xs group cursor-pointer">
+                  <div key={idx} className="h-28 sm:h-32 rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#05110a] border border-[#e2ece4] dark:border-[#183a27] shadow-xs group cursor-pointer">
                     <img 
                       src={item.img} 
                       alt={item.alt} 
@@ -265,8 +265,8 @@ export default function NewsDetailPage({ params }) {
               </div>
 
               {/* Info banner pill */}
-              <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white border border-[#e2ede5] text-xs text-[#526656] font-medium shadow-xs">
-                <Info size={16} className="text-[#2d5a3c] shrink-0" />
+              <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white dark:bg-[#0b1c14] border border-[#e2ede5] dark:border-[#183a27] text-xs text-[#526656] dark:text-slate-300 font-medium shadow-xs">
+                <Info size={16} className="text-[#2d5a3c] dark:text-[#a2d45e] shrink-0" />
                 <span>Stay tuned for more updates on our initiatives and upcoming programmes.</span>
               </div>
             </section>
@@ -277,8 +277,8 @@ export default function NewsDetailPage({ params }) {
           <div className="lg:col-span-4 space-y-6">
             
             {/* CARD 1: NEWS DETAILS */}
-            <div className="rounded-[2rem] bg-white border border-[#e4ede5] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-5">
-              <h3 className="text-lg font-serif text-[#122016] pb-2 border-b border-[#f0f4ef]">
+            <div className="rounded-[2rem] bg-white dark:bg-[#0b1c14] border border-[#e4ede5] dark:border-[#183a27] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] space-y-5">
+              <h3 className="text-lg font-serif text-[#122016] dark:text-white pb-2 border-b border-[#f0f4ef] dark:border-[#183a27]">
                 News Details
               </h3>
 
@@ -290,19 +290,19 @@ export default function NewsDetailPage({ params }) {
                   { label: 'Read Time', value: '5 min read', icon: Clock }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-xl bg-[#f4f8f3] flex items-center justify-center text-[#2d5a3c] shrink-0 mt-0.5">
+                    <div className="w-8 h-8 rounded-xl bg-[#f4f8f3] dark:bg-[#11261a] flex items-center justify-center text-[#2d5a3c] dark:text-[#a2d45e] shrink-0 mt-0.5">
                       <item.icon size={16} strokeWidth={1.5} />
                     </div>
                     <div>
-                      <span className="block text-[11px] text-[#6b7e70] font-medium">{item.label}</span>
-                      <span className="block text-[13px] font-bold text-[#14261a] leading-snug">{item.value}</span>
+                      <span className="block text-[11px] text-[#6b7e70] dark:text-slate-400 font-medium">{item.label}</span>
+                      <span className="block text-[13px] font-bold text-[#14261a] dark:text-white leading-snug">{item.value}</span>
                     </div>
                   </div>
                 ))}
 
                 {/* Social Share Row */}
-                <div className="pt-2 border-t border-[#f0f4ef] flex items-center justify-between">
-                  <span className="text-[11.5px] font-bold text-[#14261a]">Share</span>
+                <div className="pt-2 border-t border-[#f0f4ef] dark:border-[#183a27] flex items-center justify-between">
+                  <span className="text-[11.5px] font-bold text-[#14261a] dark:text-white">Share</span>
                   <div className="flex items-center gap-2">
                     {[
                       { icon: Facebook, href: '#' },
@@ -313,7 +313,7 @@ export default function NewsDetailPage({ params }) {
                       <a 
                         key={i} 
                         href={s.href} 
-                        className="w-8 h-8 rounded-full bg-[#1b3726] hover:bg-[#254d35] text-white flex items-center justify-center transition-colors shadow-xs"
+                        className="w-8 h-8 rounded-full bg-[#1b3726] dark:bg-[#11261a] hover:bg-[#254d35] dark:hover:bg-[#1e422c] text-white dark:text-[#a2d45e] flex items-center justify-center transition-colors shadow-xs"
                       >
                         <s.icon size={13} />
                       </a>
@@ -324,8 +324,8 @@ export default function NewsDetailPage({ params }) {
             </div>
 
             {/* CARD 2: KEY TAKEAWAYS */}
-            <div className="rounded-[2rem] bg-white border border-[#e4ede5] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4">
-              <h3 className="text-lg font-serif text-[#122016] pb-2 border-b border-[#f0f4ef]">
+            <div className="rounded-[2rem] bg-white dark:bg-[#0b1c14] border border-[#e4ede5] dark:border-[#183a27] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] space-y-4">
+              <h3 className="text-lg font-serif text-[#122016] dark:text-white pb-2 border-b border-[#f0f4ef] dark:border-[#183a27]">
                 Key Takeaways
               </h3>
 
@@ -337,10 +337,10 @@ export default function NewsDetailPage({ params }) {
                   { text: 'Builds a sustainable ecosystem for future innovators', icon: Layers }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 group">
-                    <div className="w-7 h-7 rounded-lg bg-[#f0f6ee] flex items-center justify-center text-[#2d5a3c] shrink-0 mt-0.5 group-hover:bg-[#e4efe2] transition-colors">
+                    <div className="w-7 h-7 rounded-lg bg-[#f0f6ee] dark:bg-[#11261a] flex items-center justify-center text-[#2d5a3c] dark:text-[#a2d45e] shrink-0 mt-0.5 group-hover:bg-[#e4efe2] dark:group-hover:bg-[#1e422c] transition-colors">
                       <item.icon size={14} />
                     </div>
-                    <p className="text-[12px] text-[#3d5042] leading-snug font-medium pt-0.5">
+                    <p className="text-[12px] text-[#3d5042] dark:text-slate-300 leading-snug font-medium pt-0.5">
                       {item.text}
                     </p>
                   </div>
@@ -349,8 +349,8 @@ export default function NewsDetailPage({ params }) {
             </div>
 
             {/* CARD 3: RELATED NEWS */}
-            <div className="rounded-[2rem] bg-white border border-[#e4ede5] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4">
-              <h3 className="text-lg font-serif text-[#122016] pb-2 border-b border-[#f0f4ef]">
+            <div className="rounded-[2rem] bg-white dark:bg-[#0b1c14] border border-[#e4ede5] dark:border-[#183a27] p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] space-y-4">
+              <h3 className="text-lg font-serif text-[#122016] dark:text-white pb-2 border-b border-[#f0f4ef] dark:border-[#183a27]">
                 Related News
               </h3>
 
@@ -375,9 +375,9 @@ export default function NewsDetailPage({ params }) {
                   <Link 
                     key={idx} 
                     href="/news/1" 
-                    className="flex items-center gap-3 group/art hover:bg-[#f6f9f4] p-1.5 rounded-xl transition-colors"
+                    className="flex items-center gap-3 group/art hover:bg-[#f6f9f4] dark:hover:bg-[#11261a] p-1.5 rounded-xl transition-colors"
                   >
-                    <div className="w-14 h-12 rounded-xl overflow-hidden bg-slate-100 shrink-0">
+                    <div className="w-14 h-12 rounded-xl overflow-hidden bg-slate-100 dark:bg-[#05110a] shrink-0">
                       <img 
                         src={article.img} 
                         alt={article.title} 
@@ -386,10 +386,10 @@ export default function NewsDetailPage({ params }) {
                       />
                     </div>
                     <div className="space-y-0.5 flex-1 min-w-0">
-                      <h4 className="text-[12px] font-bold text-[#14261a] leading-tight group-hover/art:text-[#2d5a3c] transition-colors line-clamp-2">
+                      <h4 className="text-[12px] font-bold text-[#14261a] dark:text-white leading-tight group-hover/art:text-[#2d5a3c] dark:group-hover/art:text-[#a2d45e] transition-colors line-clamp-2">
                         {article.title}
                       </h4>
-                      <span className="text-[10px] text-[#718476] font-medium block">
+                      <span className="text-[10px] text-[#718476] dark:text-slate-400 font-medium block">
                         {article.date}
                       </span>
                     </div>
@@ -397,10 +397,10 @@ export default function NewsDetailPage({ params }) {
                 ))}
               </div>
 
-              <div className="pt-2 border-t border-[#f0f4ef]">
+              <div className="pt-2 border-t border-[#f0f4ef] dark:border-[#183a27]">
                 <Link 
                   href="/news" 
-                  className="w-full text-[11.5px] font-bold text-[#1b3726] hover:text-[#2d5a3c] flex items-center justify-center gap-1.5 transition-colors py-1 group"
+                  className="w-full text-[11.5px] font-bold text-[#1b3726] dark:text-[#a2d45e] hover:text-[#2d5a3c] flex items-center justify-center gap-1.5 transition-colors py-1 group"
                 >
                   <span>View All News</span>
                   <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
@@ -417,17 +417,17 @@ export default function NewsDetailPage({ params }) {
       {/* 3. BOTTOM STAY UPDATED NEWSLETTER */}
       {/* ============================================================ */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="rounded-[2rem] bg-[#eaf0e6] border border-[#dce8d8] flex flex-col sm:flex-row items-center justify-between p-6 sm:p-8 md:p-10 gap-8 relative overflow-hidden shadow-xs">
+        <div className="rounded-[2rem] bg-[#eaf0e6] dark:bg-[#0b1c14] border border-[#dce8d8] dark:border-[#183a27] flex flex-col sm:flex-row items-center justify-between p-6 sm:p-8 md:p-10 gap-8 relative overflow-hidden shadow-xs transition-all duration-300">
           
           <div className="flex items-center gap-4 relative z-10">
-            <div className="w-12 h-12 rounded-2xl bg-[#2d5a3c] text-white flex items-center justify-center shrink-0 shadow-sm">
+            <div className="w-12 h-12 rounded-2xl bg-[#2d5a3c] dark:bg-[#11261a] border border-white/20 dark:border-[#1e422c] text-white dark:text-[#a2d45e] flex items-center justify-center shrink-0 shadow-sm">
               <Mail size={22} />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-serif text-[#122016]">
+              <h3 className="text-xl sm:text-2xl font-serif text-[#122016] dark:text-white">
                 Stay Updated
               </h3>
-              <p className="text-xs text-[#526656]">
+              <p className="text-xs text-[#526656] dark:text-slate-300">
                 Subscribe to our newsletter and get the latest news, updates and stories from LEnSE.
               </p>
             </div>
@@ -435,23 +435,23 @@ export default function NewsDetailPage({ params }) {
 
           <div className="w-full sm:w-auto relative z-10 shrink-0">
             {subscribed ? (
-              <div className="flex items-center gap-2 text-xs font-bold text-[#2d5a3c] bg-white px-5 py-3 rounded-full shadow-sm">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#2d5a3c] dark:text-[#a2d45e] bg-white dark:bg-[#11261a] px-5 py-3 rounded-full shadow-sm">
                 <CheckCircle2 size={16} />
                 <span>Subscribed successfully!</span>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="bg-white rounded-full p-1.5 pl-5 pr-1.5 flex items-center shadow-sm w-full sm:w-[340px] border border-[#d2dfd2]">
+              <form onSubmit={handleSubscribe} className="bg-white dark:bg-[#05110a] rounded-full p-1.5 pl-5 pr-1.5 flex items-center shadow-sm w-full sm:w-[340px] border border-[#d2dfd2] dark:border-[#183a27]">
                 <input 
                   type="email" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="Your email address" 
-                  className="text-xs text-slate-800 placeholder:text-[#8a9d90] bg-transparent outline-none flex-1 font-medium min-w-0"
+                  className="text-xs text-slate-800 dark:text-white placeholder:text-[#8a9d90] dark:placeholder-slate-500 bg-transparent outline-none flex-1 font-medium min-w-0"
                 />
                 <button 
                   type="submit" 
-                  className="px-5 py-2.5 rounded-full bg-[#1b3726] hover:bg-[#254c35] text-white text-[11px] font-bold flex items-center gap-2 transition-colors cursor-pointer shrink-0 shadow-xs"
+                  className="px-5 py-2.5 rounded-full bg-[#1b3726] dark:bg-[#a2d45e] hover:bg-[#254d35] dark:hover:bg-[#b8e874] text-white dark:text-[#031008] text-[11px] font-bold flex items-center gap-2 transition-colors cursor-pointer shrink-0 shadow-xs"
                 >
                   <span>Subscribe</span>
                   <ArrowRight size={13} />
@@ -461,7 +461,7 @@ export default function NewsDetailPage({ params }) {
           </div>
 
           {/* Right botanical illustration */}
-          <div className="absolute right-0 bottom-0 pointer-events-none opacity-40 translate-x-3 translate-y-3">
+          <div className="absolute right-0 bottom-0 pointer-events-none opacity-40 dark:opacity-20 translate-x-3 translate-y-3">
             <svg width="150" height="150" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M80 100C80 70 100 50 100 50C100 50 80 30 80 0C80 30 60 50 60 50C60 50 80 70 80 100Z" fill="#a3bca7" />
               <path d="M30 100C30 85 40 75 40 75C40 75 30 65 30 50C30 65 20 75 20 75C20 75 30 85 30 100Z" fill="#88a88f" />
@@ -474,4 +474,3 @@ export default function NewsDetailPage({ params }) {
     </div>
   );
 }
- 

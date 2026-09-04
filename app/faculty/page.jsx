@@ -83,12 +83,12 @@ export default function FacultyPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f3f5ed] text-[#19241c] font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30">
+    <div className="min-h-screen bg-[#f3f5ed] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30 transition-colors duration-300">
 
       {/* Ambient glows */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[20%] -left-40 w-[600px] h-[600px] bg-[#e2edd8]/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-8 w-[650px] h-[650px] bg-[#dbe8d0]/40 rounded-full blur-3xl" />
+        <div className="absolute top-[20%] -left-40 w-[600px] h-[600px] bg-[#e2edd8]/40 dark:bg-[#0f301d]/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-8 w-[650px] h-[650px] bg-[#dbe8d0]/40 dark:bg-[#082214]/30 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
@@ -108,44 +108,44 @@ export default function FacultyPage() {
                 e.currentTarget.src = "/events/events_book_plant.jpg";
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] via-[#f3f5ed]/80 via-[20%] to-transparent to-[55%]" />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f3f5ed] via-[#f3f5ed]/60 to-transparent" />
-            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#f3f5ed] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] dark:from-[#031008] via-[#f3f5ed]/80 dark:via-[#031008]/85 via-[20%] to-transparent to-[55%]" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f3f5ed] dark:from-[#031008] via-[#f3f5ed]/60 dark:via-[#031008]/60 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#f3f5ed] dark:from-[#031008] to-transparent" />
           </div>
 
           {/* Left Content */}
           <div className="relative z-10 max-w-xl space-y-5 pt-2 pb-6">
 
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d]">
-              <Leaf size={14} className="text-[#2d5a3c] fill-[#2d5a3c]" />
-              <Link href="/" className="hover:text-[#1b3726] transition-colors">Home</Link>
-              <span className="text-[#879b8c]">&gt;</span>
-              <span className="text-[#1b3726] font-bold">Faculty & Leadership</span>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d] dark:text-slate-400">
+              <Leaf size={14} className="text-[#2d5a3c] dark:text-[#a2d45e] fill-[#2d5a3c] dark:fill-[#a2d45e]" />
+              <Link href="/" className="hover:text-[#1b3726] dark:hover:text-white transition-colors">Home</Link>
+              <span className="text-[#879b8c] dark:text-slate-500">&gt;</span>
+              <span className="text-[#1b3726] dark:text-[#a2d45e] font-bold">Faculty &amp; Leadership</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.8rem] font-normal text-[#122016] leading-[1.1] tracking-tight font-serif">
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.8rem] font-normal text-[#122016] dark:text-white leading-[1.1] tracking-tight font-serif">
               Faculty Profiles &amp;<br />
-              <span className="italic text-[#243d2c]">Academic Leadership</span>
+              <span className="italic text-[#243d2c] dark:text-[#a2d45e]">Academic Leadership</span>
             </h1>
 
-            <p className="text-[#405245] text-sm sm:text-[14.5px] leading-[1.7] max-w-lg font-normal">
+            <p className="text-[#405245] dark:text-slate-300 text-sm sm:text-[14.5px] leading-[1.7] max-w-lg font-normal">
               Meet the educators, researchers, and visiting scholars leading learning engineering, STEM innovations, and sustainability curricula at LEnSE.
             </p>
 
             {/* Quick Metrics */}
             <div className="grid grid-cols-3 gap-3 pt-2 max-w-md">
-              <div className="p-3 rounded-2xl bg-white/85 border border-[#dce6dd] shadow-xs text-center">
-                <span className="block text-xl font-serif font-bold text-[#14261a]">18+</span>
-                <span className="block text-[10px] text-[#556758] font-medium">Years Leadership</span>
+              <div className="p-3 rounded-2xl bg-white/85 dark:bg-[#0b1c14]/85 border border-[#dce6dd] dark:border-[#183a27] shadow-xs text-center">
+                <span className="block text-xl font-serif font-bold text-[#14261a] dark:text-white">18+</span>
+                <span className="block text-[10px] text-[#556758] dark:text-slate-400 font-medium">Years Leadership</span>
               </div>
-              <div className="p-3 rounded-2xl bg-white/85 border border-[#dce6dd] shadow-xs text-center">
-                <span className="block text-xl font-serif font-bold text-[#14261a]">20+</span>
-                <span className="block text-[10px] text-[#556758] font-medium">Indexed Papers</span>
+              <div className="p-3 rounded-2xl bg-white/85 dark:bg-[#0b1c14]/85 border border-[#dce6dd] dark:border-[#183a27] shadow-xs text-center">
+                <span className="block text-xl font-serif font-bold text-[#14261a] dark:text-white">20+</span>
+                <span className="block text-[10px] text-[#556758] dark:text-slate-400 font-medium">Indexed Papers</span>
               </div>
-              <div className="p-3 rounded-2xl bg-white/85 border border-[#dce6dd] shadow-xs text-center">
-                <span className="block text-xl font-serif font-bold text-[#14261a]">Global</span>
-                <span className="block text-[10px] text-[#556758] font-medium">Fellowships</span>
+              <div className="p-3 rounded-2xl bg-white/85 dark:bg-[#0b1c14]/85 border border-[#dce6dd] dark:border-[#183a27] shadow-xs text-center">
+                <span className="block text-xl font-serif font-bold text-[#14261a] dark:text-white">Global</span>
+                <span className="block text-[10px] text-[#556758] dark:text-slate-400 font-medium">Fellowships</span>
               </div>
             </div>
 
@@ -165,8 +165,8 @@ export default function FacultyPage() {
                 key={dept}
                 onClick={() => setSelectedDept(dept)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${selectedDept === dept
-                    ? 'bg-[#1b3726] text-white shadow-sm'
-                    : 'bg-white/80 hover:bg-white text-[#384c3e] border border-[#dbe6dc]'
+                    ? 'bg-[#1b3726] dark:bg-[#154628] text-white shadow-sm'
+                    : 'bg-white/80 dark:bg-[#0b1c14]/80 hover:bg-white dark:hover:bg-[#11261a] text-[#384c3e] dark:text-slate-300 border border-[#dbe6dc] dark:border-[#183a27]'
                   }`}
               >
                 {dept}
@@ -176,13 +176,13 @@ export default function FacultyPage() {
 
           {/* Search Box */}
           <div className="relative w-full sm:w-64 shrink-0">
-            <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#7f9484]" />
+            <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#7f9484] dark:text-slate-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search faculty..."
-              className="w-full pl-10 pr-4 py-2 rounded-full bg-white border border-[#d5e2d6] text-xs font-medium text-[#19241c] placeholder:text-[#7f9484] focus:outline-none focus:ring-2 focus:ring-[#2d5a3c]/30 shadow-xs"
+              className="w-full pl-10 pr-4 py-2 rounded-full bg-white dark:bg-[#0b1c14] border border-[#d5e2d6] dark:border-[#183a27] text-xs font-medium text-[#19241c] dark:text-white placeholder:text-[#7f9484] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#2d5a3c]/30 shadow-xs"
             />
           </div>
 
@@ -195,13 +195,13 @@ export default function FacultyPage() {
           {filteredFaculty.map((member) => (
             <div
               key={member.id}
-              className="rounded-[2.2rem] bg-white/90 backdrop-blur-xl border border-white/95 p-6 sm:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between group"
+              className="rounded-[2.2rem] bg-white/90 dark:bg-[#0b1c14]/90 backdrop-blur-xl border border-white/95 dark:border-[#183a27] p-6 sm:p-7 shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-lg hover:-translate-y-1 hover:bg-white dark:hover:bg-[#10271c] transition-all flex flex-col justify-between group"
             >
               <div className="space-y-4">
 
                 {/* Header Profile Row */}
                 <div className="flex items-start gap-4">
-                  <div className="w-20 h-20 rounded-2xl overflow-hidden bg-slate-100 border border-[#e2ece4] shrink-0 shadow-xs">
+                  <div className="w-20 h-20 rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#05110a] border border-[#e2ece4] dark:border-[#1e422c] shrink-0 shadow-xs">
                     <img
                       src={member.photo}
                       alt={member.name}
@@ -211,40 +211,40 @@ export default function FacultyPage() {
                   </div>
 
                   <div className="space-y-1 flex-1">
-                    <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#eaf1e4] text-[#2d5a3c] text-[9.5px] font-bold uppercase tracking-wider">
+                    <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#eaf1e4] dark:bg-[#11261a] text-[#2d5a3c] dark:text-[#a2d45e] text-[9.5px] font-bold uppercase tracking-wider">
                       {member.department}
                     </span>
-                    <h3 className="text-xl font-serif font-bold text-[#14261a]">
+                    <h3 className="text-xl font-serif font-bold text-[#14261a] dark:text-white">
                       {member.name}
                     </h3>
-                    <p className="text-xs font-semibold text-[#4d6052]">
+                    <p className="text-xs font-semibold text-[#4d6052] dark:text-slate-300">
                       {member.designation}
                     </p>
                   </div>
                 </div>
 
                 {/* Qualification & Specialization */}
-                <div className="space-y-2 pt-2 border-t border-[#f0f4ef] text-xs">
+                <div className="space-y-2 pt-2 border-t border-[#f0f4ef] dark:border-[#183a27] text-xs">
                   <div>
-                    <span className="text-[11px] font-bold text-[#19241c] block">Qualification:</span>
-                    <p className="text-[#556758] leading-snug">{member.qualification}</p>
+                    <span className="text-[11px] font-bold text-[#19241c] dark:text-white block">Qualification:</span>
+                    <p className="text-[#556758] dark:text-slate-400 leading-snug">{member.qualification}</p>
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold text-[#19241c] block">Specialization:</span>
-                    <p className="text-[#556758] leading-snug">{member.specialization}</p>
+                    <span className="text-[11px] font-bold text-[#19241c] dark:text-white block">Specialization:</span>
+                    <p className="text-[#556758] dark:text-slate-400 leading-snug">{member.specialization}</p>
                   </div>
                   <div>
-                    <span className="text-[11px] font-bold text-[#19241c] block">Professional Bio:</span>
-                    <p className="text-[#485b4e] leading-relaxed text-[12.5px]">{member.bio}</p>
+                    <span className="text-[11px] font-bold text-[#19241c] dark:text-white block">Professional Bio:</span>
+                    <p className="text-[#485b4e] dark:text-slate-300 leading-relaxed text-[12.5px]">{member.bio}</p>
                   </div>
                 </div>
 
                 {/* Honors & Fellowships */}
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {member.honors.map((h, i) => (
-                    <span key={i} className="px-2.5 py-1 rounded-lg bg-[#f4f7f2] border border-[#e2ece4] text-[10.5px] text-[#334637] font-medium flex items-center gap-1">
-                      <Award size={12} className="text-[#2d5a3c]" />
-                      {h}
+                    <span key={i} className="px-2.5 py-1 rounded-lg bg-[#f4f7f2] dark:bg-[#11261a] border border-[#e2ece4] dark:border-[#1e422c] text-[10.5px] text-[#334637] dark:text-[#a2d45e] font-medium flex items-center gap-1">
+                      <Award size={12} className="text-[#2d5a3c] dark:text-[#a2d45e]" />
+                      <span className="dark:text-slate-200">{h}</span>
                     </span>
                   ))}
                 </div>
@@ -252,16 +252,16 @@ export default function FacultyPage() {
               </div>
 
               {/* Footer Contact */}
-              <div className="pt-4 border-t border-[#f0f4ef] mt-4 flex items-center justify-between">
+              <div className="pt-4 border-t border-[#f0f4ef] dark:border-[#183a27] mt-4 flex items-center justify-between">
                 <a
                   href={`mailto:${member.contact}`}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#1b3726] hover:text-[#2d5a3c] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#1b3726] dark:text-[#a2d45e] hover:text-[#2d5a3c] transition-colors"
                 >
                   <Mail size={14} />
                   <span>{member.contact}</span>
                 </a>
 
-                <Link href="/contact" className="w-8 h-8 rounded-full bg-[#f4f7f2] group-hover:bg-[#1b3726] group-hover:text-white text-[#1b3726] flex items-center justify-center transition-colors shadow-xs">
+                <Link href="/contact" className="w-8 h-8 rounded-full bg-[#f4f7f2] dark:bg-[#11261a] group-hover:bg-[#1b3726] dark:group-hover:bg-[#a2d45e] group-hover:text-white dark:group-hover:text-[#031008] text-[#1b3726] dark:text-[#a2d45e] flex items-center justify-center transition-colors shadow-xs">
                   <ArrowRight size={13} />
                 </Link>
               </div>

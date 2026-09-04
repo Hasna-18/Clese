@@ -70,12 +70,12 @@ export default function GalleryPage() {
     : galleryItems.filter(item => item.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#f3f5ed] text-[#19241c] font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30">
+    <div className="min-h-screen bg-[#f3f5ed] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30 transition-colors duration-300">
       
       {/* Ambient glows */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[20%] -left-40 w-[600px] h-[600px] bg-[#e2edd8]/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-8 w-[650px] h-[650px] bg-[#dbe8d0]/40 rounded-full blur-3xl" />
+        <div className="absolute top-[20%] -left-40 w-[600px] h-[600px] bg-[#e2edd8]/40 dark:bg-[#0f301d]/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-8 w-[650px] h-[650px] bg-[#dbe8d0]/40 dark:bg-[#082214]/30 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
@@ -87,18 +87,18 @@ export default function GalleryPage() {
           
           <div className="relative z-10 max-w-2xl space-y-4 pt-2">
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d]">
-              <Leaf size={14} className="text-[#2d5a3c] fill-[#2d5a3c]" />
-              <Link href="/" className="hover:text-[#1b3726] transition-colors">Home</Link>
-              <span className="text-[#879b8c]">&gt;</span>
-              <span className="text-[#1b3726] font-bold">Media &amp; Gallery</span>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d] dark:text-slate-400">
+              <Leaf size={14} className="text-[#2d5a3c] dark:text-[#a2d45e] fill-[#2d5a3c] dark:fill-[#a2d45e]" />
+              <Link href="/" className="hover:text-[#1b3726] dark:hover:text-white transition-colors">Home</Link>
+              <span className="text-[#879b8c] dark:text-slate-500">&gt;</span>
+              <span className="text-[#1b3726] dark:text-[#a2d45e] font-bold">Media &amp; Gallery</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.8rem] font-normal text-[#122016] leading-[1.1] tracking-tight font-serif">
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.8rem] font-normal text-[#122016] dark:text-white leading-[1.1] tracking-tight font-serif">
               Media &amp; Image Gallery
             </h1>
 
-            <p className="text-[#405245] text-sm sm:text-[14.5px] leading-[1.7] max-w-xl font-normal">
+            <p className="text-[#405245] dark:text-slate-300 text-sm sm:text-[14.5px] leading-[1.7] max-w-xl font-normal">
               Explore dynamic photographs, laboratory facilities, state camp workshops, and conference memories across LEnSE initiatives.
             </p>
           </div>
@@ -111,8 +111,8 @@ export default function GalleryPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-[#1b3726] text-white shadow-sm'
-                    : 'bg-white/80 hover:bg-white text-[#384c3e] border border-[#dbe6dc]'
+                    ? 'bg-[#1b3726] dark:bg-[#154628] text-white shadow-sm'
+                    : 'bg-white/80 dark:bg-[#0b1c14]/80 hover:bg-white dark:hover:bg-[#11261a] text-[#384c3e] dark:text-slate-300 border border-[#dbe6dc] dark:border-[#183a27]'
                 }`}
               >
                 {cat}
@@ -130,9 +130,9 @@ export default function GalleryPage() {
             <div 
               key={item.id}
               onClick={() => setSelectedImage(item)}
-              className="group rounded-[2rem] bg-white/90 backdrop-blur-xl border border-white/95 p-4 space-y-3 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer"
+              className="group rounded-[2rem] bg-white/90 dark:bg-[#0b1c14]/90 backdrop-blur-xl border border-white/95 dark:border-[#183a27] p-4 space-y-3 shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-lg hover:-translate-y-1 hover:bg-white dark:hover:bg-[#10271c] transition-all cursor-pointer"
             >
-              <div className="h-56 rounded-2xl overflow-hidden bg-slate-100 relative shadow-xs">
+              <div className="h-56 rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#05110a] relative shadow-xs">
                 <img 
                   src={item.image} 
                   alt={item.title} 
@@ -141,21 +141,21 @@ export default function GalleryPage() {
                 />
                 
                 {/* Category Badge */}
-                <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#0d2216]/85 backdrop-blur-md text-[#a2d45e] text-[9px] font-bold uppercase tracking-wider">
+                <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#0d2216]/85 backdrop-blur-md text-[#a2d45e] text-[9px] font-bold uppercase tracking-wider border border-[#1e422c]/50">
                   {item.category}
                 </div>
 
                 {/* Maximize Icon */}
-                <div className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#1b3726] shadow-sm group-hover:scale-110 transition-transform">
+                <div className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 dark:bg-[#11261a] backdrop-blur-md flex items-center justify-center text-[#1b3726] dark:text-[#a2d45e] shadow-sm group-hover:scale-110 transition-transform">
                   <Maximize2 size={13} />
                 </div>
               </div>
 
               <div className="space-y-1 px-1">
-                <h3 className="text-[15px] font-serif font-semibold text-[#14261a] leading-snug group-hover:text-[#2d5a3c] transition-colors">
+                <h3 className="text-[15px] font-serif font-semibold text-[#14261a] dark:text-white leading-snug group-hover:text-[#2d5a3c] dark:group-hover:text-[#a2d45e] transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-[12px] text-[#4d6052] leading-relaxed line-clamp-2">
+                <p className="text-[12px] text-[#4d6052] dark:text-slate-300 leading-relaxed line-clamp-2 font-normal">
                   {item.description}
                 </p>
               </div>
@@ -170,26 +170,26 @@ export default function GalleryPage() {
       {/* ========================================================================= */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-50 bg-[#0d2216]/80 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#0d2216]/80 dark:bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           <div 
-            className="rounded-[2rem] bg-white max-w-2xl w-full p-6 space-y-4 shadow-2xl animate-in zoom-in-95 duration-200"
+            className="rounded-[2rem] bg-white dark:bg-[#0b1c14] border dark:border-[#183a27] max-w-2xl w-full p-6 space-y-4 shadow-2xl animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
-              <span className="px-2.5 py-0.5 rounded-md bg-[#eaf1e4] text-[#2d5a3c] text-[10px] font-bold uppercase tracking-wider">
+              <span className="px-2.5 py-0.5 rounded-md bg-[#eaf1e4] dark:bg-[#11261a] text-[#2d5a3c] dark:text-[#a2d45e] text-[10px] font-bold uppercase tracking-wider">
                 {selectedImage.category}
               </span>
               <button 
                 onClick={() => setSelectedImage(null)}
-                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-[#163824] hover:bg-slate-200 dark:hover:bg-[#1e4b30] text-slate-700 dark:text-white flex items-center justify-center transition-colors cursor-pointer"
               >
                 <X size={16} />
               </button>
             </div>
 
-            <div className="h-72 sm:h-96 rounded-2xl overflow-hidden bg-slate-100">
+            <div className="h-72 sm:h-96 rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#05110a]">
               <img 
                 src={selectedImage.image} 
                 alt={selectedImage.title} 
@@ -199,10 +199,10 @@ export default function GalleryPage() {
             </div>
 
             <div className="space-y-1">
-              <h3 className="text-xl font-serif font-bold text-[#14261a]">
+              <h3 className="text-xl font-serif font-bold text-[#14261a] dark:text-white">
                 {selectedImage.title}
               </h3>
-              <p className="text-xs text-[#526656] leading-relaxed">
+              <p className="text-xs text-[#526656] dark:text-slate-300 leading-relaxed">
                 {selectedImage.description}
               </p>
             </div>

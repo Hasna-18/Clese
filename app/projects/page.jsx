@@ -151,12 +151,12 @@ export default function ResearchPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f3f5ed] text-[#19241c] font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30">
+    <div className="min-h-screen bg-[#f3f5ed] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 font-sans pb-28 pt-28 sm:pt-36 relative overflow-hidden selection:bg-[#a2d45e]/30 transition-colors duration-300">
       
       {/* Ambient glows */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[25%] -left-40 w-[600px] h-[600px] bg-[#e2edd8]/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-8 w-[650px] h-[650px] bg-[#dbe8d0]/40 rounded-full blur-3xl" />
+        <div className="absolute top-[25%] -left-40 w-[600px] h-[600px] bg-[#e2edd8]/40 dark:bg-[#0f301d]/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-8 w-[650px] h-[650px] bg-[#dbe8d0]/40 dark:bg-[#082214]/30 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-28">
@@ -176,32 +176,32 @@ export default function ResearchPage() {
                 e.currentTarget.src = "/events/events_book_plant.jpg";
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] via-[#f3f5ed]/80 via-[20%] to-transparent to-[55%]" />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f3f5ed] via-[#f3f5ed]/60 to-transparent" />
-            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#f3f5ed] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#f3f5ed] dark:from-[#031008] via-[#f3f5ed]/80 dark:via-[#031008]/85 via-[20%] to-transparent to-[55%]" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f3f5ed] dark:from-[#031008] via-[#f3f5ed]/60 dark:via-[#031008]/60 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#f3f5ed] dark:from-[#031008] to-transparent" />
           </div>
 
           {/* Left Hero Content */}
           <div className="relative z-10 max-w-xl space-y-6 pt-2 pb-6">
             
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d]">
-              <Leaf size={14} className="text-[#2d5a3c] fill-[#2d5a3c]" />
-              <Link href="/" className="hover:text-[#1b3726] transition-colors">Home</Link>
-              <span className="text-[#879b8c]">&gt;</span>
-              <span className="text-[#1b3726] font-bold">Research & Initiatives</span>
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d] dark:text-slate-400">
+              <Leaf size={14} className="text-[#2d5a3c] dark:text-[#a2d45e] fill-[#2d5a3c] dark:fill-[#a2d45e]" />
+              <Link href="/" className="hover:text-[#1b3726] dark:hover:text-white transition-colors">Home</Link>
+              <span className="text-[#879b8c] dark:text-slate-500">&gt;</span>
+              <span className="text-[#1b3726] dark:text-[#a2d45e] font-bold">Research &amp; Initiatives</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-[4rem] font-normal text-[#122016] leading-[1.08] tracking-tight font-serif">
+            <h1 className="text-4xl sm:text-5xl lg:text-[4rem] font-normal text-[#122016] dark:text-white leading-[1.08] tracking-tight font-serif">
               Research &amp;<br />
-              <span className="italic text-[#243d2c]">Initiatives</span>
+              <span className="italic text-[#243d2c] dark:text-[#a2d45e]">Initiatives</span>
             </h1>
 
-            <p className="text-xl sm:text-2xl font-serif italic text-[#243d2c] leading-snug">
+            <p className="text-xl sm:text-2xl font-serif italic text-[#243d2c] dark:text-[#a2d45e] leading-snug">
               Advancing learning engineering, sustainability and STEM pedagogy.
             </p>
 
-            <p className="text-[#405245] text-sm sm:text-[14.5px] leading-[1.7] max-w-lg font-normal">
+            <p className="text-[#405245] dark:text-slate-300 text-sm sm:text-[14.5px] leading-[1.7] max-w-lg font-normal">
               LEnSE conducts multidisciplinary research, state-wide school outreach initiatives, and international collaborative programs to create scalable, inclusive learning ecosystems.
             </p>
 
@@ -213,9 +213,9 @@ export default function ResearchPage() {
                 { count: '10+', label: 'Collaborators', icon: Landmark },
                 { count: '100%', label: 'Social Inclusion', icon: ShieldCheck }
               ].map((m, i) => (
-                <div key={i} className="p-3 rounded-2xl bg-white/80 backdrop-blur-md border border-[#dce6dd] shadow-xs text-center">
-                  <span className="block text-xl font-serif font-bold text-[#14261a]">{m.count}</span>
-                  <span className="block text-[10px] text-[#556758] font-medium leading-tight">{m.label}</span>
+                <div key={i} className="p-3 rounded-2xl bg-white/80 dark:bg-[#0b1c14]/80 backdrop-blur-md border border-[#dce6dd] dark:border-[#183a27] shadow-xs text-center">
+                  <span className="block text-xl font-serif font-bold text-[#14261a] dark:text-white">{m.count}</span>
+                  <span className="block text-[10px] text-[#556758] dark:text-slate-400 font-medium leading-tight">{m.label}</span>
                 </div>
               ))}
             </div>
@@ -224,29 +224,29 @@ export default function ResearchPage() {
 
         </div>
 
-        {/* ========================================================================= */}
+        {/* ============================================================ */}
         {/* 2. CORE RESEARCH THEMES (4 Pillars) */}
-        {/* ========================================================================= */}
-        <div className="p-4 sm:p-6 rounded-[2.5rem] bg-gradient-to-b from-white/70 via-white/50 to-white/30 backdrop-blur-2xl border border-white/95 shadow-[inset_0_2px_4px_rgba(255,255,255,1),0_15px_35px_rgba(0,25,12,0.04)]">
+        {/* ============================================================ */}
+        <div className="p-4 sm:p-6 rounded-[2.5rem] bg-gradient-to-b from-white/70 via-white/50 to-white/30 dark:from-[#0b1c14]/90 dark:via-[#08180f]/85 dark:to-[#040e08]/80 backdrop-blur-2xl border border-white/95 dark:border-[#183a27] shadow-[inset_0_2px_4px_rgba(255,255,255,1),0_15px_35px_rgba(0,25,12,0.04)] dark:shadow-[0_15px_35px_rgba(0,0,0,0.4)]">
           <div className="text-center mb-6 space-y-1">
-            <span className="text-[10.5px] font-bold tracking-[0.2em] text-[#4d5e50] uppercase">
+            <span className="text-[10.5px] font-bold tracking-[0.2em] text-[#4d5e50] dark:text-[#a2d45e] uppercase">
               STRATEGIC RESEARCH DOMAINS
             </span>
-            <h3 className="text-2xl font-serif text-[#122016]">
+            <h3 className="text-2xl font-serif text-[#122016] dark:text-white">
               Core Pillars of Scientific Inquiry
             </h3>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {RESEARCH_THEMES.map((theme, idx) => (
-              <div key={idx} className="p-5 rounded-2xl bg-white/80 border border-white shadow-xs hover:bg-white transition-all group">
-                <div className="w-11 h-11 rounded-2xl bg-[#eaf1e4] text-[#2d5a3c] flex items-center justify-center mb-3.5 group-hover:scale-110 transition-transform">
+              <div key={idx} className="p-5 rounded-2xl bg-white/80 dark:bg-[#11261a]/60 border border-white dark:border-[#1e422c] shadow-xs hover:bg-white dark:hover:bg-[#11261a] transition-all group">
+                <div className="w-11 h-11 rounded-2xl bg-[#eaf1e4] dark:bg-[#163824] text-[#2d5a3c] dark:text-[#a2d45e] flex items-center justify-center mb-3.5 group-hover:scale-110 transition-transform">
                   <theme.icon size={20} strokeWidth={1.5} />
                 </div>
-                <h4 className="text-[14px] font-bold text-[#14261a] mb-2 leading-snug">
+                <h4 className="text-[14px] font-bold text-[#14261a] dark:text-white mb-2 leading-snug">
                   {theme.title}
                 </h4>
-                <p className="text-[12px] text-[#4d6052] leading-relaxed font-normal">
+                <p className="text-[12px] text-[#4d6052] dark:text-slate-300 leading-relaxed font-normal">
                   {theme.desc}
                 </p>
               </div>
@@ -254,15 +254,15 @@ export default function ResearchPage() {
           </div>
         </div>
 
-        {/* ========================================================================= */}
+        {/* ============================================================ */}
         {/* 3. INSTITUTIONAL RESEARCH OBJECTIVES */}
-        {/* ========================================================================= */}
+        {/* ============================================================ */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          <div className="lg:col-span-4 rounded-[2.2rem] bg-gradient-to-br from-[#1b3726] via-[#142e1f] to-[#0d2216] p-7 sm:p-8 text-white flex flex-col justify-between shadow-lg relative overflow-hidden">
+          <div className="lg:col-span-4 rounded-[2.2rem] bg-gradient-to-br from-[#1b3726] via-[#142e1f] to-[#0d2216] dark:from-[#0b1c14] dark:via-[#08180f] dark:to-[#040e08] p-7 sm:p-8 text-white flex flex-col justify-between shadow-lg relative overflow-hidden border border-white/10 dark:border-[#183a27]">
             <div className="space-y-4 relative z-10">
               <span className="inline-flex px-3 py-1 rounded-md bg-[#a2d45e]/20 text-[#c2ec8b] border border-[#a2d45e]/30 text-[10px] font-bold uppercase tracking-widest">
-                MANDATE & VISION
+                MANDATE &amp; VISION
               </span>
               <h2 className="text-3xl font-serif leading-snug">
                 Institutional Objectives
@@ -274,7 +274,7 @@ export default function ResearchPage() {
 
             <div className="pt-6 relative z-10">
               <Link href="/contact">
-                <button className="px-6 py-3 rounded-full bg-white text-[#122016] hover:bg-slate-100 text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all shadow-md cursor-pointer">
+                <button className="px-6 py-3 rounded-full bg-white dark:bg-[#154628] text-[#122016] dark:text-white hover:bg-slate-100 dark:hover:bg-[#1c5c34] text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all shadow-md cursor-pointer">
                   <span>Collaborate With Us</span>
                   <ArrowRight size={13} />
                 </button>
@@ -287,13 +287,13 @@ export default function ResearchPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-8 rounded-[2.2rem] bg-white/85 backdrop-blur-xl border border-white/95 p-6 sm:p-8 shadow-xs space-y-4 flex flex-col justify-center">
+          <div className="lg:col-span-8 rounded-[2.2rem] bg-white/85 dark:bg-[#0b1c14]/85 backdrop-blur-xl border border-white/95 dark:border-[#183a27] p-6 sm:p-8 shadow-xs space-y-4 flex flex-col justify-center">
             {OBJECTIVES.map((obj, idx) => (
-              <div key={idx} className="flex items-start gap-3.5 pb-3 border-b border-[#f0f4ef] last:border-none last:pb-0">
-                <div className="w-6 h-6 rounded-full bg-[#eaf1e4] text-[#2d5a3c] flex items-center justify-center shrink-0 font-serif font-bold text-xs mt-0.5">
+              <div key={idx} className="flex items-start gap-3.5 pb-3 border-b border-[#f0f4ef] dark:border-[#183a27] last:border-none last:pb-0">
+                <div className="w-6 h-6 rounded-full bg-[#eaf1e4] dark:bg-[#11261a] text-[#2d5a3c] dark:text-[#a2d45e] flex items-center justify-center shrink-0 font-serif font-bold text-xs mt-0.5">
                   {idx + 1}
                 </div>
-                <p className="text-xs sm:text-[13px] text-[#3e5043] leading-relaxed font-normal">
+                <p className="text-xs sm:text-[13px] text-[#3e5043] dark:text-slate-300 leading-relaxed font-normal">
                   {obj}
                 </p>
               </div>
@@ -302,33 +302,33 @@ export default function ResearchPage() {
 
         </div>
 
-        {/* ========================================================================= */}
+        {/* ============================================================ */}
         {/* 4. ACTIVE RESEARCH INITIATIVES & PROJECTS */}
-        {/* ========================================================================= */}
+        {/* ============================================================ */}
         <div className="space-y-8">
           
           <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#2d5a3c]" />
-                <span className="text-[10.5px] font-bold tracking-[0.2em] text-[#4d5e50] uppercase">
-                  FUNDED INITIATIVES & PROGRAMMES
+                <div className="w-1.5 h-1.5 rounded-full bg-[#2d5a3c] dark:bg-[#a2d45e]" />
+                <span className="text-[10.5px] font-bold tracking-[0.2em] text-[#4d5e50] dark:text-[#a2d45e] uppercase">
+                  FUNDED INITIATIVES &amp; PROGRAMMES
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-serif text-[#122016]">
+              <h2 className="text-3xl sm:text-4xl font-serif text-[#122016] dark:text-white">
                 Featured Research Projects
               </h2>
             </div>
 
             {/* Search Input */}
             <div className="relative w-full sm:w-64">
-              <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#7f9484]" />
+              <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#7f9484] dark:text-slate-400" />
               <input 
                 type="text" 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects..."
-                className="w-full pl-10 pr-4 py-2 rounded-full bg-white border border-[#d5e2d6] text-xs font-medium text-[#19241c] placeholder:text-[#7f9484] focus:outline-none focus:ring-2 focus:ring-[#2d5a3c]/30 shadow-xs"
+                className="w-full pl-10 pr-4 py-2 rounded-full bg-white dark:bg-[#0b1c14] border border-[#d5e2d6] dark:border-[#183a27] text-xs font-medium text-[#19241c] dark:text-white placeholder:text-[#7f9484] dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#2d5a3c]/30 shadow-xs"
               />
             </div>
           </div>
@@ -341,8 +341,8 @@ export default function ResearchPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-[#1b3726] text-white shadow-sm'
-                    : 'bg-white/70 hover:bg-white text-[#384c3e] border border-[#dbe6dc]'
+                    ? 'bg-[#1b3726] dark:bg-[#154628] text-white shadow-sm'
+                    : 'bg-white/70 dark:bg-[#0b1c14]/70 hover:bg-white dark:hover:bg-[#11261a] text-[#384c3e] dark:text-slate-300 border border-[#dbe6dc] dark:border-[#183a27]'
                 }`}
               >
                 {cat}
@@ -355,39 +355,39 @@ export default function ResearchPage() {
             {filteredProjects.map((proj) => (
               <div 
                 key={proj.id} 
-                className="rounded-[2rem] bg-white/90 backdrop-blur-xl border border-white/95 p-5 space-y-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col justify-between group"
+                className="rounded-[2rem] bg-white/90 dark:bg-[#0b1c14]/90 backdrop-blur-xl border border-white/95 dark:border-[#183a27] p-5 space-y-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-lg hover:-translate-y-1 hover:bg-white dark:hover:bg-[#10271c] transition-all flex flex-col justify-between group"
               >
                 <div className="space-y-3">
-                  <div className="h-44 rounded-2xl overflow-hidden bg-slate-100 relative shadow-xs">
+                  <div className="h-44 rounded-2xl overflow-hidden bg-slate-100 dark:bg-[#05110a] relative shadow-xs">
                     <img 
                       src={proj.img} 
                       alt={proj.title} 
                       className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700" 
                       onError={(e) => { e.currentTarget.src = "/events/events_book_plant.jpg"; }}
                     />
-                    <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#0d2216]/85 backdrop-blur-md text-[#a2d45e] text-[9px] font-bold uppercase tracking-wider">
+                    <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#0d2216]/85 backdrop-blur-md text-[#a2d45e] text-[9px] font-bold uppercase tracking-wider border border-[#1e422c]/50">
                       {proj.tag}
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <span className="text-[10.5px] font-bold text-[#2d5a3c] uppercase tracking-wider block">
+                    <span className="text-[10.5px] font-bold text-[#2d5a3c] dark:text-[#a2d45e] uppercase tracking-wider block">
                       {proj.partner}
                     </span>
-                    <h3 className="text-[16px] font-serif font-semibold text-[#14261a] leading-snug group-hover:text-[#2d5a3c] transition-colors">
+                    <h3 className="text-[16px] font-serif font-semibold text-[#14261a] dark:text-white leading-snug group-hover:text-[#2d5a3c] dark:group-hover:text-[#a2d45e] transition-colors">
                       {proj.title}
                     </h3>
                   </div>
 
-                  <p className="text-[12px] text-[#4d6052] leading-relaxed line-clamp-3 font-normal">
+                  <p className="text-[12px] text-[#4d6052] dark:text-slate-300 leading-relaxed line-clamp-3 font-normal">
                     {proj.desc}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#f0f4ef] space-y-2">
-                  <div className="text-[11px] text-[#556758] flex items-center justify-between">
-                    <span className="font-semibold">{proj.lead}</span>
-                    <span className="px-2 py-0.5 rounded bg-[#eaf1e4] text-[#2d5a3c] text-[9px] font-bold">
+                <div className="pt-3 border-t border-[#f0f4ef] dark:border-[#183a27] space-y-2">
+                  <div className="text-[11px] text-[#556758] dark:text-slate-400 flex items-center justify-between">
+                    <span className="font-semibold truncate max-w-[170px]">{proj.lead}</span>
+                    <span className="px-2 py-0.5 rounded bg-[#eaf1e4] dark:bg-[#11261a] text-[#2d5a3c] dark:text-[#a2d45e] text-[9px] font-bold">
                       {proj.status}
                     </span>
                   </div>
@@ -398,19 +398,19 @@ export default function ResearchPage() {
 
         </div>
 
-        {/* ========================================================================= */}
+        {/* ============================================================ */}
         {/* 5. SCHOLAR CONNECT BANNER */}
-        {/* ========================================================================= */}
-        <div className="rounded-[2.4rem] bg-[#eaf0e6] border border-[#dce8d8] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xs relative overflow-hidden">
+        {/* ============================================================ */}
+        <div className="rounded-[2.4rem] bg-[#eaf0e6] dark:bg-[#0b1c14] border border-[#dce8d8] dark:border-[#183a27] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xs relative overflow-hidden transition-all duration-300">
           <div className="flex items-center gap-4 relative z-10">
-            <div className="w-14 h-14 rounded-2xl bg-[#1b3726] text-white flex items-center justify-center shrink-0 shadow-sm">
+            <div className="w-14 h-14 rounded-2xl bg-[#1b3726] dark:bg-[#11261a] border border-white/20 dark:border-[#1e422c] text-white dark:text-[#a2d45e] flex items-center justify-center shrink-0 shadow-sm">
               <FlaskConical size={24} />
             </div>
             <div className="space-y-1">
-              <h3 className="text-xl sm:text-2xl font-serif text-[#122016]">
+              <h3 className="text-xl sm:text-2xl font-serif text-[#122016] dark:text-white">
                 Scholar Connect Research Series
               </h3>
-              <p className="text-xs sm:text-[13px] text-[#4d6052] max-w-lg">
+              <p className="text-xs sm:text-[13px] text-[#4d6052] dark:text-slate-300 max-w-lg">
                 Are you a scholar, educator or researcher? Join our Scholar Connect platform to share research ideas, participate in symposia, and collaborate on funded research projects.
               </p>
             </div>
@@ -418,7 +418,7 @@ export default function ResearchPage() {
 
           <div className="relative z-10 shrink-0">
             <Link href="/contact">
-              <button className="px-7 py-3.5 rounded-full bg-[#1b3726] hover:bg-[#254d35] text-white text-xs font-bold tracking-wider flex items-center gap-2.5 transition-all shadow-md cursor-pointer">
+              <button className="px-7 py-3.5 rounded-full bg-[#1b3726] dark:bg-[#154628] hover:bg-[#254d35] dark:hover:bg-[#1c5c34] text-white text-xs font-bold tracking-wider flex items-center gap-2.5 transition-all shadow-md cursor-pointer">
                 <span>Submit Research Proposal</span>
                 <ArrowRight size={14} />
               </button>

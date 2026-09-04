@@ -439,7 +439,7 @@ export default function AdminEventsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F9FA] text-slate-900 pb-32 font-outfit relative">
+    <div className="min-h-screen bg-[#F5F9FA] dark:bg-[#031008] text-slate-900 dark:text-slate-100 pb-32 font-outfit relative transition-colors duration-300">
       
       {/* Toast Notification Alert */}
       {toast.show && (
