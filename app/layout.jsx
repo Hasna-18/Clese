@@ -1,11 +1,15 @@
 'use client';
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import '../src/style.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ToastProvider } from '../components/Toast';
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith('/admin');
+
   return (
     <html lang="en" data-theme="dark" className="dark">
       <head>
@@ -16,6 +20,7 @@ export default function RootLayout({ children }) {
           name="description" 
           content="LEnSE (Centre for Learning Engineering and Sustainability Education) - University of Kerala. Promoting innovative, inclusive, and sustainable approaches to STEM education." 
         />
+        <link rel="icon" type="image/png" href="/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
@@ -26,16 +31,16 @@ export default function RootLayout({ children }) {
       <body className="bg-[#fcfdfa] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 min-h-screen antialiased selection:bg-[#a2d45e]/30 selection:text-white transition-colors duration-300">
         <ToastProvider>
           <div id="app" className="relative min-h-screen flex flex-col justify-between bg-[#fcfdfa] dark:bg-[#031008] text-[#19241c] dark:text-slate-100 transition-colors duration-300">
-            {/* Top Navigation */}
-            <Navbar />
+            {/* Top Navigation - Suppressed on admin routes */}
+            {!isAdminRoute && <Navbar />}
 
             {/* Page Content */}
             <main className="main-content-wrapper flex-grow">
               {children}
             </main>
 
-            {/* Global Footer */}
-            <Footer />
+            {/* Global Footer - Suppressed on admin routes */}
+            {!isAdminRoute && <Footer />}
           </div>
         </ToastProvider>
       </body>

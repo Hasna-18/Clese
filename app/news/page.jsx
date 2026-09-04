@@ -146,6 +146,27 @@ export default function NewsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [newsList, setNewsList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    async function fetchNews() {
+      try {
+        const res = await fetch('/api/news');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data)) {
+            setNewsList(data);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch news", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchNews();
+  }, []);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -157,12 +178,12 @@ export default function NewsPage() {
     }, 4000);
   };
 
-  const filteredNews = NEWS_LIST.filter(item => {
-    const matchesCategory = selectedCategory === 'All' || item.category.toLowerCase() === selectedCategory.toLowerCase();
+  const filteredNews = newsList.filter(item => {
+    const matchesCategory = selectedCategory === 'All' || (item.category && item.category.toLowerCase() === selectedCategory.toLowerCase());
     const matchesSearch = searchQuery === '' || 
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      item.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.tag.toLowerCase().includes(searchQuery.toLowerCase());
+      (item.title && item.title.toLowerCase().includes(searchQuery.toLowerCase())) || 
+      (item.desc && item.desc.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (item.tag && item.tag.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
@@ -316,7 +337,12 @@ export default function NewsPage() {
               </div>
 
               {/* NEWS CARDS LIST */}
-              {filteredNews.length === 0 ? (
+              {loading ? (
+                <div className="text-center py-16 bg-white/60 dark:bg-[#0b1c14]/60 backdrop-blur-xl rounded-[2rem] border border-white/90 dark:border-[#183a27] p-8 shadow-sm">
+                  <div className="inline-block animate-spin w-8 h-8 border-4 border-[#2d5a3c]/30 dark:border-[#a2d45e]/30 border-t-[#2d5a3c] dark:border-t-[#a2d45e] rounded-full mb-3"></div>
+                  <h4 className="text-base font-serif text-[#122016] dark:text-white mb-1">Loading News...</h4>
+                </div>
+              ) : filteredNews.length === 0 ? (
                 <div className="text-center py-16 bg-white/60 dark:bg-[#0b1c14]/60 backdrop-blur-xl rounded-[2rem] border border-white/90 dark:border-[#183a27] p-8 shadow-sm">
                   <div className="w-14 h-14 bg-[#eaf1e4] dark:bg-[#11261a] rounded-full flex items-center justify-center text-[#2d5a3c] dark:text-[#a2d45e] mx-auto mb-3 shadow-inner">
                     <FileText size={24} />

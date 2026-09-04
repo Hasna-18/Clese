@@ -84,15 +84,36 @@ const RESOURCES_DATA = [
 export default function ResourcesPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [resourcesList, setResourcesList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    async function fetchResources() {
+      try {
+        const res = await fetch('/api/resources');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data)) {
+            setResourcesList(data);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch resources", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchResources();
+  }, []);
 
   const categories = ['All', 'Brochures', 'Submissions', 'Courseware', 'Toolkits', 'Guides', 'Reports'];
 
-  const filteredResources = RESOURCES_DATA.filter(res => {
-    const matchesCat = selectedCategory === 'All' || res.category === selectedCategory;
+  const filteredResources = resourcesList.filter(res => {
+    const matchesCat = selectedCategory === 'All' || (res.category && res.category === selectedCategory);
     const matchesSearch = searchQuery === '' || 
-      res.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      res.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      res.category.toLowerCase().includes(searchQuery.toLowerCase());
+      (res.title && res.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (res.desc && res.desc.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (res.category && res.category.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCat && matchesSearch;
   });
 
@@ -201,7 +222,17 @@ export default function ResourcesPage() {
         {/* 3. DOWNLOADABLE RESOURCES GRID */}
         {/* ============================================================ */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredResources.map((res) => (
+          {loading ? (
+            <div className="col-span-full text-center py-16 bg-white/60 dark:bg-[#0b1c14]/60 backdrop-blur-xl rounded-[2rem] border border-white/90 dark:border-[#183a27] p-8 shadow-sm">
+              <div className="inline-block animate-spin w-8 h-8 border-4 border-[#2d5a3c]/30 dark:border-[#a2d45e]/30 border-t-[#2d5a3c] dark:border-t-[#a2d45e] rounded-full mb-3"></div>
+              <h4 className="text-base font-serif text-[#122016] dark:text-white mb-1">Loading Resources...</h4>
+            </div>
+          ) : filteredResources.length === 0 ? (
+            <div className="col-span-full text-center py-16 bg-white/60 dark:bg-[#0b1c14]/60 backdrop-blur-xl rounded-[2rem] border border-white/90 dark:border-[#183a27] p-8 shadow-sm">
+              <h4 className="text-base font-serif text-[#122016] dark:text-white mb-1">No resources found</h4>
+              <p className="text-xs text-[#526656] dark:text-slate-400">Try adjusting your filters.</p>
+            </div>
+          ) : filteredResources.map((res) => (
             <div 
               key={res.id} 
               className="rounded-[2.2rem] bg-white/90 dark:bg-[#0b1c14]/90 backdrop-blur-xl border border-white/95 dark:border-[#183a27] p-6 space-y-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-lg hover:-translate-y-1 hover:bg-white dark:hover:bg-[#10271c] transition-all flex flex-col justify-between group"
@@ -230,13 +261,15 @@ export default function ResourcesPage() {
                   {res.date}
                 </span>
 
-                <button 
-                  onClick={() => alert(`Downloading: ${res.title}`)}
+                <a 
+                  href={res.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-4 py-2 rounded-full bg-[#f4f7f2] dark:bg-[#11261a] group-hover:bg-[#1b3726] dark:group-hover:bg-[#a2d45e] group-hover:text-white dark:group-hover:text-[#031008] text-[#1b3726] dark:text-[#a2d45e] text-xs font-bold flex items-center gap-2 transition-all shadow-xs cursor-pointer"
                 >
                   <span>Download</span>
                   <Download size={13} />
-                </button>
+                </a>
               </div>
             </div>
           ))}
