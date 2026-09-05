@@ -146,26 +146,26 @@ export default function NewsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-  const [newsList, setNewsList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [newsList, setNewsList] = useState(NEWS_LIST);
+  const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
+    let isMounted = true;
     async function fetchNews() {
       try {
         const res = await fetch('/api/news');
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data)) {
+          if (Array.isArray(data) && data.length > 0 && isMounted) {
             setNewsList(data);
           }
         }
       } catch (err) {
-        console.error("Failed to fetch news", err);
-      } finally {
-        setLoading(false);
+        console.warn("Using offline news fallback", err);
       }
     }
     fetchNews();
+    return () => { isMounted = false; };
   }, []);
 
   const handleSubscribe = (e) => {

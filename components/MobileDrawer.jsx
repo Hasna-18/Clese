@@ -15,7 +15,6 @@ export default function MobileDrawer({ isOpen, onClose, onOpenSearch }) {
     { href: '/', label: 'Home', icon: Home, desc: 'LEnSE Portal Overview' },
     { href: '/about', label: 'About Us', icon: Info, desc: 'Vision, Objectives & Centre' },
     { href: '/events', label: 'Events & Conferences', icon: Calendar, desc: 'Conferences & Workshops' },
-    { href: '/programs', label: 'Our Programs', icon: BookOpen, desc: 'STEM Learning & Teacher Dev' },
     { href: '/initiatives', label: 'Initiatives & Outreach', icon: Sparkles, desc: 'State-wide School STEM Camps' },
     { href: '/projects', label: 'Research & Projects', icon: Leaf, desc: 'Grants & Global Collaborations' },
     { href: '/resources', label: 'Academic Resources', icon: FileText, desc: 'Courseware, Toolkits & Downloads' },
@@ -68,7 +67,7 @@ export default function MobileDrawer({ isOpen, onClose, onOpenSearch }) {
             <ul className="space-y-1 list-none p-0 m-0">
               {navItems.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname === item.href || (item.href === '/programs' && pathname === '/academics');
+                const isActive = pathname === item.href;
 
                 return (
                   <li key={item.href}>

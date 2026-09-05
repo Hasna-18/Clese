@@ -28,33 +28,132 @@ import {
   Mic
 } from 'lucide-react';
 
+const DEFAULT_EVENTS_MAP = {
+  '1': {
+    id: 1,
+    title: 'Fourth SIET International Conference on Educational Technology',
+    subtitle: 'Advancing Educational Technology & Sustainability in Higher Education',
+    category: 'Conference',
+    dateDay: '14',
+    dateMonth: 'MAR',
+    dateYear: '2025',
+    imageUrl: '/events/conference.jpg',
+    details: {
+      time: '09:30 AM - 04:30 PM IST',
+      venue: 'Senate Hall, University of Kerala, Thiruvananthapuram',
+      mode: 'Hybrid (In-Person & Online)',
+      closingDate: '10 March 2025',
+      organizedBy: 'SIET & LEnSE, University of Kerala',
+      aboutText: 'The Fourth SIET International Conference brings together world-renowned researchers, academicians, and educational technologists to discuss the future of learning engineering, sustainable pedagogies, and digital ecosystems.',
+      highlights: [
+        { icon: 'Star', title: 'Global Keynotes', desc: 'Distinguished international speakers sharing breakthroughs.' },
+        { icon: 'FlaskConical', title: 'Interactive Demos', desc: 'Hands-on AI and learning engineering tool exhibits.' },
+        { icon: 'Network', title: 'Collaborative Networking', desc: 'Connect with delegates from 20+ universities worldwide.' }
+      ],
+      speakers: [
+        { name: 'Dr. Divya C Senan', role: 'Director, LEnSE, University of Kerala', img: '/about/about3.png' }
+      ]
+    }
+  },
+  '2': {
+    id: 2,
+    title: 'Hands-on STEM Learning Workshop for School Teachers',
+    subtitle: 'Empowering School Educators with Active STEM Pedagogy',
+    category: 'Workshop',
+    dateDay: '25',
+    dateMonth: 'APR',
+    dateYear: '2025',
+    imageUrl: '/events/workshop.jpg',
+    details: {
+      time: '10:00 AM - 04:00 PM IST',
+      venue: 'LEnSE Learning Lab, Kariavattom Campus',
+      mode: 'In-Person',
+      closingDate: '20 April 2025',
+      organizedBy: 'LEnSE & Department of Education',
+      aboutText: 'A high-impact practical workshop guiding school teachers through activity-based experiments, low-cost lab kits, and interactive STEM lesson planning.',
+      highlights: [
+        { icon: 'Microscope', title: 'Practical Kits', desc: 'Hands-on training with classroom STEM activities.' },
+        { icon: 'GraduationCap', title: 'Curriculum Alignment', desc: 'Tailored for state & national STEM guidelines.' }
+      ]
+    }
+  },
+  '3': {
+    id: 3,
+    title: 'Sustainability Education and Green Futures',
+    subtitle: 'Integrating Environmental Stewardship into Curriculum',
+    category: 'Training Programme',
+    dateDay: '10',
+    dateMonth: 'MAY',
+    dateYear: '2025',
+    imageUrl: '/events/sustainability.jpg',
+    details: {
+      time: '10:00 AM - 03:30 PM IST',
+      venue: 'Online / LEnSE Seminar Hall',
+      mode: 'Hybrid',
+      closingDate: '05 May 2025',
+      organizedBy: 'LEnSE & SIET',
+      aboutText: 'This training programme focuses on green technologies, carbon footprint reduction strategies, and curriculum enhancement for environmental sustainability.',
+      highlights: [
+        { icon: 'Leaf', title: 'Green Curriculum', desc: 'Actionable sustainability models for classrooms.' },
+        { icon: 'Globe', title: 'Global Benchmarks', desc: 'Case studies from international sustainability education.' }
+      ]
+    }
+  },
+  '4': {
+    id: 4,
+    title: 'Scholar Connect: Research Ideas & Collaborations',
+    subtitle: 'Fostering Interdisciplinary Research and Academic Synergy',
+    category: 'Scholar Connect',
+    dateDay: '28',
+    dateMonth: 'JUN',
+    dateYear: '2025',
+    imageUrl: '/events/scholar.jpg',
+    details: {
+      time: '02:00 PM - 05:30 PM IST',
+      venue: 'Kariavattom Campus, University of Kerala',
+      mode: 'In-Person',
+      closingDate: '25 June 2025',
+      organizedBy: 'LEnSE Research Wing',
+      aboutText: 'A collaborative forum for PhD candidates, postgraduate researchers, and visiting scholars to present work-in-progress, explore joint grants, and exchange methodologies.',
+      highlights: [
+        { icon: 'Users', title: 'Peer Review', desc: 'Interactive poster and presentation feedback.' },
+        { icon: 'Network', title: 'Grant Networking', desc: 'Explore collaborative funding and publication avenues.' }
+      ]
+    }
+  }
+};
+
 export default function EventDetailPage({ params }) {
   const resolvedParams = params && typeof params.then === 'function' ? use(params) : params;
-  const eventId = resolvedParams?.id || '1';
+  const eventId = String(resolvedParams?.id || '1');
 
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const fallback = DEFAULT_EVENTS_MAP[eventId] || DEFAULT_EVENTS_MAP['1'];
+  const [event, setEvent] = useState(fallback);
+  const [loading, setLoading] = useState(!fallback);
   const [error, setError] = useState(null);
 
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
     async function fetchEventData() {
       try {
         const res = await fetch(`/api/events/${eventId}`);
-        if (!res.ok) {
-          throw new Error('Event not found');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && isMounted) {
+            setEvent(data);
+          }
         }
-        const data = await res.json();
-        setEvent(data);
       } catch (err) {
-        setError(err.message);
+        console.warn('Using offline event details fallback', err);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     }
     fetchEventData();
+    return () => { isMounted = false; };
   }, [eventId]);
 
   const handleSubscribe = (e) => {

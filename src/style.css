@@ -2470,9 +2470,17 @@ button {
   display: inline-block;
 }
 
-.text-cyan { color: #06B6D4 !important; }
-.text-emerald { color: #10B981 !important; }
-.text-purple { color: #8B5CF6 !important; }
+.text-cyan {
+  color: #06B6D4 !important;
+}
+
+.text-emerald {
+  color: #10B981 !important;
+}
+
+.text-purple {
+  color: #8B5CF6 !important;
+}
 
 .glass-card {
   background: rgba(15, 23, 42, 0.65);
@@ -2629,3 +2637,78 @@ button {
 .gallery-card:hover img {
   transform: scale(1.06);
 }
+
+/* ==========================================================================
+   2026 ULTRA-SMOOTH PERFORMANCE & SOOTHING EXPERIENCE ENHANCEMENTS
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware accelerated layer promotion for silky smooth 60/120fps transitions */
+.main-content-wrapper {
+  animation: soothingPageFade 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes soothingPageFade {
+  0% {
+    opacity: 0.88;
+    transform: translateY(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer animation for non-blocking top loading bar */
+@keyframes shimmerAnim {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmerAnim 1.5s infinite linear;
+}
+
+/* Soothing micro-transitions for buttons and links */
+a, button {
+  transition-property: color, background-color, border-color, transform, box-shadow, opacity;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth image rendering without reflow jank */
+img {
+  content-visibility: auto;
+}
+
+/* ==========================================================================
+   ADMIN PORTAL SMOOTH TRANSITIONS & LIGHT THEME STYLING
+   ========================================================================== */
+
+.admin-page-transition {
+  animation: adminPageTransitionIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes adminPageTransitionIn {
+  from {
+    opacity: 0.85;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

@@ -84,26 +84,26 @@ const RESOURCES_DATA = [
 export default function ResourcesPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [resourcesList, setResourcesList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [resourcesList, setResourcesList] = useState(RESOURCES_DATA);
+  const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
+    let isMounted = true;
     async function fetchResources() {
       try {
         const res = await fetch('/api/resources');
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data)) {
+          if (Array.isArray(data) && data.length > 0 && isMounted) {
             setResourcesList(data);
           }
         }
       } catch (err) {
-        console.error("Failed to fetch resources", err);
-      } finally {
-        setLoading(false);
+        console.warn("Using offline resources fallback", err);
       }
     }
     fetchResources();
+    return () => { isMounted = false; };
   }, []);
 
   const categories = ['All', 'Brochures', 'Submissions', 'Courseware', 'Toolkits', 'Guides', 'Reports'];
@@ -261,15 +261,26 @@ export default function ResourcesPage() {
                   {res.date}
                 </span>
 
-                <a 
-                  href={res.downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-full bg-[#f4f7f2] dark:bg-[#11261a] group-hover:bg-[#1b3726] dark:group-hover:bg-[#a2d45e] group-hover:text-white dark:group-hover:text-[#031008] text-[#1b3726] dark:text-[#a2d45e] text-xs font-bold flex items-center gap-2 transition-all shadow-xs cursor-pointer"
-                >
-                  <span>Download</span>
-                  <Download size={13} />
-                </a>
+                {res.downloadUrl && res.downloadUrl !== '#' ? (
+                  <a 
+                    href={res.downloadUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-full bg-[#f4f7f2] dark:bg-[#11261a] group-hover:bg-[#1b3726] dark:group-hover:bg-[#a2d45e] group-hover:text-white dark:group-hover:text-[#031008] text-[#1b3726] dark:text-[#a2d45e] text-xs font-bold flex items-center gap-2 transition-all shadow-xs cursor-pointer"
+                    title={`Download ${res.title}`}
+                  >
+                    <span>Download</span>
+                    <Download size={13} />
+                  </a>
+                ) : (
+                  <span 
+                    className="px-3.5 py-1.5 rounded-full bg-[#f0f4ef] dark:bg-[#0c1e14] text-[#718575] dark:text-slate-400 text-xs font-semibold flex items-center gap-1.5 opacity-80 select-none"
+                    title="Document pending upload by administration"
+                  >
+                    <span>Coming Soon</span>
+                  </span>
+                )}
               </div>
             </div>
           ))}

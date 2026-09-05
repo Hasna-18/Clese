@@ -57,7 +57,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs list-none p-0">
               {[
                 { name: 'About Us', href: '/about' },
-                { name: 'Programs', href: '/programs' },
+                { name: 'Academics', href: '/academics' },
                 { name: 'Research', href: '/projects' },
                 { name: 'Events', href: '/events' },
                 { name: 'News', href: '/news' }

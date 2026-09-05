@@ -309,34 +309,10 @@ export default function AdminNewsResourcesPage() {
             <button
               onClick={fetchData}
               title="Refresh Data from DB"
-              className="p-2 bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 rounded-xl transition-colors shadow-xs cursor-pointer"
+              className="p-2 bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 rounded-xl transition-colors shadow-xs cursor-pointer flex items-center gap-1.5 text-xs font-semibold"
             >
-              <RefreshCw size={15} className={loading ? "animate-spin text-[#2d5a3c]" : ""} />
-            </button>
-
-            <Link
-              href={activeTab === 'news' ? '/news' : '/resources'}
-              target="_blank"
-              className="px-3 py-2 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl flex items-center gap-1.5 border border-slate-200 transition-colors shadow-xs"
-            >
-              <span>Public View</span>
-              <ExternalLink size={14} />
-            </Link>
-
-            <Link
-              href="/admin"
-              className="px-3 py-2 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl flex items-center gap-1.5 border border-slate-200 transition-colors shadow-xs"
-            >
-              <Home size={14} />
-              <span className="hidden sm:inline">Hub</span>
-            </Link>
-
-            <button
-              onClick={handleLogout}
-              className="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs rounded-xl flex items-center gap-1.5 border border-rose-200 transition-colors cursor-pointer"
-            >
-              <LogOut size={14} />
-              <span>Logout</span>
+              <RefreshCw size={14} className={loading ? "animate-spin text-[#2d5a3c]" : ""} />
+              <span className="hidden sm:inline">Sync DB</span>
             </button>
           </div>
         </div>

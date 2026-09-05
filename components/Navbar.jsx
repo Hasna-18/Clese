@@ -38,7 +38,6 @@ export default function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
     { href: '/events', label: 'Events' },
-    { href: '/programs', label: 'Programs' },
     { href: '/initiatives', label: 'Initiatives' },
     { href: '/resources', label: 'Resources' },
     { href: '/news', label: 'News' },
@@ -63,7 +62,7 @@ export default function Navbar() {
           {/* Center Navigation Capsule */}
           <nav className="pointer-events-auto hidden lg:flex items-center gap-1 xl:gap-1.5 px-3 py-1.5 rounded-full bg-white/80 dark:bg-[#0b1c14]/80 backdrop-blur-2xl border border-[#dce6dd] dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.37)]">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href === '/programs' && pathname === '/academics');
+              const isActive = pathname === link.href;
 
               return (
                 <Link

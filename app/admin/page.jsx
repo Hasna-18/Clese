@@ -8,7 +8,6 @@ import {
   Layers, 
   Settings, 
   Plus, 
-  LogOut, 
   ExternalLink, 
   ShieldCheck, 
   Database, 
@@ -17,14 +16,22 @@ import {
   CheckCircle2,
   LayoutDashboard,
   FileText,
-  Loader2
+  Loader2,
+  Globe,
+  Upload,
+  BookOpen,
+  Award,
+  Users,
+  Building
 } from 'lucide-react';
 
 export default function AdminDashboardPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [adminUser, setAdminUser] = useState('admin');
+  const [adminUser, setAdminUser] = useState('Administrator');
   const [eventsCount, setEventsCount] = useState(0);
+  const [newsCount, setNewsCount] = useState(0);
+  const [resourcesCount, setResourcesCount] = useState(0);
 
   useEffect(() => {
     async function verifyAuthAndFetch() {
@@ -39,13 +46,24 @@ export default function AdminDashboardPage() {
           setAdminUser(data.user.username);
         }
 
-        // Fetch counts
-        const eventsRes = await fetch('/api/events');
+        // Fetch counts concurrently
+        const [eventsRes, newsRes, resourcesRes] = await Promise.all([
+          fetch('/api/events'),
+          fetch('/api/news'),
+          fetch('/api/resources')
+        ]);
+
         if (eventsRes.ok) {
           const eventsData = await eventsRes.json();
-          if (Array.isArray(eventsData)) {
-            setEventsCount(eventsData.length);
-          }
+          if (Array.isArray(eventsData)) setEventsCount(eventsData.length);
+        }
+        if (newsRes.ok) {
+          const newsData = await newsRes.json();
+          if (Array.isArray(newsData)) setNewsCount(newsData.length);
+        }
+        if (resourcesRes.ok) {
+          const resData = await resourcesRes.json();
+          if (Array.isArray(resData)) setResourcesCount(resData.length);
         }
       } catch (err) {
         console.error("Auth check failed", err);
@@ -58,274 +76,368 @@ export default function AdminDashboardPage() {
     verifyAuthAndFetch();
   }, [router]);
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/admin/logout', { method: 'POST' });
-    } catch (err) {
-      console.error("Logout error", err);
-    } finally {
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('lense_admin_user');
-      }
-      router.push('/admin/login');
-    }
-  };
-
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center font-outfit">
-        <div className="text-center space-y-3 bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80">
+      <div className="py-24 flex items-center justify-center">
+        <div className="text-center space-y-3 bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-[#e2ece3]">
           <Loader2 className="animate-spin text-[#2d5a3c] mx-auto" size={32} />
-          <p className="text-slate-600 text-xs font-semibold tracking-wide">Loading Admin Console...</p>
+          <p className="text-[#3b4e3f] text-xs font-bold tracking-wide">Loading Executive Dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-outfit pb-24 relative overflow-hidden">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       
-      {/* Background subtle ambiance */}
-      <div className="absolute top-0 left-1/3 w-[600px] h-[350px] bg-emerald-100/50 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* ========================================================================= */}
+      {/* 1. EXECUTIVE WELCOME HERO BANNER */}
+      {/* ========================================================================= */}
+      <div className="relative rounded-[2.5rem] bg-gradient-to-br from-[#1b3726] via-[#142e1f] to-[#0d2216] text-white p-7 sm:p-10 lg:p-12 shadow-[0_20px_50px_rgba(15,35,22,0.18)] border border-white/10 overflow-hidden">
+        
+        {/* Soft Radial Ambient Glow */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(162,212,94,0.18),transparent_70%)] pointer-events-none -mr-20 -mt-20" />
+        <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,_rgba(45,90,60,0.3),transparent_70%)] pointer-events-none" />
 
-      {/* TOP HEADER CONTROLLER */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3">
+        <div className="relative z-10 max-w-3xl space-y-4">
           
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-[#2d5a3c] shadow-xs">
-              <ShieldCheck size={20} />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-sm font-black tracking-wider uppercase text-slate-900">LEnSE Admin Hub</h1>
-                <span className="text-[10px] bg-emerald-50 text-[#2d5a3c] font-bold px-2 py-0.5 rounded-full border border-emerald-200/80">
-                  Signed in as {adminUser}
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-500 font-medium">University of Kerala Management Console</p>
-            </div>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[#c2ec8b] text-xs font-bold uppercase tracking-wider">
+            <Sparkles size={13} />
+            <span>LEnSE Administrative Command Centre</span>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal tracking-tight text-white leading-tight">
+            Welcome back, <span className="italic text-[#a2d45e] font-serif">{adminUser}</span>.
+          </h1>
+
+          <p className="text-emerald-100/90 text-sm sm:text-[15px] leading-relaxed font-normal max-w-2xl pt-1">
+            Manage live events, publish conferences and workshops, update university news, upload research publications, and customize live STEM initiative banners in real-time.
+          </p>
+
+          <div className="pt-4 flex flex-wrap items-center gap-3.5">
             <Link
               href="/admin/events"
-              className="bg-[#2d5a3c] hover:bg-[#23462f] text-white font-extrabold text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 shadow-xs transition-all active:scale-95"
+              className="px-6 py-3 rounded-full bg-gradient-to-b from-white to-[#f4f7f2] hover:bg-white text-[#153421] text-xs font-bold uppercase tracking-wider flex items-center gap-2.5 shadow-[0_8px_20px_rgba(0,0,0,0.15)] hover:scale-[1.02] transition-all cursor-pointer"
             >
-              <Calendar size={15} />
-              <span>Manage Events</span>
+              <Plus size={15} strokeWidth={2.5} />
+              <span>Create / Manage Events</span>
+              <ArrowRight size={13} />
             </Link>
 
             <Link
-              href="/events"
-              target="_blank"
-              className="px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 font-bold text-xs rounded-xl flex items-center gap-1.5 border border-slate-200 shadow-xs transition-colors"
+              href="/admin/news"
+              className="px-6 py-3 rounded-full bg-white/15 hover:bg-white/25 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2.5 border border-white/20 backdrop-blur-md transition-all hover:scale-[1.02] cursor-pointer"
             >
-              <ExternalLink size={14} />
-              <span className="hidden sm:inline">Public View</span>
+              <FileText size={14} />
+              <span>Publish News &amp; Resources</span>
             </Link>
 
-            <button
-              onClick={handleLogout}
-              className="px-3.5 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs rounded-xl flex items-center gap-1.5 border border-rose-200 transition-colors"
-              title="Sign out of Admin"
+            <Link
+              href="/"
+              target="_blank"
+              className="px-5 py-3 rounded-full bg-white/5 hover:bg-white/15 text-white/90 text-xs font-medium flex items-center gap-2 border border-white/10 transition-colors"
             >
-              <LogOut size={14} />
-              <span>Logout</span>
-            </button>
+              <ExternalLink size={13} />
+              <span>View Public Portal</span>
+            </Link>
           </div>
 
         </div>
-      </header>
+      </div>
 
-      {/* MAIN HUB CONTENT */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
+      {/* ========================================================================= */}
+      {/* 2. LIVE METRICS ROW */}
+      {/* ========================================================================= */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        {/* Welcome Banner */}
-        <div className="bg-gradient-to-br from-[#2d5a3c] via-[#23462f] to-[#173020] text-white rounded-3xl p-6 sm:p-10 shadow-lg relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-emerald-100 text-xs font-bold uppercase tracking-wider mb-4">
-              <Sparkles size={13} />
-              <span>Central Admin Dashboard</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">
-              Welcome back, <span className="text-[#a2d45e]">{adminUser}</span>.
-            </h2>
-            <p className="text-emerald-100/90 text-sm sm:text-base mt-3 leading-relaxed">
-              From this secure panel, you can add, edit, and delete events directly on the live site, upload media from your device, update featured STEM initiatives, and modify stats and hero banners in real-time.
-            </p>
+        {/* Metric 1: Events */}
+        <div className="p-6 rounded-[2rem] bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4 group hover:-translate-y-1 transition-all duration-300">
+          <div className="w-14 h-14 rounded-2xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] shrink-0 group-hover:scale-105 transition-transform">
+            <Calendar size={24} strokeWidth={1.75} />
+          </div>
+          <div>
+            <span className="text-[11px] font-bold text-[#627766] uppercase tracking-wider block">Live Published Events</span>
+            <span className="text-2xl sm:text-3xl font-serif font-normal text-[#122417] leading-tight block mt-0.5">
+              {eventsCount} <span className="text-sm font-sans font-medium text-[#485e4d]">Events</span>
+            </span>
+          </div>
+        </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+        {/* Metric 2: News */}
+        <div className="p-6 rounded-[2rem] bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4 group hover:-translate-y-1 transition-all duration-300">
+          <div className="w-14 h-14 rounded-2xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] shrink-0 group-hover:scale-105 transition-transform">
+            <FileText size={24} strokeWidth={1.75} />
+          </div>
+          <div>
+            <span className="text-[11px] font-bold text-[#627766] uppercase tracking-wider block">News &amp; Stories</span>
+            <span className="text-2xl sm:text-3xl font-serif font-normal text-[#122417] leading-tight block mt-0.5">
+              {newsCount} <span className="text-sm font-sans font-medium text-[#485e4d]">Articles</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Metric 3: Resources */}
+        <Link
+          href="/admin/resources"
+          className="p-6 rounded-[2rem] bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4 group hover:-translate-y-1 hover:border-[#2d5a3c]/50 transition-all duration-300"
+          title="Click to manage Academic Resources"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] shrink-0 group-hover:scale-105 transition-transform">
+            <BookOpen size={24} strokeWidth={1.75} />
+          </div>
+          <div>
+            <span className="text-[11px] font-bold text-[#627766] uppercase tracking-wider block">Academic Resources</span>
+            <span className="text-2xl sm:text-3xl font-serif font-normal text-[#122417] leading-tight block mt-0.5">
+              {resourcesCount} <span className="text-sm font-sans font-medium text-[#485e4d]">Files</span>
+            </span>
+          </div>
+        </Link>
+
+        {/* Metric 4: Database Status */}
+        <div className="p-6 rounded-[2rem] bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4 group hover:-translate-y-1 transition-all duration-300">
+          <div className="w-14 h-14 rounded-2xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] shrink-0 group-hover:scale-105 transition-transform">
+            <Database size={24} strokeWidth={1.75} />
+          </div>
+          <div>
+            <span className="text-[11px] font-bold text-[#627766] uppercase tracking-wider block">Database Status</span>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-sm font-bold text-[#142919]">PostgreSQL Live</span>
+            </div>
+            <span className="text-[10px] text-[#6e8574] font-medium block mt-0.5">SSL Secure Connection</span>
+          </div>
+        </div>
+
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. MANAGEMENT MODULE CARDS */}
+      {/* ========================================================================= */}
+      <div className="space-y-6">
+        
+        <div className="flex items-center justify-between border-b border-[#e2ece3] pb-3">
+          <div className="flex items-center gap-2.5">
+            <div className="w-2 h-2 rounded-full bg-[#2d5a3c]" />
+            <h2 className="text-sm font-bold tracking-[0.2em] text-[#3e5343] uppercase">
+              Management Modules
+            </h2>
+          </div>
+          <span className="text-xs font-semibold text-[#667d6c]">Real-time synchronization enabled</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          {/* Card 1: Events & Conferences */}
+          <div className="rounded-[2.2rem] bg-white border border-[#e2ece3] p-6 sm:p-7 flex flex-col justify-between hover:border-[#2d5a3c]/60 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(20,40,25,0.06)] hover:-translate-y-1.5 transition-all duration-300 group">
+            <div className="space-y-3.5">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] group-hover:scale-105 transition-transform">
+                  <Calendar size={22} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#eef5ee] text-[#2d5a3c] border border-[#d6e6d8]">
+                  Schedule
+                </span>
+              </div>
+
+              <h3 className="text-xl font-serif font-normal text-[#122016] group-hover:text-[#2d5a3c] transition-colors leading-tight">
+                Events &amp; Conferences
+              </h3>
+
+              <p className="text-xs text-[#485e4d] leading-relaxed font-normal">
+                Publish international conferences, workshops, faculty development programmes, and STEM camps with poster images and schedules.
+              </p>
+            </div>
+
+            <div className="pt-5 border-t border-[#edf3ee] mt-5 flex items-center gap-2">
               <Link
                 href="/admin/events"
-                className="px-5 py-3 rounded-xl bg-white hover:bg-emerald-50 text-[#2d5a3c] text-xs font-black flex items-center gap-2 shadow-md transition-all active:scale-95"
+                className="flex-1 py-2.5 rounded-xl bg-[#1b3726] hover:bg-[#254d35] text-white text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 shadow-sm transition-all active:scale-98"
               >
-                <Plus size={16} strokeWidth={3} />
-                <span>Add / Edit Events Now</span>
-                <ArrowRight size={14} />
+                <span>Manage</span>
+                <ArrowRight size={13} />
               </Link>
 
               <Link
                 href="/events"
                 target="_blank"
-                className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold flex items-center gap-2 border border-white/25 transition-all"
+                className="p-2.5 rounded-xl bg-[#f4f7f2] hover:bg-[#eaf1e5] text-[#2d4032] border border-[#d8e5da] transition-colors"
+                title="View Public Events Page"
               >
-                <span>Preview Public Events Page</span>
                 <ExternalLink size={14} />
               </Link>
             </div>
           </div>
+
+          {/* Card 2: Academic Resources & Downloads */}
+          <div className="rounded-[2.2rem] bg-white border border-[#e2ece3] p-6 sm:p-7 flex flex-col justify-between hover:border-[#2d5a3c]/60 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(20,40,25,0.06)] hover:-translate-y-1.5 transition-all duration-300 group">
+            <div className="space-y-3.5">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] group-hover:scale-105 transition-transform">
+                  <BookOpen size={22} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#eef5ee] text-[#2d5a3c] border border-[#d6e6d8]">
+                  Downloads
+                </span>
+              </div>
+
+              <h3 className="text-xl font-serif font-normal text-[#122016] group-hover:text-[#2d5a3c] transition-colors leading-tight">
+                Academic Resources
+              </h3>
+
+              <p className="text-xs text-[#485e4d] leading-relaxed font-normal">
+                Edit and upload conference brochures, laboratory toolkits, FYUGP courseware, prompt engineering handbooks, and policy reports.
+              </p>
+            </div>
+
+            <div className="pt-5 border-t border-[#edf3ee] mt-5 flex items-center gap-2">
+              <Link
+                href="/admin/resources"
+                className="flex-1 py-2.5 rounded-xl bg-[#1b3726] hover:bg-[#254d35] text-white text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 shadow-sm transition-all active:scale-98"
+              >
+                <span>Edit Files</span>
+                <ArrowRight size={13} />
+              </Link>
+
+              <Link
+                href="/resources"
+                target="_blank"
+                className="p-2.5 rounded-xl bg-[#f4f7f2] hover:bg-[#eaf1e5] text-[#2d4032] border border-[#d8e5da] transition-colors"
+                title="View Public Academic Resources Page"
+              >
+                <ExternalLink size={14} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 3: News & Publications */}
+          <div className="rounded-[2.2rem] bg-white border border-[#e2ece3] p-6 sm:p-7 flex flex-col justify-between hover:border-[#2d5a3c]/60 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(20,40,25,0.06)] hover:-translate-y-1.5 transition-all duration-300 group">
+            <div className="space-y-3.5">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] group-hover:scale-105 transition-transform">
+                  <FileText size={22} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#eef5ee] text-[#2d5a3c] border border-[#d6e6d8]">
+                  Media
+                </span>
+              </div>
+
+              <h3 className="text-xl font-serif font-normal text-[#122016] group-hover:text-[#2d5a3c] transition-colors leading-tight">
+                News &amp; Media
+              </h3>
+
+              <p className="text-xs text-[#485e4d] leading-relaxed font-normal">
+                Post press announcements, institutional MoU updates, media highlights, and academic achievements with photo coverage.
+              </p>
+            </div>
+
+            <div className="pt-5 border-t border-[#edf3ee] mt-5 flex items-center gap-2">
+              <Link
+                href="/admin/news"
+                className="flex-1 py-2.5 rounded-xl bg-[#1b3726] hover:bg-[#254d35] text-white text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 shadow-sm transition-all active:scale-98"
+              >
+                <span>Manage</span>
+                <ArrowRight size={13} />
+              </Link>
+
+              <Link
+                href="/news"
+                target="_blank"
+                className="p-2.5 rounded-xl bg-[#f4f7f2] hover:bg-[#eaf1e5] text-[#2d4032] border border-[#d8e5da] transition-colors"
+                title="View Public News Page"
+              >
+                <ExternalLink size={14} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 4: Featured Initiatives & Page Settings */}
+          <div className="rounded-[2.2rem] bg-white border border-[#e2ece3] p-6 sm:p-7 flex flex-col justify-between hover:border-[#2d5a3c]/60 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_32px_rgba(20,40,25,0.06)] hover:-translate-y-1.5 transition-all duration-300 group">
+            <div className="space-y-3.5">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] group-hover:scale-105 transition-transform">
+                  <Layers size={22} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#eef5ee] text-[#2d5a3c] border border-[#d6e6d8]">
+                  Metrics
+                </span>
+              </div>
+
+              <h3 className="text-xl font-serif font-normal text-[#122016] group-hover:text-[#2d5a3c] transition-colors leading-tight">
+                Initiatives &amp; Hero
+              </h3>
+
+              <p className="text-xs text-[#485e4d] leading-relaxed font-normal">
+                Customize the auto-scrolling Initiatives carousel, campus banner imagery, and live student impact counters.
+              </p>
+            </div>
+
+            <div className="pt-5 border-t border-[#edf3ee] mt-5 flex items-center gap-2">
+              <Link
+                href="/admin/events"
+                className="flex-1 py-2.5 rounded-xl bg-[#f4f7f2] hover:bg-[#eaf1e5] text-[#1b3726] border border-[#d8e5da] text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 transition-all"
+              >
+                <Settings size={13} className="text-[#2d5a3c]" />
+                <span>Configure</span>
+              </Link>
+
+              <Link
+                href="/initiatives"
+                target="_blank"
+                className="p-2.5 rounded-xl bg-[#f4f7f2] hover:bg-[#eaf1e5] text-[#2d4032] border border-[#d8e5da] transition-colors"
+                title="View Public Initiatives Page"
+              >
+                <ExternalLink size={14} />
+              </Link>
+            </div>
+          </div>
+
         </div>
 
-        {/* Status Metrics */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-white border border-slate-200/80 rounded-2xl p-5 flex items-center gap-4 shadow-xs">
-            <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-[#2d5a3c] shrink-0">
-              <Calendar size={22} />
-            </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 4. SECURITY & ENVIRONMENT SUMMARY DOCK */}
+      {/* ========================================================================= */}
+      <div className="rounded-[2rem] bg-white border border-[#e2ece3] p-6 sm:p-8 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-[#eaf1eb]">
+          
+          <div className="flex items-center gap-3.5 pr-4">
+            <ShieldCheck size={28} className="text-[#2d5a3c] shrink-0" />
             <div>
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Live Published Events</span>
-              <span className="text-2xl font-black text-slate-900">{eventsCount} Events</span>
+              <span className="text-[11px] font-bold text-[#5c7361] uppercase tracking-wider block">Security Protocol</span>
+              <span className="text-xs font-bold text-[#142618]">HTTP-Only Token Auth</span>
             </div>
           </div>
 
-          <div className="bg-white border border-slate-200/80 rounded-2xl p-5 flex items-center gap-4 shadow-xs">
-            <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-[#2d5a3c] shrink-0">
-              <Database size={22} />
-            </div>
+          <div className="flex items-center gap-3.5 sm:pl-6 pr-4 pt-4 sm:pt-0">
+            <Building size={28} className="text-[#2d5a3c] shrink-0" />
             <div>
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Database Status</span>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-sm font-black text-slate-900">PostgreSQL Connected</span>
-              </div>
+              <span className="text-[11px] font-bold text-[#5c7361] uppercase tracking-wider block">Campus Facility</span>
+              <span className="text-xs font-bold text-[#142618]">Kariavattom Campus</span>
             </div>
           </div>
 
-          <div className="bg-white border border-slate-200/80 rounded-2xl p-5 flex items-center gap-4 shadow-xs">
-            <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-[#2d5a3c] shrink-0">
-              <ShieldCheck size={22} />
-            </div>
+          <div className="flex items-center gap-3.5 sm:pl-6 pr-4 pt-4 sm:pt-0">
+            <CheckCircle2 size={28} className="text-[#2d5a3c] shrink-0" />
             <div>
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Admin Security</span>
-              <span className="text-sm font-black text-emerald-700">Active HTTP-Only Session</span>
+              <span className="text-[11px] font-bold text-[#5c7361] uppercase tracking-wider block">System Status</span>
+              <span className="text-xs font-bold text-emerald-700">All Modules Operational</span>
             </div>
           </div>
+
+          <div className="flex items-center gap-3.5 sm:pl-6 pt-4 sm:pt-0">
+            <Globe size={28} className="text-[#2d5a3c] shrink-0" />
+            <div>
+              <span className="text-[11px] font-bold text-[#5c7361] uppercase tracking-wider block">Public Preview</span>
+              <Link href="/" target="_blank" className="text-xs font-bold text-[#2d5a3c] hover:underline flex items-center gap-1">
+                <span>View Live University Site</span>
+                <ExternalLink size={12} />
+              </Link>
+            </div>
+          </div>
+
         </div>
-
-        {/* Modules Grid */}
-        <div>
-          <h3 className="text-sm font-black uppercase tracking-wider text-slate-500 mb-4 flex items-center gap-2">
-            <LayoutDashboard size={18} className="text-[#2d5a3c]" />
-            <span>Admin Management Modules</span>
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            {/* Card 1: Events Management */}
-            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#2d5a3c]/50 hover:shadow-md transition-all group shadow-xs">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-[#2d5a3c] group-hover:scale-105 transition-transform">
-                    <Calendar size={24} />
-                  </div>
-                  <span className="text-[11px] font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-50 text-[#2d5a3c] border border-emerald-200/80">
-                    Live Timeline
-                  </span>
-                </div>
-                <h4 className="text-xl font-black text-slate-900 mb-2 group-hover:text-[#2d5a3c] transition-colors">
-                  Events & Conferences
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-                  Add new conferences, workshops, lectures, courses, and STEM camps directly to PostgreSQL. Upload poster images from your device, inline editing, and deep details management.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3 pt-2">
-                <Link
-                  href="/admin/events"
-                  className="flex-1 py-3 rounded-xl bg-[#2d5a3c] hover:bg-[#23462f] text-white text-xs font-black text-center flex items-center justify-center gap-2 shadow-xs transition-all active:scale-98"
-                >
-                  <span>Open Events Manager</span>
-                  <ArrowRight size={14} />
-                </Link>
-                <Link
-                  href="/events"
-                  target="_blank"
-                  className="p-3 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 border border-slate-200 transition-colors"
-                  title="View Public Events"
-                >
-                  <ExternalLink size={16} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 2: Featured Initiatives & Sidebar Settings */}
-            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#2d5a3c]/50 hover:shadow-md transition-all group shadow-xs">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-[#2d5a3c] group-hover:scale-105 transition-transform">
-                    <Layers size={24} />
-                  </div>
-                  <span className="text-[11px] font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-50 text-[#2d5a3c] border border-emerald-200/80">
-                    Carousel & Stats
-                  </span>
-                </div>
-                <h4 className="text-xl font-black text-slate-900 mb-2 group-hover:text-[#2d5a3c] transition-colors">
-                  Initiatives & Page Settings
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-                  Manage the auto-scrolling Featured Initiatives carousel, upload initiative photos from device, update student/school impact statistics, and edit the events hero banner subtitle and tag.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3 pt-2">
-                <Link
-                  href="/admin/events"
-                  className="flex-1 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 text-xs font-black text-center flex items-center justify-center gap-2 transition-all"
-                >
-                  <span>Edit Initiatives & Stats</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Card 3: News & Resources */}
-            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#2d5a3c]/50 hover:shadow-md transition-all group shadow-xs md:col-span-2 lg:col-span-1">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-[#2d5a3c] group-hover:scale-105 transition-transform">
-                    <FileText size={24} />
-                  </div>
-                  <span className="text-[11px] font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-50 text-[#2d5a3c] border border-emerald-200/80">
-                    Publications
-                  </span>
-                </div>
-                <h4 className="text-xl font-black text-slate-900 mb-2 group-hover:text-[#2d5a3c] transition-colors">
-                  News & Resources
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-                  Manage the latest university news, research articles, and educational resources for public download. Upload cover images directly from your device.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3 pt-2">
-                <Link
-                  href="/admin/news"
-                  className="flex-1 py-3 rounded-xl bg-[#2d5a3c] hover:bg-[#23462f] text-white text-xs font-black text-center flex items-center justify-center gap-2 shadow-xs transition-all active:scale-98"
-                >
-                  <span>Open News & Resources</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </main>
+      </div>
 
     </div>
   );
