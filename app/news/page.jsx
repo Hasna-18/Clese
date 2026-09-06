@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
-  Leaf, 
   Search, 
   Calendar, 
   ArrowRight, 
@@ -215,7 +214,6 @@ export default function NewsPage() {
         <div className="relative z-10 max-w-2xl pt-2 pb-8 lg:pb-12 space-y-4">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d] dark:text-slate-400">
-            <Leaf size={14} className="text-[#2d5a3c] dark:text-[#a2d45e] fill-[#2d5a3c] dark:fill-[#a2d45e]" />
             <Link href="/" className="hover:text-[#1b3726] dark:hover:text-white transition-colors">Home</Link>
             <span className="text-[#879b8c] dark:text-slate-500">&gt;</span>
             <span className="text-[#1b3726] dark:text-[#a2d45e] font-bold">News</span>

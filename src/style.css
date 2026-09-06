@@ -2638,9 +2638,6 @@ button {
   transform: scale(1.06);
 }
 
-/* ==========================================================================
-   2026 ULTRA-SMOOTH PERFORMANCE & SOOTHING EXPERIENCE ENHANCEMENTS
-   ========================================================================== */
 
 html {
   scroll-behavior: smooth;
@@ -2692,10 +2689,6 @@ img {
   content-visibility: auto;
 }
 
-/* ==========================================================================
-   ADMIN PORTAL SMOOTH TRANSITIONS & LIGHT THEME STYLING
-   ========================================================================== */
-
 .admin-page-transition {
   animation: adminPageTransitionIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: opacity, transform;
@@ -2711,4 +2704,4 @@ img {
     transform: translateY(0);
   }
 }
-
+

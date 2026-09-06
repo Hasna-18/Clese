@@ -203,7 +203,7 @@ export default function AdminResourcesPage() {
   if (authChecking) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] gap-3">
-        <Loader2 className="animate-spin text-[#2d5a3c]" size={32} />
+        <Loader2 className="animate-spin text-[#2d5a3c] dark:text-[#60a5fa]" size={32} />
         <span className="text-xs font-semibold uppercase tracking-wider text-[#556959]">
           Verifying Console Authorization...
         </span>
@@ -212,7 +212,14 @@ export default function AdminResourcesPage() {
   }
 
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 animate-in fade-in duration-300">
+    <div className="min-h-screen bg-[#f3f5ed] dark:bg-[#020617] text-[#19241c] dark:text-white dark:text-slate-100 font-sans relative overflow-hidden transition-colors duration-300">
+      {/* Ambient soft background glows */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[12%] -left-40 w-[600px] h-[600px] bg-[#e1ecd6]/50 dark:bg-blue-900/15 rounded-full blur-3xl" />
+        <div className="absolute top-[55%] -right-40 w-[650px] h-[650px] bg-[#dbe8d0]/50 dark:bg-blue-900/15 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 animate-in fade-in duration-300">
       
       {/* Toast Notification */}
       {toast.show && (
@@ -229,17 +236,17 @@ export default function AdminResourcesPage() {
       {/* ========================================================================= */}
       {/* 1. TOP HEADER & BREADCRUMB */}
       {/* ========================================================================= */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#e2ece3]">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#e2ece3] dark:border-white/10">
         <div>
-          <div className="flex items-center gap-2 text-[11px] font-bold text-[#5c7361] uppercase tracking-wider mb-1.5">
-            <Link href="/admin" className="hover:text-[#1b3726] transition-colors">Admin Console</Link>
+          <div className="flex items-center gap-2 text-[11px] font-bold text-[#5c7361] dark:text-slate-400 uppercase tracking-wider mb-1.5">
+            <Link href="/admin" className="hover:text-[#1b3726] dark:hover:text-[#60a5fa] transition-colors">Admin Console</Link>
             <span>/</span>
             <span className="text-[#132418]">Academic Resources &amp; Downloads</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-[#122417] tracking-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-[#122417] dark:text-white tracking-tight">
             Academic Resources &amp; Downloads
           </h1>
-          <p className="text-xs sm:text-sm text-[#546b59] font-normal mt-1 max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#546b59] dark:text-slate-300 font-normal mt-1 max-w-2xl leading-relaxed">
             Manage official conference brochures, syllabus courseware, experiential STEM toolkits, research proceedings, and university policy documents.
           </p>
         </div>
@@ -249,7 +256,7 @@ export default function AdminResourcesPage() {
           <button
             onClick={fetchResources}
             disabled={loading}
-            className="p-2.5 rounded-xl bg-white border border-[#d8e5da] text-[#2d4032] hover:bg-[#f1f6f1] transition-all cursor-pointer shadow-xs disabled:opacity-50"
+            className="p-2.5 rounded-xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#d8e5da] dark:border-white/10 text-[#2d4032] hover:bg-[#f1f6f1] dark:hover:bg-white/20 transition-all cursor-pointer shadow-xs disabled:opacity-50"
             title="Refresh database records"
           >
             <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
@@ -258,7 +265,7 @@ export default function AdminResourcesPage() {
           <Link
             href="/resources"
             target="_blank"
-            className="px-4 py-2.5 rounded-xl bg-white border border-[#d8e5da] text-[#1b3726] hover:bg-[#f1f6f1] text-xs font-bold transition-all shadow-xs flex items-center gap-2"
+            className="px-4 py-2.5 rounded-xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#d8e5da] dark:border-white/10 text-[#1b3726] hover:bg-[#f1f6f1] dark:hover:bg-white/20 text-xs font-bold transition-all shadow-xs flex items-center gap-2"
           >
             <span>Public Site View</span>
             <ExternalLink size={14} />
@@ -266,7 +273,7 @@ export default function AdminResourcesPage() {
 
           <button
             onClick={handleOpenAdd}
-            className="px-5 py-2.5 rounded-xl bg-[#1b3726] hover:bg-[#254d35] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-sm transition-all active:scale-98 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-[#1b3726] dark:bg-blue-600/40 hover:bg-[#254d35] dark:hover:bg-blue-600/60 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-sm transition-all active:scale-98 cursor-pointer"
           >
             <Plus size={16} />
             <span>Upload Resource</span>
@@ -279,49 +286,49 @@ export default function AdminResourcesPage() {
       {/* ========================================================================= */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         
-        <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] shrink-0">
+        <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#e2ece3] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-[#eef5ee] dark:bg-white/10 border border-[#d6e6d8] dark:border-white/10 flex items-center justify-center text-[#2d5a3c] dark:text-[#60a5fa] shrink-0">
             <BookOpen size={22} />
           </div>
           <div>
-            <span className="text-[10.5px] font-bold text-[#627766] uppercase tracking-wider block">Total Resources</span>
-            <span className="text-xl sm:text-2xl font-serif font-normal text-[#122417] leading-tight block mt-0.5">
+            <span className="text-[10.5px] font-bold text-[#627766] dark:text-slate-400 uppercase tracking-wider block">Total Resources</span>
+            <span className="text-xl sm:text-2xl font-serif font-normal text-[#122417] dark:text-white leading-tight block mt-0.5">
               {totalCount} <span className="text-xs font-sans text-[#485e4d]">Files</span>
             </span>
           </div>
         </div>
 
-        <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] shrink-0">
+        <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#e2ece3] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-[#eef5ee] dark:bg-white/10 border border-[#d6e6d8] dark:border-white/10 flex items-center justify-center text-[#2d5a3c] dark:text-[#60a5fa] shrink-0">
             <FileText size={22} />
           </div>
           <div>
-            <span className="text-[10.5px] font-bold text-[#627766] uppercase tracking-wider block">Brochures</span>
-            <span className="text-xl sm:text-2xl font-serif font-normal text-[#122417] leading-tight block mt-0.5">
+            <span className="text-[10.5px] font-bold text-[#627766] dark:text-slate-400 uppercase tracking-wider block">Brochures</span>
+            <span className="text-xl sm:text-2xl font-serif font-normal text-[#122417] dark:text-white leading-tight block mt-0.5">
               {brochuresCount} <span className="text-xs font-sans text-[#485e4d]">Documents</span>
             </span>
           </div>
         </div>
 
-        <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] shrink-0">
+        <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#e2ece3] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-[#eef5ee] dark:bg-white/10 border border-[#d6e6d8] dark:border-white/10 flex items-center justify-center text-[#2d5a3c] dark:text-[#60a5fa] shrink-0">
             <Layers size={22} />
           </div>
           <div>
-            <span className="text-[10.5px] font-bold text-[#627766] uppercase tracking-wider block">Courseware &amp; Kits</span>
-            <span className="text-xl sm:text-2xl font-serif font-normal text-[#122417] leading-tight block mt-0.5">
+            <span className="text-[10.5px] font-bold text-[#627766] dark:text-slate-400 uppercase tracking-wider block">Courseware &amp; Kits</span>
+            <span className="text-xl sm:text-2xl font-serif font-normal text-[#122417] dark:text-white leading-tight block mt-0.5">
               {toolkitsCount} <span className="text-xs font-sans text-[#485e4d]">Toolkits</span>
             </span>
           </div>
         </div>
 
-        <div className="p-5 sm:p-6 rounded-2xl bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c] shrink-0">
+        <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#e2ece3] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-[#eef5ee] dark:bg-white/10 border border-[#d6e6d8] dark:border-white/10 flex items-center justify-center text-[#2d5a3c] dark:text-[#60a5fa] shrink-0">
             <HardDrive size={22} />
           </div>
           <div>
-            <span className="text-[10.5px] font-bold text-[#627766] uppercase tracking-wider block">Guides &amp; Reports</span>
-            <span className="text-xl sm:text-2xl font-serif font-normal text-[#122417] leading-tight block mt-0.5">
+            <span className="text-[10.5px] font-bold text-[#627766] dark:text-slate-400 uppercase tracking-wider block">Guides &amp; Reports</span>
+            <span className="text-xl sm:text-2xl font-serif font-normal text-[#122417] dark:text-white leading-tight block mt-0.5">
               {guidesCount} <span className="text-xs font-sans text-[#485e4d]">Handbooks</span>
             </span>
           </div>
@@ -332,22 +339,22 @@ export default function AdminResourcesPage() {
       {/* ========================================================================= */}
       {/* 3. SEARCH & CATEGORY FILTER BAR */}
       {/* ========================================================================= */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-white border border-[#e2ece3] shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+      <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#e2ece3] dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
         
         {/* Search Input */}
         <div className="relative flex-1 max-w-md">
-          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#738a79]" />
+          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#738a79] dark:text-slate-400" />
           <input
             type="text"
             placeholder="Search resources by title, format, or description..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#f8faf8] border border-[#d8e5da] text-xs font-medium text-[#19241c] placeholder:text-[#889b8d] focus:outline-none focus:border-[#2d5a3c] focus:bg-white transition-all"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#f8faf8] dark:bg-white/5 border border-[#d8e5da] dark:border-white/10 text-xs font-medium text-[#19241c] dark:text-white placeholder:text-[#889b8d] dark:text-slate-500 focus:outline-none focus:border-[#2d5a3c] focus:bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl transition-all"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#889b8d] hover:text-[#19241c]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#889b8d] dark:text-slate-500 hover:text-[#19241c] dark:hover:text-white dark:text-white"
             >
               <X size={14} />
             </button>
@@ -362,8 +369,8 @@ export default function AdminResourcesPage() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-[#1b3726] text-white shadow-xs'
-                  : 'bg-[#f0f5f0] text-[#3f5444] hover:bg-[#e4ece4] hover:text-[#19241c]'
+                  ? 'bg-[#1b3726] dark:bg-blue-600/40 text-white shadow-xs'
+                  : 'bg-[#f0f5f0] dark:bg-white/10 text-[#3f5444] dark:text-slate-300 hover:bg-[#e4ece4] dark:hover:bg-white/20 hover:text-[#19241c] dark:hover:text-white dark:text-white'
               }`}
             >
               {cat}
@@ -378,14 +385,14 @@ export default function AdminResourcesPage() {
       {/* ========================================================================= */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20 gap-3">
-          <Loader2 className="animate-spin text-[#2d5a3c]" size={28} />
-          <span className="text-xs font-semibold text-[#667d6c]">Loading database repository...</span>
+          <Loader2 className="animate-spin text-[#2d5a3c] dark:text-[#60a5fa]" size={28} />
+          <span className="text-xs font-semibold text-[#667d6c] dark:text-slate-400">Loading database repository...</span>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="p-12 rounded-2xl bg-white border border-[#e2ece3] text-center space-y-3">
+        <div className="p-12 rounded-2xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#e2ece3] dark:border-white/10 text-center space-y-3">
           <BookOpen size={36} className="mx-auto text-[#94a899]" />
-          <h3 className="text-base font-bold text-[#142618]">No Academic Resources Found</h3>
-          <p className="text-xs text-[#637667] max-w-sm mx-auto">
+          <h3 className="text-base font-bold text-[#142618] dark:text-white">No Academic Resources Found</h3>
+          <p className="text-xs text-[#637667] dark:text-slate-400 max-w-sm mx-auto">
             {searchQuery || selectedCategory !== 'All'
               ? 'No resources match your current search or category filter. Try clearing filters.'
               : 'Your resources repository is currently empty. Click "Upload Resource" above to add the first document.'}
@@ -393,7 +400,7 @@ export default function AdminResourcesPage() {
           {(searchQuery || selectedCategory !== 'All') && (
             <button
               onClick={() => { setSearchQuery(''); setSelectedCategory('All'); }}
-              className="mt-2 text-xs font-bold text-[#2d5a3c] hover:underline"
+              className="mt-2 text-xs font-bold text-[#2d5a3c] dark:text-[#60a5fa] hover:underline"
             >
               Reset Filters
             </button>
@@ -404,27 +411,27 @@ export default function AdminResourcesPage() {
           {filtered.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl bg-white border border-[#e2ece3] p-6 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_28px_rgba(20,40,25,0.06)] hover:border-[#2d5a3c]/40 transition-all duration-300 group"
+              className="rounded-2xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl border border-[#e2ece3] dark:border-white/10 p-6 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_28px_rgba(20,40,25,0.06)] hover:border-[#2d5a3c]/40 dark:hover:border-[#60a5fa]/40 transition-all duration-300 group"
             >
               <div className="space-y-4">
                 
                 {/* Header info badge & actions */}
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#eef5ee] text-[#2d5a3c] border border-[#d6e6d8]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#eef5ee] dark:bg-white/10 text-[#2d5a3c] dark:text-[#60a5fa] border border-[#d6e6d8] dark:border-white/10">
                     {item.category || 'General'}
                   </span>
                   
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => handleOpenEdit(item)}
-                      className="p-1.5 rounded-lg text-[#556959] hover:text-[#1b3726] hover:bg-[#f1f6f1] transition-colors cursor-pointer"
+                      className="p-1.5 rounded-lg text-[#556959] hover:text-[#1b3726] dark:hover:text-[#60a5fa] hover:bg-[#f1f6f1] dark:hover:bg-white/20 transition-colors cursor-pointer"
                       title="Edit this resource"
                     >
                       <Edit3 size={15} />
                     </button>
                     <button
                       onClick={() => setDeleteConfirmId(item.id)}
-                      className="p-1.5 rounded-lg text-[#889b8d] hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                      className="p-1.5 rounded-lg text-[#889b8d] dark:text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
                       title="Delete this resource"
                     >
                       <Trash2 size={15} />
@@ -433,28 +440,28 @@ export default function AdminResourcesPage() {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-serif font-normal text-lg sm:text-xl text-[#142618] group-hover:text-[#2d5a3c] transition-colors leading-snug">
+                <h3 className="font-serif font-normal text-lg sm:text-xl text-[#142618] dark:text-white group-hover:text-[#2d5a3c] dark:group-hover:text-[#60a5fa] dark:text-[#60a5fa] transition-colors leading-snug">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs text-[#526656] leading-relaxed line-clamp-3 font-normal">
+                <p className="text-xs text-[#526656] dark:text-slate-300 leading-relaxed line-clamp-3 font-normal">
                   {item.desc || 'No detailed description specified.'}
                 </p>
 
                 {/* Meta details strip */}
-                <div className="flex items-center flex-wrap gap-x-4 gap-y-2 pt-3 border-t border-[#f0f5f0] text-[11px] font-medium text-[#657a69]">
+                <div className="flex items-center flex-wrap gap-x-4 gap-y-2 pt-3 border-t border-[#f0f5f0] dark:border-white/10 text-[11px] font-medium text-[#657a69]">
                   <div className="flex items-center gap-1.5">
-                    <FileCode size={13} className="text-[#2d5a3c]" />
+                    <FileCode size={13} className="text-[#2d5a3c] dark:text-[#60a5fa]" />
                     <span>{item.type || 'PDF'}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <HardDrive size={13} className="text-[#2d5a3c]" />
+                    <HardDrive size={13} className="text-[#2d5a3c] dark:text-[#60a5fa]" />
                     <span>{item.size || 'N/A'}</span>
                   </div>
                   {item.date && (
                     <div className="flex items-center gap-1.5">
-                      <Calendar size={13} className="text-[#2d5a3c]" />
+                      <Calendar size={13} className="text-[#2d5a3c] dark:text-[#60a5fa]" />
                       <span>{item.date}</span>
                     </div>
                   )}
@@ -467,7 +474,7 @@ export default function AdminResourcesPage() {
                       <CheckCircle2 size={13} className="text-emerald-700 shrink-0" />
                       <span className="truncate font-mono text-[10.5px]">PDF Attached</span>
                     </div>
-                    <span className="text-[10px] font-mono text-emerald-800 bg-white/80 px-2 py-0.5 rounded-md border border-emerald-200 shrink-0">
+                    <span className="text-[10px] font-mono text-emerald-800 bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl/80 px-2 py-0.5 rounded-md border border-emerald-200 shrink-0">
                       {item.size || 'PDF'}
                     </span>
                   </div>
@@ -489,14 +496,14 @@ export default function AdminResourcesPage() {
               </div>
 
               {/* Bottom Action Footer */}
-              <div className="pt-4 mt-5 border-t border-[#edf3ee] flex items-center justify-between gap-3">
+              <div className="pt-4 mt-5 border-t border-[#edf3ee] dark:border-white/10 flex items-center justify-between gap-3">
                 {item.downloadUrl && item.downloadUrl !== '#' ? (
                   <a
                     href={item.downloadUrl}
                     download
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2d5a3c] hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2d5a3c] dark:text-[#60a5fa] hover:underline"
                     title="Download / Preview attached PDF"
                   >
                     <Download size={13} />
@@ -514,7 +521,7 @@ export default function AdminResourcesPage() {
 
                 <button
                   onClick={() => handleOpenEdit(item)}
-                  className="px-3.5 py-1.5 rounded-xl bg-[#f4f7f2] hover:bg-[#eaf1e5] text-[#1b3726] border border-[#d8e5da] text-xs font-bold transition-colors cursor-pointer"
+                  className="px-3.5 py-1.5 rounded-xl bg-[#f4f7f2] dark:bg-white/10 hover:bg-[#eaf1e5] dark:hover:bg-white/20 text-[#1b3726] border border-[#d8e5da] dark:border-white/10 text-xs font-bold transition-colors cursor-pointer"
                 >
                   Edit Details
                 </button>
@@ -529,27 +536,27 @@ export default function AdminResourcesPage() {
       {/* 5. ADD / EDIT RESOURCE MODAL */}
       {/* ========================================================================= */}
       {showModal && (
-        <div className="fixed inset-0 z-50 bg-[#07170e]/50 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
-          <div className="w-full max-w-xl bg-white rounded-3xl border border-[#e2ece3] shadow-2xl overflow-hidden my-8">
+        <div className="fixed inset-0 z-50 bg-[#07170e]/50 dark:bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
+          <div className="w-full max-w-xl bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl rounded-3xl border border-[#e2ece3] dark:border-white/10 shadow-2xl overflow-hidden my-8">
             
             {/* Modal Header */}
-            <div className="p-6 border-b border-[#e8f0e9] flex items-center justify-between bg-[#f8faf8]">
+            <div className="p-6 border-b border-[#e8f0e9] dark:border-white/10 flex items-center justify-between bg-[#f8faf8] dark:bg-white/5">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#eef5ee] border border-[#d6e6d8] flex items-center justify-center text-[#2d5a3c]">
+                <div className="w-10 h-10 rounded-xl bg-[#eef5ee] dark:bg-white/10 border border-[#d6e6d8] dark:border-white/10 flex items-center justify-center text-[#2d5a3c] dark:text-[#60a5fa]">
                   <BookOpen size={20} />
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-bold text-[#142618]">
+                  <h3 className="font-serif text-lg font-bold text-[#142618] dark:text-white">
                     {editingId ? 'Edit Academic Resource' : 'Publish Academic Resource'}
                   </h3>
-                  <span className="text-[11px] text-[#637667]">
+                  <span className="text-[11px] text-[#637667] dark:text-slate-400">
                     Fill in document metadata to synchronize with public download page.
                   </span>
                 </div>
               </div>
               <button
                 onClick={() => setShowModal(false)}
-                className="p-2 rounded-xl text-[#718575] hover:text-[#142618] hover:bg-[#ebf2ec] transition-colors cursor-pointer"
+                className="p-2 rounded-xl text-[#718575] hover:text-[#142618] dark:hover:text-white dark:text-white hover:bg-[#ebf2ec] dark:hover:bg-white/20 transition-colors cursor-pointer"
               >
                 <X size={18} />
               </button>
@@ -560,7 +567,7 @@ export default function AdminResourcesPage() {
               
               {/* Title */}
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#1c2e21] block">
+                <label className="text-xs font-bold text-[#1c2e21] dark:text-white block">
                   Document / Resource Title *
                 </label>
                 <input
@@ -569,20 +576,20 @@ export default function AdminResourcesPage() {
                   placeholder="e.g. 4th SIET International Conference Official Brochure"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] border border-[#d5e2d6] text-xs font-medium text-[#19241c] focus:outline-none focus:border-[#2d5a3c] focus:bg-white"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] dark:bg-white/5 border border-[#d5e2d6] dark:border-white/10 text-xs font-medium text-[#19241c] dark:text-white focus:outline-none focus:border-[#2d5a3c] focus:bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl"
                 />
               </div>
 
               {/* Category & Type */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#1c2e21] block">
+                  <label className="text-xs font-bold text-[#1c2e21] dark:text-white block">
                     Category *
                   </label>
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] border border-[#d5e2d6] text-xs font-medium text-[#19241c] focus:outline-none focus:border-[#2d5a3c]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] dark:bg-white/5 border border-[#d5e2d6] dark:border-white/10 text-xs font-medium text-[#19241c] dark:text-white focus:outline-none focus:border-[#2d5a3c]"
                   >
                     {formCategories.map((c) => (
                       <option key={c} value={c}>{c}</option>
@@ -591,7 +598,7 @@ export default function AdminResourcesPage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#1c2e21] block">
+                  <label className="text-xs font-bold text-[#1c2e21] dark:text-white block">
                     File Type / Format *
                   </label>
                   <input
@@ -599,7 +606,7 @@ export default function AdminResourcesPage() {
                     placeholder="e.g. PDF, PDF / Interactive, ZIP"
                     value={formData.type}
                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] border border-[#d5e2d6] text-xs font-medium text-[#19241c] focus:outline-none focus:border-[#2d5a3c]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] dark:bg-white/5 border border-[#d5e2d6] dark:border-white/10 text-xs font-medium text-[#19241c] dark:text-white focus:outline-none focus:border-[#2d5a3c]"
                   />
                 </div>
               </div>
@@ -607,7 +614,7 @@ export default function AdminResourcesPage() {
               {/* Size & Date */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#1c2e21] block">
+                  <label className="text-xs font-bold text-[#1c2e21] dark:text-white block">
                     File Size
                   </label>
                   <input
@@ -615,12 +622,12 @@ export default function AdminResourcesPage() {
                     placeholder="e.g. 1.2 MB, 876 KB"
                     value={formData.size}
                     onChange={(e) => setFormData({ ...formData, size: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] border border-[#d5e2d6] text-xs font-medium text-[#19241c] focus:outline-none focus:border-[#2d5a3c]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] dark:bg-white/5 border border-[#d5e2d6] dark:border-white/10 text-xs font-medium text-[#19241c] dark:text-white focus:outline-none focus:border-[#2d5a3c]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#1c2e21] block">
+                  <label className="text-xs font-bold text-[#1c2e21] dark:text-white block">
                     Publication / Term Date
                   </label>
                   <input
@@ -628,7 +635,7 @@ export default function AdminResourcesPage() {
                     placeholder="e.g. March 2025, Semester II 2025"
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] border border-[#d5e2d6] text-xs font-medium text-[#19241c] focus:outline-none focus:border-[#2d5a3c]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] dark:bg-white/5 border border-[#d5e2d6] dark:border-white/10 text-xs font-medium text-[#19241c] dark:text-white focus:outline-none focus:border-[#2d5a3c]"
                   />
                 </div>
               </div>
@@ -654,7 +661,7 @@ export default function AdminResourcesPage() {
 
               {/* Description */}
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#1c2e21] block">
+                <label className="text-xs font-bold text-[#1c2e21] dark:text-white block">
                   Description / Synopsis
                 </label>
                 <textarea
@@ -662,16 +669,16 @@ export default function AdminResourcesPage() {
                   placeholder="Outline key topics covered, intended audience, authors or mentors..."
                   value={formData.desc}
                   onChange={(e) => setFormData({ ...formData, desc: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] border border-[#d5e2d6] text-xs font-medium text-[#19241c] focus:outline-none focus:border-[#2d5a3c]"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#fbfdfb] dark:bg-white/5 border border-[#d5e2d6] dark:border-white/10 text-xs font-medium text-[#19241c] dark:text-white focus:outline-none focus:border-[#2d5a3c]"
                 />
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-[#e8f0e9] flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-[#e8f0e9] dark:border-white/10 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2.5 rounded-xl border border-[#d8e5da] text-xs font-bold text-[#4e6453] hover:bg-[#f1f6f1] transition-colors cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl border border-[#d8e5da] dark:border-white/10 text-xs font-bold text-[#4e6453] dark:text-slate-300 hover:bg-[#f1f6f1] dark:hover:bg-white/20 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -679,7 +686,7 @@ export default function AdminResourcesPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-5 py-2.5 rounded-xl bg-[#1b3726] hover:bg-[#254d35] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-sm transition-all active:scale-98 disabled:opacity-50 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#1b3726] dark:bg-blue-600/40 hover:bg-[#254d35] dark:hover:bg-blue-600/60 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-sm transition-all active:scale-98 disabled:opacity-50 cursor-pointer"
                 >
                   {saving ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                   <span>{saving ? 'Saving...' : editingId ? 'Save Changes' : 'Publish Resource'}</span>
@@ -696,26 +703,26 @@ export default function AdminResourcesPage() {
       {/* 6. DELETE CONFIRMATION MODAL */}
       {/* ========================================================================= */}
       {deleteConfirmId && (
-        <div className="fixed inset-0 z-50 bg-[#07170e]/50 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="w-full max-w-md bg-white rounded-3xl border border-[#e2ece3] shadow-2xl p-6 space-y-4">
+        <div className="fixed inset-0 z-50 bg-[#07170e]/50 dark:bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="w-full max-w-md bg-white dark:bg-[#020617]/40 dark:backdrop-blur-xl rounded-3xl border border-[#e2ece3] dark:border-white/10 shadow-2xl p-6 space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600">
                 <Trash2 size={20} />
               </div>
               <div>
-                <h3 className="font-serif text-base font-bold text-[#142618]">
+                <h3 className="font-serif text-base font-bold text-[#142618] dark:text-white">
                   Delete Academic Resource?
                 </h3>
-                <span className="text-xs text-[#667d6c]">
+                <span className="text-xs text-[#667d6c] dark:text-slate-400">
                   This action is permanent and will remove the file from the portal.
                 </span>
               </div>
             </div>
 
-            <div className="pt-3 border-t border-[#edf3ee] flex items-center justify-end gap-2.5">
+            <div className="pt-3 border-t border-[#edf3ee] dark:border-white/10 flex items-center justify-end gap-2.5">
               <button
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl border border-[#d8e5da] text-xs font-bold text-[#4e6453] hover:bg-[#f1f6f1] transition-colors cursor-pointer"
+                className="px-4 py-2 rounded-xl border border-[#d8e5da] dark:border-white/10 text-xs font-bold text-[#4e6453] dark:text-slate-300 hover:bg-[#f1f6f1] dark:hover:bg-white/20 transition-colors cursor-pointer"
               >
                 Keep Resource
               </button>
@@ -730,6 +737,7 @@ export default function AdminResourcesPage() {
         </div>
       )}
 
+      </div>
     </div>
   );
 }

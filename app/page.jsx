@@ -358,7 +358,7 @@ export default function HomePage() {
             <div className="relative z-10 p-7 text-white space-y-1.5">
               <div className="flex items-center justify-between">
                 <h4 className="text-[17px] font-serif font-semibold text-white">Creating a better tomorrow</h4>
-                <Leaf size={16} className="text-[#a2d45e]" />
+                
               </div>
               <p className="text-[12px] text-[#c2d8c7] leading-relaxed font-normal">
                 through education, innovation and sustainability.
@@ -627,7 +627,6 @@ export default function HomePage() {
           {/* Center Copy (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-1.5">
-              <Leaf size={12} className="text-[#2d5a3c] dark:text-[#a2d45e] fill-[#2d5a3c] dark:fill-[#a2d45e]" />
               <span className="text-[10.5px] font-bold tracking-[0.18em] text-[#3d5042] dark:text-[#a2d45e] uppercase">
                 PARTNERSHIPS & IMPACT
               </span>

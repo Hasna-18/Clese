@@ -1,12 +1,8 @@
 {
-  "/page": "app/page.js",
-  "/news/page": "app/news/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/api/admin/check/route": "app/api/admin/check/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/api/resources/route": "app/api/resources/route.js",
-  "/api/admin/upload/route": "app/api/admin/upload/route.js",
-  "/initiatives/page": "app/initiatives/page.js",
   "/resources/page": "app/resources/page.js",
-  "/admin/events/page": "app/admin/events/page.js",
+  "/page": "app/page.js",
+  "/initiatives/page": "app/initiatives/page.js",
   "/admin/resources/page": "app/admin/resources/page.js"
 }

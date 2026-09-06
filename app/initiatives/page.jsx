@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
-  Leaf, 
   Sparkles, 
   MapPin, 
   Users, 
@@ -18,7 +17,8 @@ import {
   Cpu, 
   GraduationCap, 
   Layers, 
-  HeartHandshake 
+  HeartHandshake, 
+  Home
 } from 'lucide-react';
 
 const INITIATIVES_DATA = [
@@ -125,7 +125,7 @@ export default function InitiativesPage() {
             
             {/* Breadcrumb */}
             <div className="flex items-center gap-2 text-xs font-semibold text-[#485b4d] dark:text-slate-400">
-              <Leaf size={14} className="text-[#2d5a3c] dark:text-[#a2d45e] fill-[#2d5a3c] dark:fill-[#a2d45e]" />
+              <Home size={14} className="text-[#2d5a3c] dark:text-[#60a5fa]" />
               <Link href="/" className="hover:text-[#1b3726] dark:hover:text-white transition-colors">Home</Link>
               <span className="text-[#879b8c] dark:text-slate-500">&gt;</span>
               <span className="text-[#1b3726] dark:text-[#a2d45e] font-bold">Initiatives & Outreach</span>
